@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { HashRouter } from 'react-router-dom';
-// import './assets/base.scss';
-import Main from './Modules/Main';
+import './assets/css/bootstrap.css';
+import './assets/css/style.css';
+import AppMain from './Layout/AppMain';
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
 import jwt_decode from "jwt-decode";
@@ -45,7 +46,7 @@ const renderApp = Component => {
     );
 };
 
-renderApp(Main);
+renderApp(AppMain);
 
 window.io = require('socket.io-client');
 window.Echo = new Echo({

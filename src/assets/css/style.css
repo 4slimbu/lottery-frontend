@@ -1,0 +1,417 @@
+/*---------------------
+css reset
+-----------------------*/
+body{
+	font-family: 'Montserrat', sans-serif;
+	color: #656565;
+	font-weight: 400;
+	font-size: 14px;
+}
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Montserrat', sans-serif;
+	line-height: 1.4;
+	color: #222222;
+	font-weight: 600;
+}
+h4{
+	font-size: 20px;
+}
+.fa:before{
+	font-family: fontawesome;
+}
+/*--------------------
+header
+-------------------*/
+nav.navbar {
+    padding: 0;
+}
+header {
+    background-color: #222222;
+    padding: 15px 0;
+}
+ul.nav-items-link {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+}
+.nav-item a{
+	padding: 0 15px;
+	color: #fff;
+}
+ul.nav-items-link .nav-item a {
+    padding: 0;
+}
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-right: 20px;
+    padding-left: 0;
+}
+ul.nav-items-link .nav-item:first-child a:after {
+    content: '/';
+    display: inline-block;
+}
+/*--------------
+main
+----------------*/
+section.main {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+    padding: 30px 0 100px;
+    background-position: center;
+}
+/*-----------------
+first section
+------------------*/
+.section-top {
+    margin-bottom: 80px;
+}
+.buttons a.btn {
+    display: inline-block;
+    width: 50%;
+    margin: 0 5px;
+}
+.buttons {
+    display: flex;
+    min-width: 100%;
+    margin: 0 -5px;
+}
+a.btn.btn-secondary {
+    background-color: #f2f2f2;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #525252;
+    padding: 11px 0;
+    border: none;
+    font-weight: 600;
+}
+a.btn.btn-primary {
+    background-color: #fd8400;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 11px 0;
+    border: none;
+    font-weight: 600;
+}
+a.btn.btn-secondary:focus,
+a.btn.btn-primary:focus,
+a.btn.btn-dark:focus{
+	outline: none;
+	box-shadow: unset;
+}
+.prizepool-head h6 {
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.prizepool-head .prizepool-amount {
+    display: flex;
+    align-items: center;
+}
+.prizepool-head .prizepool-amount span:first-child {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+}
+.prizepool-head .prizepool-amount span:last-child{
+	color: #e1ecff;
+	font-size: 14px;
+	margin-left: 15px;
+    font-weight: 700;
+} 
+.prizepool-head {
+    margin-left: -30px;
+}
+/*-----------------
+last section
+-------------------*/
+.card {
+    border: none;
+}
+.card-header {
+    text-align: center;
+    background-color: #7ebf30;
+    color: #fff;
+    padding: 20px;
+}
+li.list-group-item span.player-name {
+    font-weight: 500;
+    display: list-item;
+    float: left;
+    margin-left: 15px;
+    width: 50%;
+}
+li.list-group-item span.player-lottery-amount {
+    float: right;
+}
+li.list-group-item span {
+    font-weight: 500;
+}
+.winners-table.card .card-body a.card-link {
+    color: #fd8400;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+}
+.winners-table.card .card-body {
+    text-align: center;
+}
+li.list-group-item span.player-lottery-amount .fa-btc:before {
+    content: "\f15a";
+    font-family: fontawesome;
+    margin-right: 5px;
+    font-size: 18px;
+}
+.lottery-table.card .card-body {
+    padding: 20px 10px 20px 10px;
+}
+ul.lottery-table-numbers {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+ul.lottery-table-numbers li.lottery-table-number {
+    width: 14.2857143%;
+}
+ul.lottery-table-numbers li.lottery-table-number a {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #4275a4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 7px auto;
+    font-weight: 600;
+    color: #4275a4;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+}
+li.lottery-table-number.active a,
+li.lottery-table-number:hover a {
+    background-color: #f8bd00;
+    color: #fff!important;
+    border: 2px solid #d27a08!important;
+}
+.lottery-table h4.card-header {
+    display: flex;
+    background-color: #28a9e1;
+    justify-content: space-between;
+    padding: 17px 20px;
+    align-items: center;
+}
+.lottery-table h4.card-header ul,
+.wining-numbers-table.card ul.winning-numbers {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+.lottery-table h4.card-header ul li.picked-number,
+.wining-numbers-table.card ul.winning-numbers li.winning-number{
+    width: 16.66%;
+    padding: 0 1px;
+}
+.lottery-table h4.card-header ul li.picked-number a,
+.wining-numbers-table.card ul.winning-numbers li.winning-number a {
+    width: 35px;
+    height: 35px;
+    font-size: 13px;
+    border: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin: 0 auto;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+a.btn.btn-dark {
+    background-color: #6e6e6e;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 11px 0;
+    border: none;
+    font-weight: 600;
+}
+.lottery-table.card .card-body .buttons a.btn {
+    padding: 20px 0;
+}
+.lottery-table.card .card-body .buttons{
+	padding: 0 10px;
+}
+.count-down-table.card h4 {
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 25px;
+}
+.count-down-table.card{
+	margin-bottom: 20px;
+}
+h3.countdown-text span {
+    margin: 0 5px;
+}
+h3.countdown-text {
+    text-align: center;
+    color: #fe8400;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+/*-----------
+footer
+-------------*/
+footer{
+	background-color: #222222;
+	padding: 25px 0 25px;
+}
+ul.footer-items {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+ul.footer-items li.footer-item a {
+    color: #fff;
+    font-size: 14px;
+    margin-right: 20px;
+    text-decoration: none;
+}
+.footer-left p {
+    color: #fff;
+    margin-bottom: 0;
+}
+ul.social-icons {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+}
+.footer-right {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+ul.social-icons a {
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    margin-left: 15px;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+}
+ul.social-icons a:hover {
+    color: #222;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+.wining-numbers-table.card ul.winning-numbers li.winning-number a {
+    margin: 6px auto;
+    color: #4275a4;
+    border: 2px solid #4275a4;
+}
+.wining-numbers-table.card .card-body {
+    padding: 20px 10px;
+}
+@media (max-width: 991px){
+	ul.lottery-table-numbers li.lottery-table-number a {
+	    width: 40px;
+	    height: 40px;
+	}
+	.winners-table.card,
+	.lottery-table.card {
+	    margin-bottom: 20px;
+	}
+	.lottery-table h4.card-header {
+	    flex-direction: column;
+	}
+	.lottery-table h4.card-header ul li.picked-number {
+	    width: 16.66%;
+	    padding: 0 2px;
+	}
+	.prizepool-head {
+	    margin-left: 0px;
+	    margin-bottom: 20px;
+	}
+}
+@media (max-width: 767px){
+	.navbar-collapse.show ,
+	.navbar-collapse.collapsing{
+	    position: absolute;
+	    width: 100%;
+	    top: 38px;
+	    background-color: #222;
+	    left: 0;
+	    right: 0;
+	    display: block;
+	    z-index: 999;
+	    padding: 10px 15px;
+	}
+	.navbar-collapse li.nav-item a {
+	    padding: 5px 0;
+	}
+	button.navbar-toggler {
+	    padding: 0;
+	    outline: none;
+	    box-shadow: unset;
+	}
+	.navbar-toggler-icon {
+	    height: 100%;
+	    width: auto;
+	}
+	button.navbar-toggler span.navbar-toggler-icon:after {
+	    content: "\f0c9";
+	    font-family: fontawesome;
+	    color: #fff;
+	    font-size: 22px;
+	}
+	ul.nav-items-link .nav-item a {
+	    font-size: 13px;
+	}
+	a.navbar-brand {
+	    display: block;
+	}
+	a.navbar-brand img {
+	    margin: 0 auto 20px;
+	    display: block;
+	}
+	.prizepool-head {
+	    margin-bottom: 10px;
+	}
+	.lottery-table.card .card-body .buttons a.btn {
+	    padding: 10px 0;
+	}
+	.lottery-table.card .card-body .buttons {
+	    padding: 0 0px;
+	}
+	ul.footer-items li.footer-item a {
+	    font-size: 12px;
+	    margin-right: 10px;
+	}
+	ul.footer-items {
+	    justify-content: center;
+	}
+	.footer-left p {
+	    font-size: 12px;
+	    color: #fff;
+	    margin-bottom: 20px;
+	    text-align: center;
+	}
+	.footer-right {
+	    justify-content: center;
+	}
+}
