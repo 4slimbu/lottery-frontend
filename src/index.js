@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { HashRouter } from 'react-router-dom';
-import './assets/base.scss';
+// import './assets/base.scss';
 import Main from './Modules/Main';
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
