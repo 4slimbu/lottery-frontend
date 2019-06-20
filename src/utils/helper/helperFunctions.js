@@ -597,3 +597,19 @@ export function setCookie(name, value, options = {}) {
     const cookies = new Cookies();
     cookies.set(name, value, options);
 }
+
+export function generateRandomLotteryNumber() {
+    let lotteryNumber = [];
+
+    while (lotteryNumber.length < 6) {
+        let randNumber = Math.floor(Math.random() * 100) + 1;
+
+        if (randNumber !== 100 && lotteryNumber.indexOf(randNumber) === -1) {
+            lotteryNumber.push(randNumber);
+        }
+    }
+
+    return lotteryNumber;
+}
+
+

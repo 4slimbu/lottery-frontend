@@ -5,8 +5,8 @@ import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 
 
-const Home = lazy(() => import('../../Screens/Home'));
-const Dashboard = lazy(() => import('../../Screens/Dashboard'));
+const Home = lazy(() => import('../../Components/Home'));
+const Dashboard = lazy(() => import('../../Components/Dashboard'));
 
 class AppMain extends Component {
     render () {

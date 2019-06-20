@@ -1,47 +1,53 @@
 import React, {Fragment} from 'react';
-import cx from 'classnames';
 
 import {connect} from 'react-redux';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import HeaderLogo from '../AppLogo';
-
-import SearchBox from './Components/SearchBox';
-import MegaMenu from './Components/MegaMenu';
-import UserBox from './Components/UserBox';
-import HeaderRightDrawer from "./Components/HeaderRightDrawer";
-
-import HeaderDots from "./Components/HeaderDots";
-
 class Header extends React.Component {
     render() {
-        let {
-            headerBackgroundColor,
-            enableMobileMenuSmall,
-            enableHeaderShadow
-        } = this.props;
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
                     component="div"
-                    className={cx("app-header", headerBackgroundColor, {'header-shadow': enableHeaderShadow})}
                     transitionName="HeaderAnimation"
                     transitionAppear={true}
                     transitionAppearTimeout={1500}
                     transitionEnter={false}
                     transitionLeave={false}>
 
-                    <HeaderLogo/>
+                    <header>
+                        <div className="container">
+                            <nav className="navbar navbar-expand-md">
+                                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#headerNavbar" aria-controls="headerNavbar">
+                                    <span className="navbar-toggler-icon"></span>
+                                </button>
 
-                    <div className={cx(
-                        "app-header__content",
-                        {'header-mobile-open': enableMobileMenuSmall},
-                    )}>
-                        <div className="app-header-right">
-                            Header
+                                <div className="collapse navbar-collapse" id="headerNavbar">
+                                    <ul className="navbar-nav mr-auto">
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="#">About </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="#">Faq </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="#">Contact </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul className="nav-items-link">
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="#">Login </a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="#">Register </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
-                    </div>
+                    </header>
+
                 </ReactCSSTransitionGroup>
             </Fragment>
         );
@@ -49,10 +55,6 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    enableHeaderShadow: state.ThemeOptions.enableHeaderShadow,
-    closedSmallerSidebar: state.ThemeOptions.closedSmallerSidebar,
-    headerBackgroundColor: state.ThemeOptions.headerBackgroundColor,
-    enableMobileMenuSmall: state.ThemeOptions.enableMobileMenuSmall,
 });
 
 const mapDispatchToProps = dispatch => ({});
