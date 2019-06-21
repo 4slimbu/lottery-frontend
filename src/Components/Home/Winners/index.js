@@ -1,17 +1,56 @@
-import React, {Fragment} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 
+import PropTypes from "prop-types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBtc} from "@fortawesome/free-brands-svg-icons";
+import request from "../../../services/request";
+import {MESSAGES} from "../../../constants/messages";
+import {makeRequest} from "../../../actions/requestAction";
+import {withRouter} from "react-router-dom";
 
-class Winners extends React.Component {
+class Winners extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            isLoading: true,
+            winners: [{}]
+        }
+    }
+
+    componentDidMount() {
+        this.props.makeRequest(request.Lottery.winners, {query: ''}, {message: MESSAGES.LOGGING}).then(
+            (res) => {
+                if (res.data) {
+                    console.log(res.data);
+                    this.setState({
+                        winners: res.data,
+                        pages: res.meta.last_page,
+                        isLoading: false,
+                    });
+                } else {
+                    this.setState({
+                        winners: [{}],
+                        pages: 0,
+                        isLoading: false,
+                    });
+                }
+            },
+            (errorData) => {
+                this.setState({isLoading: false});
+            }
+        );
+    }
 
     render() {
+        const {winners, isLoading} = this.state;
         return (
+            !isLoading &&
             <Fragment>
                 <div className="winners-table card">
                     <h4 className="card-header">
-                        Recent Winners
+                        Recent Winners asdfsd
                     </h4>
                     <ol className="list-group list-group-flush">
                         <li className="list-group-item">
@@ -80,9 +119,19 @@ class Winners extends React.Component {
 
 }
 
+Winners.propTypes = {
+    makeRequest: PropTypes.func.isRequired,
+};
 
-const mapStateToProps = state => ({});
 
-const mapDispatchToProps = dispatch => ({});
+function mapStateToProps(state) {
+    return {
+        auth: state.authReducer,
+        appStatus: state.appStatusReducer
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Winners);
+
+export default withRouter(connect(mapStateToProps, {
+    makeRequest,
+})(Winners));

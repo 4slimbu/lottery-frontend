@@ -16,9 +16,11 @@ import Participants from "./Participants";
 class Home extends React.Component {
     constructor() {
         super();
+
     }
 
     render() {
+
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
