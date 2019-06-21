@@ -7,15 +7,15 @@ import {faBtc} from "@fortawesome/free-brands-svg-icons";
 const PlayersList = (props) => {
     const {ulClass, liClass, players} = props;
     return (
-        <ul className={classnames("list-group list-group-flush players-list", ulClass)}>
+        <ul className={classnames("players-list", ulClass)}>
             {
                 _.map(players, (player, key) => {
                     return (
-                        <li key={key} className={classnames("list-group-item", liClass)}>
+                        <li key={key} className={classnames(liClass)}>
                             {
                                 player ?
                                     <div>
-                                        <span className="player-name">{player.full_name}</span> joined the Game.
+                                        <span className="player-name">{player.full_name} <small>joined the Game.</small></span>
                                     </div>
                                     :
                                     <div className="placeholder-div-sm">

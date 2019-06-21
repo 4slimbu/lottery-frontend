@@ -124,6 +124,8 @@ const Lottery = {
             requests('DELETE', API_BASE_URL + "/lottery/slots", data),
         winners: (data) =>
             requests('GET',API_BASE_URL + `/lottery/slots/winners?` + data.query),
+        getActive: (data) =>
+            requests('GET', API_BASE_URL + `/lottery/slots/3?with=participants&is_active=true`)
     }
 };
 

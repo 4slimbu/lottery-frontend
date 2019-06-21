@@ -429,4 +429,6 @@ ul.social-icons a:hover {
 .players-list {
     max-height: 600px;
     overflow-y: scroll;
+    list-style: none;
+    padding-left: 10px;
 }
