@@ -10,7 +10,7 @@ import AppLogo from "../../Components/AppCommon/AppLogo";
 import PrizePool from "../../Components/AppCommon/PrizePool";
 import Winners from "./Winners";
 import LotteryPicker from "./LotteryPicker";
-import RunningGame from "./RunningGame";
+import GameInfo from "../../Components/AppCommon/GameInfo";
 import Players from "./Players";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
@@ -64,8 +64,9 @@ class Home extends React.Component {
     }
 
     render() {
-        const {slot, players} = this.props.lottery;
+        const {slot, players, result} = this.props.lottery;
         const lotterySlotAmount = slot && slot.total_amount;
+        const lotterySlotParticipantsCount = slot && slot.total_participants;
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
@@ -106,8 +107,8 @@ class Home extends React.Component {
                                         <LotteryPicker/>
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
-                                        <RunningGame/>
-                                        <Players players={players.data}/>
+                                        <GameInfo slot={slot} result={result}/>
+                                        <Players players={players.data} total={lotterySlotParticipantsCount}/>
                                     </div>
                                 </div>
                             </div>

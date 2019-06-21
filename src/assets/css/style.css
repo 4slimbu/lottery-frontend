@@ -179,8 +179,8 @@ ul.lottery-table-numbers li.lottery-table-number {
     width: calc(11% - 0px);
 }
 ul.lottery-table-numbers li.lottery-table-number a {
-    width: 35px;
-    height: 35px;
+    width: 43px;
+    height: 43px;
     border: 2px solid #4275a4;
     display: flex;
     justify-content: center;
@@ -427,8 +427,17 @@ ul.social-icons a:hover {
 }
 
 .players-list {
-    max-height: 600px;
+    height: 320px;
     overflow-y: scroll;
     list-style: none;
     padding-left: 10px;
+}
+
+.lottery-table-numbers.result .lottery-table-number {
+    width: 16%;
+}
+
+.lottery-table-numbers.result .lottery-table-number a{
+    width: 30px;
+    height: 30px;
 }

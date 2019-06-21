@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 import setAuthorizationToken from "./utils/axios/setAuthorizationToken";
 import {setAuth} from "./actions/authActions";
 import Echo from 'laravel-echo';
+import {setLotterySlot, addLotterySlotPlayer, setLotteryResult, setLotteryPlayers} from "./actions/lotteryActions";
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
@@ -48,19 +49,25 @@ const renderApp = Component => {
 
 renderApp(AppMain);
 
-// window.io = require('socket.io-client');
-// window.Echo = new Echo({
-//     broadcaster: 'socket.io',
-//     host: window.location.hostname + ':6001'
-// });
-//
-// window.Echo.channel('lottery')
-//     .listen('LotterySlotClosedEvent', (e) => {
-//         console.log(e);
-//     }).listen('LotterySlotCreatedEvent', (e) => {
-//         console.log(e);
-//     }).listen('LotterySlotResultGeneratedEvent', (e) => {
-//         console.log(e);
-//     }).listen('ParticipantAddedEvent', (e) => {
-//         console.log(e);
-//     });
+window.io = require('socket.io-client');
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
+});
+
+window.Echo.channel('lottery')
+    .listen('LotterySlotCreatedEvent', (e) => {
+        console.log('lottery slot created event', e);
+        store.dispatch(setLotterySlot(e.data));
+        store.dispatch(setLotteryPlayers({data: []}));
+    }).listen('LotterySlotClosedEvent', (e) => {
+        console.log('Lottery Slot Closed Event', e);
+        store.dispatch(setLotteryResult(e));
+    }).listen('ParticipantAddedEvent', (e) => {
+        let slot = e.data;
+        let participant = e.participant;
+        console.log('pae');
+        console.log(e);
+        store.dispatch(setLotterySlot(slot));
+        store.dispatch(addLotterySlotPlayer(participant));
+    });

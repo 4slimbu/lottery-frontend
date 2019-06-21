@@ -27,7 +27,8 @@ export const DEFAULT_LOTTERY_STATE = {
     },
     players: {
         data: []
-    }
+    },
+    result: []
 };
 
 export const DEFAULT_BUSINESS_OPTION = {};

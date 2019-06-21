@@ -1,5 +1,6 @@
 import {
-    SET_LOTTERY_PLAYERS,
+    ADD_LOTTERY_PLAYER,
+    SET_LOTTERY_PLAYERS, SET_LOTTERY_RESULT,
     SET_LOTTERY_SLOT,
     SET_LOTTERY_WINNERS,
 } from "../constants/actionTypes";
@@ -25,3 +26,16 @@ export function setLotteryPlayers(payload) {
     }
 }
 
+export function addLotterySlotPlayer(payload) {
+    return {
+        type: ADD_LOTTERY_PLAYER,
+        payload
+    }
+}
+
+export function setLotteryResult(payload) {
+    return {
+        type: SET_LOTTERY_RESULT,
+        payload
+    }
+}
