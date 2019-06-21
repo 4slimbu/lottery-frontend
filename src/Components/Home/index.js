@@ -11,7 +11,7 @@ import PrizePool from "./PrizePool";
 import Winners from "./Winners";
 import LotteryPicker from "./LotteryPicker";
 import RunningGame from "./RunningGame";
-import Participants from "./Participants";
+import Players from "./Players";
 
 class Home extends React.Component {
     constructor() {
@@ -62,7 +62,7 @@ class Home extends React.Component {
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <RunningGame/>
-                                        <Participants/>
+                                        <Players/>
                                     </div>
                                 </div>
                             </div>

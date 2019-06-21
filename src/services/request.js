@@ -123,7 +123,7 @@ const Lottery = {
         deleteMultiple: (data) =>
             requests('DELETE', API_BASE_URL + "/lottery/slots", data),
         winners: (data) =>
-            requests('GET',API_BASE_URL + `/lottery/winners?` + data.query),
+            requests('GET',API_BASE_URL + `/lottery/slots/winners?` + data.query),
     }
 };
 

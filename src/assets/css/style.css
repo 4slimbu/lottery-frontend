@@ -417,3 +417,16 @@ ul.social-icons a:hover {
 	    justify-content: center;
 	}
 }
+
+.placeholder-div {
+    min-height: 25px;
+}
+
+.placeholder-div-sm {
+    min-height: 15px;
+}
+
+.players-list {
+    max-height: 600px;
+    overflow-y: scroll;
+}
