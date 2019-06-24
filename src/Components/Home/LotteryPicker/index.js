@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 
 import LotteryNumberList from "../../AppCommon/LotteryNumberList";
-import {generateRandomLotteryNumber} from "../../../utils/helper/helperFunctions";
+import {generateRandomLotteryNumber, getFirstEmptyPosition} from "../../../utils/helper/helperFunctions";
 import PickedNumbers from "../../AppCommon/PickedNumbers";
 
 class LotteryPicker extends React.Component {
@@ -11,7 +11,7 @@ class LotteryPicker extends React.Component {
 
         this.state = {
             numbers: [
-                1, 2, 4, 5, 6, 7, 8 , 9, 10,
+                1, 2, 4, 5, 6, 7, 8, 9, 10,
                 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
                 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
@@ -23,7 +23,6 @@ class LotteryPicker extends React.Component {
                 91, 92, 93, 94, 95, 96, 97, 98, 99
             ],
             pickedNumbers: [],
-            activeIndex: null
         };
 
         this.randomPick = this.randomPick.bind(this);
@@ -38,38 +37,32 @@ class LotteryPicker extends React.Component {
     }
 
     handleNumberClick(number) {
-        let {pickedNumbers, activeIndex} = this.state;
+        let {pickedNumbers} = this.state;
 
         let index = pickedNumbers.indexOf(number);
 
         if (index !== -1) {
-            // let filtered = pickedNumbers.filter(function (el) {
-            //     return el != undefined;
-            // });
-            //
-            // if (filtered.length === 6) {
-            // }
-            this.setState({activeIndex: index});
             delete pickedNumbers[index];
         } else {
-            pickedNumbers[activeIndex] = number;
+            let firstEmptyKey = getFirstEmptyPosition(pickedNumbers);
+            if (typeof firstEmptyKey === 'number') {
+                pickedNumbers[firstEmptyKey] = number;
+            }
         }
 
         this.setState({
             pickedNumbers: pickedNumbers,
-            activeIndex: index
         });
     }
 
     randomPick() {
         let that = this;
-        (function theLoop (i) {
+        (function theLoop(i) {
             setTimeout(function () {
                 let randomPick = generateRandomLotteryNumber();
 
                 that.setState({
                     pickedNumbers: randomPick,
-                    activeIndex: null
                 });
 
                 if (--i) {          // If i > 0, keep going

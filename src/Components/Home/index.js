@@ -90,7 +90,7 @@ class Home extends React.Component {
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <div className="buttons">
-                                            <a href="#" className="btn btn-secondary">Deposit</a>
+                                            <a href="https://commerce.coinbase.com/checkout/294e64a2-e757-4745-91c5-69f3a168abe7" className="btn btn-secondary">Deposit</a>
                                             <a href="#" className="btn btn-primary">Let's play</a>
                                         </div>
                                     </div>

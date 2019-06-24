@@ -9,7 +9,7 @@ const PickedNumbers = (props) => {
             {
                 _.map(numbers, (number, key) => {
                     const isActive = activeNumbers && activeNumbers.indexOf(number) !== -1;
-                    return <li key={key} className={classnames(liClass, {"active" : isActive})}><a href="javascript:void(0)">{ number }</a></li>;
+                    return <li key={key} className={classnames(liClass, {"active" : isActive})}><a href="javascript:void(0)" onClick={(e) => handleClick(number)}>{ number }</a></li>;
                 })
             }
         </ul>

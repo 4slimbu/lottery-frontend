@@ -1,5 +1,5 @@
 import * as axios from "axios";
-import {apiBaseUrl, getEnv, newsFeedApiBaseUrl} from "../utils/helper/helperFunctions";
+import {getEnv} from "../utils/helper/helperFunctions";
 
 const API_BASE_URL = "http://lottery-api.test/api/v1";
 /**
@@ -39,20 +39,10 @@ const Auth = {
         requests('PUT', API_BASE_URL + "/logout"),
     register: (data) =>
         requests('POST', API_BASE_URL + "/register", data),
-    save: (data) =>
-        requests('PUT', apiBaseUrl("/user"), data),
     forgotPassword: (data) =>
         requests('POST', API_BASE_URL + "/forgot-password", data),
     resetPassword: (data) =>
         requests('PUT', API_BASE_URL + "/reset-password", data),
-    sendVerificationEmail: () =>
-        requests('GET', apiBaseUrl("/user/send-verification-email")),
-    verifyEmail: (data) =>
-        requests('POST', apiBaseUrl("/user/verify-email"), data),
-    checkIfExists: (data) =>
-        requests('POST', apiBaseUrl("/user/check-if-exists"), data),
-    loginSocialUser: (url) =>
-        requests('GET', apiBaseUrl(url)),
 };
 
 /**
@@ -129,85 +119,10 @@ const Lottery = {
     }
 };
 
-
-/**
- * Handles all Business related requests
- */
-const Business = {
-    get: () =>
-        requests('GET', apiBaseUrl("/user/business")),
-    getStatus: () =>
-        requests('GET', apiBaseUrl("/user/business/status")),
-    save: (data) =>
-        requests('PUT', apiBaseUrl("/user/business"), data),
-};
-
-/**
- * Handles all Business Category related requests
- */
-const BusinessCategory = {
-    all: () =>
-        requests('GET', apiBaseUrl("/business-categories")),
-};
-
-/**
- * Handles all Level related requests
- */
-const Level = {
-    all: () =>
-        requests('GET', apiBaseUrl("/levels?with=sections")),
-};
-
-/**
- * Handle all Business Option related requests
- */
-const BusinessOption = {
-    all: () =>
-        requests('GET', apiBaseUrl(`/business-options`)),
-    get: (id) =>
-        requests('GET', apiBaseUrl(`/business-option/${id}`)),
-    save: (data) =>
-        requests('POST', apiBaseUrl(`/business-option/${data.id}`), data.input)
-};
-
-/**
- * Handle all News related requests
- */
-const News = {
-    all: () =>
-        requests('GET', newsFeedApiBaseUrl("/wp-json/mbj-feed/v1/posts")),
-    byTag: (tag) =>
-        requests('GET', newsFeedApiBaseUrl(`/wp-json/mbj-feed/v1/posts?tag=${tag}`))
-};
-
-/**
- * Handle all News related requests
- */
-const Track = {
-    click: (data) =>
-        requests('GET', apiBaseUrl('/click?bo_id=' + data.boId + '&aff_id=' + data.affId)),
-};
-
-/**
- * Handle all News related requests
- */
-const AppSettings = {
-    all: (data) =>
-        requests('GET', apiBaseUrl('/app-settings')),
-};
-
-
 export default {
     Auth,
     Users,
     Permissions,
     Roles,
     Lottery,
-    Business,
-    BusinessCategory,
-    Level,
-    BusinessOption,
-    News,
-    Track,
-    AppSettings
 };
