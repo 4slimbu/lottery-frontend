@@ -96,7 +96,6 @@ class LotteryPicker extends React.Component {
                         <div className="buttons">
                             <button className="btn btn-info" onClick={this.randomPick}>Shuffle</button>
                             <button className="btn btn-primary">Play Now</button>
-                            <a href="#" className="btn btn-dark">Reset</a>
                         </div>
                     </div>
                 </div>
