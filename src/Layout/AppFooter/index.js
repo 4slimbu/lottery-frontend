@@ -1,10 +1,15 @@
 import React, {Component, Fragment} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebook, faTwitter} from "@fortawesome/free-brands-svg-icons";
+import LoginModal from "../../Components/AppCommon/LoginModal";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {makeRequest} from "../../actions/requestAction";
+import RegisterModal from "../../Components/AppCommon/RegisterModal";
 
 class AppFooter extends Component {
     render() {
-
+        const {user} = this.props.auth;
         return (
             <Fragment>
                 <footer>
@@ -36,8 +41,20 @@ class AppFooter extends Component {
                         </div>
                     </div>
                 </footer>
+                <LoginModal/>
+                <RegisterModal/>
             </Fragment>
         )}
 }
 
-export default AppFooter;
+function mapStateToProps(state) {
+    return {
+        auth: state.authReducer,
+        appStatus: state.appStatusReducer
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps, {
+    makeRequest,
+})(AppFooter));

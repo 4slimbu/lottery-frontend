@@ -1,17 +1,5 @@
 export const DEFAULT_APP_STATUS = {
-    news: [],
-    business: {business_name: "", website: "", business_category_id: 1, sell_goods: 0},
-    levels: [],
-    sections: [],
-    businessOptions: [],
-    businessStatus: {levelStatuses: [], sectionStatuses: [], businessOptionStatuses: []},
-    currentLevel: {},
-    currentSection: {},
-    currentBusinessOption: {},
-    businessCategories: [],
-    currentTipCategoryId: null,
-    toolTip: null,
-    events: [],
+    modal: null,
     appSettings: []
 };
 

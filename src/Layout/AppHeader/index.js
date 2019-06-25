@@ -1,11 +1,38 @@
-import React, {Fragment} from 'react';
+import React, {Component, Fragment} from 'react';
 
 import {connect} from 'react-redux';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {setModal} from "../../actions/appStatusAction";
+import {logout} from "../../actions/authActions";
+import {withRouter} from "react-router-dom";
+import {Badge} from "reactstrap";
 
-class Header extends React.Component {
+class AppHeader extends Component {
+    constructor(props) {
+        super(props);
+
+        this.showLoginModal = this.showLoginModal.bind(this);
+        this.showRegisterModal = this.showRegisterModal.bind(this);
+        this.logoutHandler = this.logoutHandler.bind(this);
+    }
+
+    showLoginModal() {
+        this.props.setModal("login");
+    }
+
+    showRegisterModal() {
+        this.props.setModal("register");
+    }
+
+    logoutHandler() {
+        const {logout, history} = this.props;
+
+        logout();
+    }
+
     render() {
+        const {isAuthenticated, isVerified, user} = this.props.auth;
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
@@ -36,14 +63,31 @@ class Header extends React.Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <ul className="nav-items-link">
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Login </a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="#">Register </a>
-                                    </li>
-                                </ul>
+                                {
+                                    ! isAuthenticated &&
+                                    <ul className="nav-items-link">
+                                        <li className="nav-item">
+                                            <button className="nav-link" onClick={this.showLoginModal}>Login</button>
+                                        </li>
+                                        <li className="nav-item">
+                                            <button className="nav-link" onClick={this.showRegisterModal}>Register</button>
+                                        </li>
+                                    </ul>
+                                }
+                                {
+                                    isAuthenticated &&
+                                    <ul className="nav-items-link">
+                                        <li className="nav-item">
+                                            Hi! { user.full_name }
+                                        </li>
+                                        <li className="nav-item">
+                                            <Badge>{ user.wallet.usable_amount } BTC</Badge>
+                                        </li>
+                                        <li className="nav-item">
+                                            <button onClick={this.logoutHandler}>Logout</button>
+                                        </li>
+                                    </ul>
+                                }
                             </nav>
                         </div>
                     </header>
@@ -54,9 +98,14 @@ class Header extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-});
+function mapStateToProps(state) {
+    return {
+        auth: state.authReducer,
+        appStatus: state.appStatusReducer
+    }
+}
 
-const mapDispatchToProps = dispatch => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, {
+    setModal,
+    logout
+})(AppHeader));

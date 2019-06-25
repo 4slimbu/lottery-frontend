@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
-import Header from "../../Layout/AppHeader";
-import Footer from "../../Layout/AppFooter";
+import AppHeader from "../../Layout/AppHeader";
+import AppFooter from "../../Layout/AppFooter";
 import AppLogo from "../../Components/AppCommon/AppLogo";
 import PrizePool from "../../Components/AppCommon/PrizePool";
 import Winners from "./Winners";
@@ -76,7 +76,7 @@ class Home extends React.Component {
                     transitionAppearTimeout={0}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <Header/>
+                    <AppHeader/>
 
                     <section className="main">
                         <div className="section-top">
@@ -115,7 +115,7 @@ class Home extends React.Component {
                         </div>
                     </section>
 
-                    <Footer/>
+                    <AppFooter/>
 
                 </ReactCSSTransitionGroup>
             </Fragment>

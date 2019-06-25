@@ -35,6 +35,9 @@ ul.nav-items-link {
     display: flex;
     list-style-type: none;
 }
+.nav-item {
+    color: #fff;
+}
 .nav-item a{
 	padding: 0 15px;
 	color: #fff;
