@@ -1,20 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import {
-    Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup,
-    Col, Row, Card, CardBody,
-    CardTitle, Container
-} from 'reactstrap';
+import {Button, Col, FormGroup, Modal, ModalBody, ModalHeader, Row} from 'reactstrap';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 import {setModal} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
-import {AvField, AvForm, AvGroup, AvRadio, AvRadioGroup} from "availity-reactstrap-validation";
-import cx from 'classnames';
-import * as _ from "lodash";
-import {Cropper} from "react-image-cropper";
-import {Loader} from "react-loaders";
+import {AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
 
 class LoginModal extends Component  {
     constructor(props) {
@@ -57,20 +49,6 @@ class LoginModal extends Component  {
         this._isMounted = true;
 
         this.setState({isLoading: true});
-        this._isMounted && await this.props.makeRequest(request.Roles.all, '', {message: MESSAGES.LOGGING}).then(
-            (responseData) => {
-                if (responseData.data) {
-                    this.setState({
-                        roles: responseData.data,
-                    });
-                }
-                this.setState({isLoading: false});
-            },
-            (errorData) => {
-                this.setState({isLoading: false});
-            }
-        );
-
     }
 
     componentWillUnmount() {

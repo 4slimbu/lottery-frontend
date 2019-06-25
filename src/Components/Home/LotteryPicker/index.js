@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import LotteryNumberList from "../../AppCommon/LotteryNumberList";
 import {generateRandomLotteryNumber, getFirstEmptyPosition} from "../../../utils/helper/helperFunctions";
 import PickedNumbers from "../../AppCommon/PickedNumbers";
+import {withRouter} from "react-router-dom";
+import {setModal} from "../../../actions/appStatusAction";
+import {makeRequest} from "../../../actions/requestAction";
 
 class LotteryPicker extends React.Component {
     constructor(props) {
@@ -27,6 +30,7 @@ class LotteryPicker extends React.Component {
 
         this.randomPick = this.randomPick.bind(this);
         this.handleNumberClick = this.handleNumberClick.bind(this);
+        this.playLottery = this.playLottery.bind(this);
     }
 
     componentDidMount() {
@@ -72,6 +76,25 @@ class LotteryPicker extends React.Component {
         })(10);
     }
 
+    playLottery() {
+        const {isAuthenticated, user} = this.props.auth;
+
+        // check if authenticated
+        if (! isAuthenticated) {
+            this.props.setModal('login');
+            return;
+        }
+
+        // check if have enough balance
+        if (user.wallet && user.wallet.usable_amount > 10) {
+
+        }
+
+        // if not, open login modal
+        // check if has enough balance
+            // play
+    }
+
     render() {
         const {numbers, pickedNumbers} = this.state;
         return (
@@ -95,7 +118,7 @@ class LotteryPicker extends React.Component {
                         />
                         <div className="buttons">
                             <button className="btn btn-info" onClick={this.randomPick}>Shuffle</button>
-                            <button className="btn btn-primary">Play Now</button>
+                            <button className="btn btn-primary" onClick={this.playLottery}>Play Now</button>
                         </div>
                     </div>
                 </div>
@@ -106,8 +129,15 @@ class LotteryPicker extends React.Component {
 }
 
 
-const mapStateToProps = state => ({});
+function mapStateToProps(state) {
+    return {
+        auth: state.authReducer,
+        appStatus: state.appStatusReducer
+    }
+}
 
-const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(LotteryPicker);
+export default withRouter(connect(mapStateToProps, {
+    setModal,
+    makeRequest,
+})(LotteryPicker));

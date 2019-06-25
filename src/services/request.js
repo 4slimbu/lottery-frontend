@@ -96,6 +96,22 @@ const Roles = {
 };
 
 /**
+ * Handles all Settings related requests
+ */
+const Settings = {
+    all: (data) =>
+        requests('GET', API_BASE_URL + "/settings?" + data.query),
+};
+
+/**
+ * Handles all Currencies related requests
+ */
+const Currencies = {
+    all: (data) =>
+        requests('GET', API_BASE_URL + "/currencies?" + data.query),
+};
+
+/**
  * Handles all Lottery related requests
  */
 const Lottery = {
@@ -123,6 +139,8 @@ export default {
     Auth,
     Users,
     Permissions,
-    Roles,
+    // Roles,
+    Settings,
+    Currencies,
     Lottery,
 };

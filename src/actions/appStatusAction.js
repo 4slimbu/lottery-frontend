@@ -1,6 +1,6 @@
 import {
-    SET_APP_SETTINGS,
-    SET_EVENTS, SET_MODAL,
+    SET_APP_SETTINGS, SET_CURRENCIES,
+    SET_EVENTS, SET_MODAL, SET_SETTINGS,
 } from "../constants/actionTypes";
 
 export function setEvents(events) {
@@ -21,5 +21,19 @@ export function setModal(modal) {
     return {
         type: SET_MODAL,
         modal
+    }
+}
+
+export function setCurrencies(currencies) {
+    return {
+        type: SET_CURRENCIES,
+        currencies
+    }
+}
+
+export function setSettings(settings) {
+    return {
+        type: SET_SETTINGS,
+        settings
     }
 }

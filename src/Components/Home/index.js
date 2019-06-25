@@ -15,6 +15,7 @@ import Players from "./Players";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
+import {setCurrencies, setSettings} from "../../actions/appStatusAction";
 
 class Home extends React.Component {
     constructor() {
@@ -27,6 +28,33 @@ class Home extends React.Component {
     }
 
     bootstrap() {
+        // Get settings
+        this.props.makeRequest(request.Settings.all, {query: ''}, {message: MESSAGES.LOGGING}).then(
+            (res) => {
+                if (res.data) {
+                    this.props.setSettings(res.data);
+                }
+                this.setState({ isLoading: false });
+            },
+            (errorData) => {
+                this.setState({isLoading: false});
+            }
+        );
+
+        // Get settings
+        this.props.makeRequest(request.Currencies.all, {query: ''}, {message: MESSAGES.LOGGING}).then(
+            (res) => {
+                if (res.data) {
+                    this.props.setCurrencies(res.data);
+                }
+                this.setState({ isLoading: false });
+            },
+            (errorData) => {
+                this.setState({isLoading: false});
+            }
+        );
+
+        // Get Winners
         this.props.makeRequest(request.Lottery.slots.winners, {query: ''}, {message: MESSAGES.LOGGING}).then(
             (res) => {
                 if (res.data) {
@@ -50,6 +78,7 @@ class Home extends React.Component {
             }
         );
 
+        // Get Active Slot
         this.props.makeRequest(request.Lottery.slots.getActive, {}, {message: MESSAGES.LOGGING}).then(
             (res) => {
                 if (res.data) {
@@ -138,5 +167,5 @@ function mapStateToProps(state) {
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers
+    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies
 })(Home));
