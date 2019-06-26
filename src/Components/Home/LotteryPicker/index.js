@@ -2,11 +2,13 @@ import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 
 import LotteryNumberList from "../../AppCommon/LotteryNumberList";
-import {generateRandomLotteryNumber, getFirstEmptyPosition} from "../../../utils/helper/helperFunctions";
+import {findSetting, generateRandomLotteryNumber, getFirstEmptyPosition,} from "../../../utils/helper/helperFunctions";
 import PickedNumbers from "../../AppCommon/PickedNumbers";
 import {withRouter} from "react-router-dom";
 import {setModal} from "../../../actions/appStatusAction";
 import {makeRequest} from "../../../actions/requestAction";
+import {setUser} from "../../../actions/authActions";
+import {setLotteryPickedNumbers} from "../../../actions/lotteryActions";
 
 class LotteryPicker extends React.Component {
     constructor(props) {
@@ -57,6 +59,7 @@ class LotteryPicker extends React.Component {
         this.setState({
             pickedNumbers: pickedNumbers,
         });
+        this.props.setLotteryPickedNumbers(pickedNumbers);
     }
 
     randomPick() {
@@ -69,6 +72,8 @@ class LotteryPicker extends React.Component {
                     pickedNumbers: randomPick,
                 });
 
+                that.props.setLotteryPickedNumbers(randomPick);
+
                 if (--i) {          // If i > 0, keep going
                     theLoop(i);       // Call the loop again, and pass it the current value of i
                 }
@@ -77,7 +82,7 @@ class LotteryPicker extends React.Component {
     }
 
     playLottery() {
-        const {isAuthenticated, user} = this.props.auth;
+        const {isAuthenticated} = this.props.auth;
 
         // check if authenticated
         if (! isAuthenticated) {
@@ -85,14 +90,7 @@ class LotteryPicker extends React.Component {
             return;
         }
 
-        // check if have enough balance
-        if (user.wallet && user.wallet.usable_amount > 10) {
-
-        }
-
-        // if not, open login modal
-        // check if has enough balance
-            // play
+        this.props.setModal('playLottery');
     }
 
     render() {
@@ -140,4 +138,6 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     setModal,
     makeRequest,
+    setUser,
+    setLotteryPickedNumbers
 })(LotteryPicker));

@@ -112,6 +112,16 @@ const Currencies = {
 };
 
 /**
+ * Handles all Currencies related requests
+ */
+const Me = {
+    get: (data) =>
+        requests('GET', API_BASE_URL + "/me"),
+    play: (data) =>
+        requests('POST', API_BASE_URL + "/me/play", data),
+};
+
+/**
  * Handles all Lottery related requests
  */
 const Lottery = {
@@ -131,7 +141,9 @@ const Lottery = {
         winners: (data) =>
             requests('GET',API_BASE_URL + `/lottery/slots/winners?` + data.query),
         getActive: (data) =>
-            requests('GET', API_BASE_URL + `/lottery/slots/3?with=participants&is_active=true`)
+            requests('GET', API_BASE_URL + `/lottery/slots/3?with=participants&is_active=true`),
+        last: (data) =>
+            requests('GET',API_BASE_URL + `/lottery/slots/last`),
     }
 };
 
@@ -139,7 +151,7 @@ export default {
     Auth,
     Users,
     Permissions,
-    // Roles,
+    Me,
     Settings,
     Currencies,
     Lottery,

@@ -11,7 +11,10 @@ import jwt_decode from "jwt-decode";
 import setAuthorizationToken from "./utils/axios/setAuthorizationToken";
 import {setAuth} from "./actions/authActions";
 import Echo from 'laravel-echo';
-import {setLotterySlot, addLotterySlotPlayer, setLotteryResult, setLotteryPlayers} from "./actions/lotteryActions";
+import {
+    setLotterySlot, addLotterySlotPlayer, setLotteryPlayers,
+    setLotteryData
+} from "./actions/lotteryActions";
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
@@ -62,7 +65,7 @@ window.Echo.channel('lottery')
         store.dispatch(setLotteryPlayers({data: []}));
     }).listen('LotterySlotClosedEvent', (e) => {
         console.log('Lottery Slot Closed Event', e);
-        store.dispatch(setLotteryResult(e));
+        store.dispatch(setLotteryData(e));
     }).listen('ParticipantAddedEvent', (e) => {
         let slot = e.data;
         let participant = e.participant;

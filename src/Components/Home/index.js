@@ -14,15 +14,10 @@ import GameInfo from "../../Components/AppCommon/GameInfo";
 import Players from "./Players";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
-import {setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
+import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
 import {setCurrencies, setSettings} from "../../actions/appStatusAction";
 
 class Home extends React.Component {
-    constructor() {
-        super();
-
-    }
-
     componentDidMount() {
         this.bootstrap();
     }
@@ -41,11 +36,24 @@ class Home extends React.Component {
             }
         );
 
-        // Get settings
+        // Get currencies
         this.props.makeRequest(request.Currencies.all, {query: ''}, {message: MESSAGES.LOGGING}).then(
             (res) => {
                 if (res.data) {
                     this.props.setCurrencies(res.data);
+                }
+                this.setState({ isLoading: false });
+            },
+            (errorData) => {
+                this.setState({isLoading: false});
+            }
+        );
+
+        // Get Last slot
+        this.props.makeRequest(request.Lottery.slots.last, {}, {message: MESSAGES.LOGGING}).then(
+            (res) => {
+                if (res.data) {
+                    this.props.setLastSlot(res.data);
                 }
                 this.setState({ isLoading: false });
             },
@@ -93,9 +101,11 @@ class Home extends React.Component {
     }
 
     render() {
-        const {slot, players, result} = this.props.lottery;
+        const {user} = this.props.auth;
+        const {slot, players, result, winners} = this.props.lottery;
         const lotterySlotAmount = slot && slot.total_amount;
         const lotterySlotParticipantsCount = slot && slot.total_participants;
+        const haveIWon = winners.data[0].user_id === user.id;
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
@@ -136,7 +146,7 @@ class Home extends React.Component {
                                         <LotteryPicker/>
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
-                                        <GameInfo slot={slot} result={result}/>
+                                        <GameInfo lottery={this.props.lottery} auth={this.props.auth}/>
                                         <Players players={players.data} total={lotterySlotParticipantsCount}/>
                                     </div>
                                 </div>
@@ -167,5 +177,5 @@ function mapStateToProps(state) {
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies
+    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot
 })(Home));

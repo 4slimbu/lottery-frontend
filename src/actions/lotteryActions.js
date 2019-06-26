@@ -1,5 +1,5 @@
 import {
-    ADD_LOTTERY_PLAYER,
+    ADD_LOTTERY_PLAYER, SET_LAST_SLOT, SET_LOTTERY_DATA, SET_LOTTERY_PICKED_NUMBERS,
     SET_LOTTERY_PLAYERS, SET_LOTTERY_RESULT,
     SET_LOTTERY_SLOT,
     SET_LOTTERY_WINNERS,
@@ -33,9 +33,24 @@ export function addLotterySlotPlayer(payload) {
     }
 }
 
-export function setLotteryResult(payload) {
+export function setLastSlot(lastSlot) {
     return {
-        type: SET_LOTTERY_RESULT,
+        type: SET_LAST_SLOT,
+        lastSlot
+    }
+}
+
+export function setLotteryPickedNumbers(pickedNumbers) {
+    return {
+        type: SET_LOTTERY_PICKED_NUMBERS,
+        pickedNumbers
+    }
+}
+
+export function setLotteryData(payload) {
+    return {
+        type: SET_LOTTERY_DATA,
         payload
     }
 }
+

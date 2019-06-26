@@ -6,6 +6,7 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 import RegisterModal from "../../Components/AppCommon/RegisterModal";
+import PlayModal from "../../Components/AppCommon/PlayModal";
 
 class AppFooter extends Component {
     render() {
@@ -43,6 +44,7 @@ class AppFooter extends Component {
                 </footer>
                 <LoginModal/>
                 <RegisterModal/>
+                <PlayModal/>
             </Fragment>
         )}
 }

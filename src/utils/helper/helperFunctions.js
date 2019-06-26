@@ -144,3 +144,19 @@ export function getFirstEmptyPosition(pickedNumbers) {
 
     return firstEmptyKey;
 }
+
+export function findSetting(settings, key) {
+    return _.find(settings, {key: key});
+}
+
+export function checkIfWinner(lastWinners, id) {
+    return _.find(lastWinners, {id: id});
+}
+
+export function isItemLoaded(item) {
+    if (typeof item === 'undefined' || item === null) {
+        return false;
+    }
+
+    return !!(Object.keys(item).length > 0);
+}

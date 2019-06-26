@@ -12,6 +12,9 @@ export const DEFAULT_LOTTERY_STATE = {
     },
     slot: {
     },
+    lastSlot: {
+        winners: []
+    },
     players: {
         data: []
     },

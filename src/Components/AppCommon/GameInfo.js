@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import LotteryNumberList from "./LotteryNumberList";
+import {checkIfWinner, isItemLoaded} from "../../utils/helper/helperFunctions";
+import * as _ from "lodash";
 
 class GameInfo extends Component {
     constructor(props) {
@@ -20,7 +22,7 @@ class GameInfo extends Component {
     }
 
     componentWillReceiveProps() {
-        const {slot, result} = this.props;
+        const {slot, result} = this.props.lottery;
         this.setState({
             slot: slot,
             result: result
@@ -31,7 +33,7 @@ class GameInfo extends Component {
 
     setTimer() {
         let that = this;
-        const {slot} = this.props;
+        const {slot} = this.props.lottery;
         // Set the date we're counting down to
         let countDownDate = new Date(slot.end_time).getTime();
 
@@ -75,9 +77,9 @@ class GameInfo extends Component {
     }
 
     render() {
-        const {slot} = this.props;
+        const {user} = this.props.auth;
+        const {lastSlot} = this.props.lottery;
         const {gameStatus, timer, result} = this.state;
-
         return (
             <Fragment>
                 <div className="count-down-table card">
@@ -107,18 +109,35 @@ class GameInfo extends Component {
                     }
                 </div>
                 {
-                    // result && result.length > 0 &&
+                    lastSlot && lastSlot.id &&
                     <div className="count-down-table card">
                         <div className="card-body">
                             <h4>Last Result</h4>
+                            <div className="text-center"><strong>Prize Pool: { lastSlot.total_amount } BTC</strong></div>
+
+                            {
+                                lastSlot.winners.length > 0 ?
+                                <div>
+                                    <div className="text-center">Winners:</div>
+                                    <div className="text-center"><strong>Congratulations !!</strong></div>
+                                    {
+                                        _.map(lastSlot.winners, function (winner, key) {
+                                            return <div key={key} className="text-center">{winner.full_name} : { winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1 } BTC</div>
+                                        })
+                                    }
+                                </div> :
+                                <div className="text-center">No Winners so pool prize has been moved to next game.</div>
+                            }
+
                             <div className="countdown">
                                 <LotteryNumberList
                                     ulClass="lottery-table-numbers result"
                                     liClass="lottery-table-number"
-                                    numbers={result}
-                                    activeNumbers={result}
+                                    numbers={lastSlot.result}
+                                    activeNumbers={lastSlot.result}
                                 />
                             </div>
+
                         </div>
                     </div>
                 }

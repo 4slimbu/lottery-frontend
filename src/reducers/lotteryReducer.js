@@ -1,5 +1,8 @@
 import {DEFAULT_LOTTERY_STATE} from "../data/default";
-import {ADD_LOTTERY_PLAYER, SET_LOTTERY_PLAYERS, SET_LOTTERY_SLOT, SET_LOTTERY_WINNERS, SET_LOTTERY_RESULT} from "../constants/actionTypes";
+import {
+    ADD_LOTTERY_PLAYER, SET_LOTTERY_PLAYERS, SET_LOTTERY_SLOT, SET_LOTTERY_WINNERS,
+    SET_LOTTERY_DATA, SET_LAST_SLOT, SET_LOTTERY_PICKED_NUMBERS
+} from "../constants/actionTypes";
 
 export default (state = DEFAULT_LOTTERY_STATE, action = {}) => {
     switch (action.type) {
@@ -29,13 +32,11 @@ export default (state = DEFAULT_LOTTERY_STATE, action = {}) => {
                     ]
                 }
             };
-        case `${SET_LOTTERY_RESULT}` :
+        case `${SET_LOTTERY_DATA}` :
             let data = {};
-            data.result = action.payload.result;
-            data.hasWinner = action.payload.has_winner;
 
-            if (action.payload.last_winners) {
-                data.lastWinners = action.payload.last_winners;
+            if (action.payload.lastSlot) {
+                data.lastSlot = action.payload.lastSlot;
             }
 
             if (action.payload.winners) {
@@ -48,6 +49,16 @@ export default (state = DEFAULT_LOTTERY_STATE, action = {}) => {
             return {
                 ...state,
                 ...data
+            };
+        case `${SET_LAST_SLOT}` :
+            return {
+                ...state,
+                lastSlot: action.lastSlot
+            };
+        case `${SET_LOTTERY_PICKED_NUMBERS}` :
+            return {
+                ...state,
+                pickedNumbers: action.pickedNumbers
             };
         default:
             return state;
