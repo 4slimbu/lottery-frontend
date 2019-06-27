@@ -9,7 +9,7 @@ import {MESSAGES} from "../../constants/messages";
 import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
 import {Loader} from 'react-loaders';
 import PickedNumbers from "./PickedNumbers";
-import {findSetting} from "../../utils/helper/helperFunctions";
+import {findSetting, inCurrency} from "../../utils/helper/helperFunctions";
 import {setUser} from "../../actions/authActions";
 
 class PlayModal extends Component {
@@ -87,7 +87,7 @@ class PlayModal extends Component {
                                 liClass="lottery-table-number"
                                 numbers={pickedNumbers}
                             />
-                            <h3>Entry Fee: {entryFee && entryFee.value} BTC</h3>
+                            <h3>Entry Fee: {inCurrency(entryFee && entryFee.value)}</h3>
                             {
                                 canPay ?
                                     <div>

@@ -7,6 +7,7 @@ import {setModal} from "../../actions/appStatusAction";
 import {logout} from "../../actions/authActions";
 import {withRouter} from "react-router-dom";
 import {Badge, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
+import {inCurrency} from "../../utils/helper/helperFunctions";
 
 class AppHeader extends Component {
     constructor(props) {
@@ -93,7 +94,7 @@ class AppHeader extends Component {
                                             <img className="img-profile" src={user.profile_pic} alt="profile picture"/>
                                         </DropdownToggle>
                                         <DropdownMenu>
-                                            <DropdownItem><Badge>{ user.wallet.usable_amount } BTC</Badge></DropdownItem>
+                                            <DropdownItem><Badge>{ inCurrency(user.wallet.usable_amount) }</Badge></DropdownItem>
                                             <DropdownItem onClick={() => this.props.history.push("/dashboard")}>Dashboard</DropdownItem>
                                             <DropdownItem onClick={this.logoutHandler}>Logout</DropdownItem>
                                         </DropdownMenu>

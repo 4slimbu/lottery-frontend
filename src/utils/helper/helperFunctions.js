@@ -160,3 +160,26 @@ export function isItemLoaded(item) {
 
     return !!(Object.keys(item).length > 0);
 }
+
+export function inCurrency(coins) {
+    let amountInCurrency = coins + " coins";
+
+    if (! coins) {
+        return "";
+    }
+
+    try {
+        const currencies = JSON.parse(localStorage.getItem("currencies"));
+        const settings = JSON.parse(localStorage.getItem("settings"));
+        const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
+        const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
+
+        amountInCurrency = (coins / appCurrencyDetail.value_in_app_coin) + " " + appCurrency.value;
+    } catch (err) {
+        console.log('currency conversion error', err);
+    }
+
+
+    return amountInCurrency;
+
+}

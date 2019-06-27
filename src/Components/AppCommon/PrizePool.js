@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import {inCurrency} from "../../utils/helper/helperFunctions";
 
 const PrizePool = (props) =>  {
     const {amount} = props;
@@ -7,7 +8,7 @@ const PrizePool = (props) =>  {
             <div className="prizepool-head">
                 <h6>Prize Pool</h6>
                 <div className="prizepool-amount">
-                    <span>{amount} BTC</span>
+                    <span>{inCurrency(amount)}</span>
                     <span></span>
                 </div>
             </div>

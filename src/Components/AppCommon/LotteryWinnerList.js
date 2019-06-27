@@ -3,6 +3,7 @@ import * as _ from "lodash";
 import * as classnames from "classnames";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBtc} from "@fortawesome/free-brands-svg-icons";
+import {inCurrency} from "../../utils/helper/helperFunctions";
 
 const LotteryWinnerList = (props) => {
     const {ulClass, liClass, winners} = props;
@@ -17,7 +18,8 @@ const LotteryWinnerList = (props) => {
                                     <div>
                                         <span className="player-name">{winner.full_name}</span>
                                             <span className="player-lottery-amount">
-                                            <FontAwesomeIcon icon={faBtc}/>{winner.won_amount * 1 + winner.service_charge * 1}
+                                                {/*<FontAwesomeIcon icon={faBtc}/>*/}
+                                            { inCurrency(winner.won_amount * 1 + winner.service_charge * 1)}
                                         </span>
                                     </div>
                                     :

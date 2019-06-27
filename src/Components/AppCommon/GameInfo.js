@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import LotteryNumberList from "./LotteryNumberList";
-import {checkIfWinner, isItemLoaded} from "../../utils/helper/helperFunctions";
+import {checkIfWinner, inCurrency, isItemLoaded} from "../../utils/helper/helperFunctions";
 import * as _ from "lodash";
 
 class GameInfo extends Component {
@@ -113,7 +113,7 @@ class GameInfo extends Component {
                     <div className="count-down-table card">
                         <div className="card-body">
                             <h4>Last Result</h4>
-                            <div className="text-center"><strong>Prize Pool: { lastSlot.total_amount } BTC</strong></div>
+                            <div className="text-center"><strong>Prize Pool: { inCurrency(lastSlot.total_amount) }</strong></div>
 
                             {
                                 lastSlot.winners.length > 0 ?
@@ -122,7 +122,7 @@ class GameInfo extends Component {
                                     <div className="text-center"><strong>Congratulations !!</strong></div>
                                     {
                                         _.map(lastSlot.winners, function (winner, key) {
-                                            return <div key={key} className="text-center">{winner.full_name} : { winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1 } BTC</div>
+                                            return <div key={key} className="text-center">{winner.full_name} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }</div>
                                         })
                                     }
                                 </div> :
