@@ -9,11 +9,13 @@ export default (state = DEFAULT_APP_STATUS, action = {}) => {
                 modal: action.modal
             };
         case `${SET_CURRENCIES}` :
+            localStorage.setItem("currencies", JSON.stringify(action.currencies));
             return {
                 ...state,
                 currencies: action.currencies
             };
         case `${SET_SETTINGS}` :
+            localStorage.setItem("settings", JSON.stringify(action.settings));
             return {
                 ...state,
                 settings: action.settings

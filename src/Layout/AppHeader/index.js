@@ -94,7 +94,7 @@ class AppHeader extends Component {
                                         </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem><Badge>{ user.wallet.usable_amount } BTC</Badge></DropdownItem>
-                                            <DropdownItem>Dashboard</DropdownItem>
+                                            <DropdownItem onClick={() => this.props.history.push("/dashboard")}>Dashboard</DropdownItem>
                                             <DropdownItem onClick={this.logoutHandler}>Logout</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>

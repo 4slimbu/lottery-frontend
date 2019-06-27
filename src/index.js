@@ -9,12 +9,13 @@ import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
 import jwt_decode from "jwt-decode";
 import setAuthorizationToken from "./utils/axios/setAuthorizationToken";
-import {setAuth} from "./actions/authActions";
+import {setAuth, setUser} from "./actions/authActions";
 import Echo from 'laravel-echo';
 import {
     setLotterySlot, addLotterySlotPlayer, setLotteryPlayers,
     setLotteryData
 } from "./actions/lotteryActions";
+import {setCurrencies, setSettings} from "./actions/appStatusAction";
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
@@ -37,6 +38,34 @@ if (localStorage.getItem("jwtToken")) {
         store.dispatch(setAuth({}));
     }
 }
+
+// set user
+if (localStorage.getItem("user")) {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        store.dispatch(setUser(user));
+    } catch (err) {
+    }
+}
+
+// set currencies
+if (localStorage.getItem("currencies")) {
+    try {
+        const currencies = JSON.parse(localStorage.getItem("currencies"));
+        store.dispatch(setCurrencies(currencies));
+    } catch (err) {
+    }
+}
+
+// set settings
+if (localStorage.getItem("settings")) {
+    try {
+        const settings = JSON.parse(localStorage.getItem("settings"));
+        store.dispatch(setSettings(settings));
+    } catch (err) {
+    }
+}
+
 
 
 const renderApp = Component => {

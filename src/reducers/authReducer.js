@@ -12,6 +12,7 @@ export default (state = initialState, action = {}) => {
             const user = action.payload && action.payload.user ? action.payload.user : {};
             const scope = action.payload && action.payload.scope ? action.payload.scope : {};
             const isVerified = user.verified ? user.verified : 0;
+            localStorage.setItem("user", JSON.stringify(user));
             return {
                 isAuthenticated: !isEmpty(user),
                 isVerified: !!isVerified,
@@ -19,6 +20,7 @@ export default (state = initialState, action = {}) => {
                 scope: scope
             };
         case SET_USER:
+            localStorage.setItem("user", JSON.stringify(action.user));
             return {
                 ...state,
                 user: action.user,
