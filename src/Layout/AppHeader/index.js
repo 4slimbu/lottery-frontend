@@ -6,15 +6,21 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {setModal} from "../../actions/appStatusAction";
 import {logout} from "../../actions/authActions";
 import {withRouter} from "react-router-dom";
-import {Badge} from "reactstrap";
+import {Badge, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
 
 class AppHeader extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            dropdownOpen: false
+        };
+
         this.showLoginModal = this.showLoginModal.bind(this);
         this.showRegisterModal = this.showRegisterModal.bind(this);
         this.logoutHandler = this.logoutHandler.bind(this);
+        this.toggle = this.toggle.bind(this);
+
     }
 
     showLoginModal() {
@@ -29,6 +35,12 @@ class AppHeader extends Component {
         const {logout, history} = this.props;
 
         logout();
+    }
+
+    toggle() {
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
+        }));
     }
 
     render() {
@@ -76,17 +88,16 @@ class AppHeader extends Component {
                                 }
                                 {
                                     isAuthenticated &&
-                                    <ul className="nav-items-link">
-                                        <li className="nav-item">
-                                            Hi! { user.full_name }
-                                        </li>
-                                        <li className="nav-item">
-                                            <Badge>{ user.wallet.usable_amount } BTC</Badge>
-                                        </li>
-                                        <li className="nav-item">
-                                            <button onClick={this.logoutHandler}>Logout</button>
-                                        </li>
-                                    </ul>
+                                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="top-dropdown">
+                                        <DropdownToggle caret>
+                                            <img className="img-profile" src={user.profile_pic} alt="profile picture"/>
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem><Badge>{ user.wallet.usable_amount } BTC</Badge></DropdownItem>
+                                            <DropdownItem>Dashboard</DropdownItem>
+                                            <DropdownItem onClick={this.logoutHandler}>Logout</DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
                                 }
                             </nav>
                         </div>
