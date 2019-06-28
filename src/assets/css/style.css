@@ -478,3 +478,12 @@ ul.social-icons a:hover {
     background: #eeeeee;
     color: blue;
 }
+
+.card-img-top.img-profile {
+    width: 150px;
+    height: auto;
+}
+
+.my-profile {
+    text-align: center;
+}
