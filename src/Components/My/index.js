@@ -30,13 +30,22 @@ class My extends Component {
     componentDidMount() {
         this.setState({
             path: this.props.match.path
-        })
+        });
     }
 
     render() {
+        // Return to root url when unauthenticated
+        const {isAuthenticated} = this.props.auth;
+
+        if (! isAuthenticated ) {
+            this.props.history.push('/');
+        }
+
+        // Proceed as usual
         const {path} = this.state;
         const {slot} = this.props.lottery;
         const lotterySlotAmount = slot && slot.total_amount;
+
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
@@ -79,7 +88,7 @@ class My extends Component {
                                                     <NavLink exact={true} activeClassName='is-active'
                                                              to='/my/dashboard'>Dashbaord</NavLink>
                                                     <NavLink exact={true} activeClassName='is-active' to='/my/profile'>profile</NavLink>
-                                                    {/*<NavLink exact={true} activeClassName='is-active' to='/my/wallet'>Wallet</NavLink>*/}
+                                                    <NavLink exact={true} activeClassName='is-active' to='/my/wallet'>Wallet</NavLink>
                                                     <NavLink exact={true} activeClassName='is-active'
                                                              to='/my/transactions'>Transactions</NavLink>
                                                     <NavLink exact={true} activeClassName='is-active'
@@ -91,7 +100,7 @@ class My extends Component {
                                     </div>
                                     <div className="col-sm-12 col-md-8 col-lg-9">
                                         {path === "/my/dashboard" && <Dashboard/>}
-                                        {/*{path === "/my/wallet" && <Wallet/>}*/}
+                                        {path === "/my/wallet" && <Wallet/>}
                                         {path === "/my/transactions" && <Transactions/>}
                                         {path === "/my/withdraw" && <Withdraw/>}
                                         {path === "/my/played-games" && <PlayedGames/>}

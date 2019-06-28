@@ -1,15 +1,18 @@
-import React, {Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from "prop-types";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
 import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
+import ReactTable from "react-table";
+import {inCurrency} from "../../../utils/helper/helperFunctions";
 
-class Transactions extends React.Component {
+class Transactions extends Component {
 
     render() {
+        const {transactions} = this.props.my;
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
@@ -24,7 +27,55 @@ class Transactions extends React.Component {
                             <div className="col-md-12 mb-md-4">
                                 <div className="card">
                                     <div className="card-header">Transactions</div>
-                                    <div className="card-body">lorem</div>
+                                    <div className="card-body">
+                                        {
+                                            transactions && transactions.data ?
+                                                <div>
+                                                    <div className="card-body">
+                                                        <ReactTable
+                                                            data={transactions.data}
+                                                            columns={[
+                                                                {
+                                                                    columns: [
+                                                                        {
+                                                                            Header: 'Transaction Code',
+                                                                            accessor: 'transaction_code',
+                                                                        },
+                                                                        {
+                                                                            Header: 'Type',
+                                                                            accessor: 'type'
+                                                                        },
+                                                                        {
+                                                                            Header: 'Amount',
+                                                                            accessor: 'amount',
+                                                                            Cell: props => (
+                                                                                <div>
+                                                                                    { inCurrency(props.original.amount) }
+                                                                                </div>
+                                                                            )
+                                                                        },
+                                                                        {
+                                                                            Header: 'Date',
+                                                                            accessor: 'updated_at'
+                                                                        }
+                                                                    ]
+                                                                },
+                                                            ]}
+                                                            defaultPageSize={15}
+                                                            showPagination={true}
+                                                            className="-striped -highlight"
+                                                        />
+                                                    </div>
+                                                    <div className="card-footer">
+                                                        <div className="text-center">
+                                                            <Link to="/my/transactions">View all</Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                :
+                                                <div className="card-body">You have not made any transactions.</div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +95,7 @@ function mapStateToProps(state) {
     return {
         auth: state.authReducer,
         appStatus: state.appStatusReducer,
-        lottery: state.lotteryReducer
+        my: state.myReducer
     }
 }
 

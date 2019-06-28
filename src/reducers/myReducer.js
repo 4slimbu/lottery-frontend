@@ -1,5 +1,5 @@
 import {DEFAULT_MY_STATE} from "../data/default";
-import {SET_PLAYED_GAMES, SET_TRANSACTIONS} from "../constants/actionTypes";
+import {SET_PLAYED_GAMES, SET_TRANSACTIONS, SET_WITHDRAW_REQUESTS} from "../constants/actionTypes";
 
 export default (state = DEFAULT_MY_STATE, action = {}) => {
     switch (action.type) {
@@ -12,6 +12,11 @@ export default (state = DEFAULT_MY_STATE, action = {}) => {
             return {
                 ...state,
                 transactions: action.payload
+            };
+        case `${SET_WITHDRAW_REQUESTS}` :
+            return {
+                ...state,
+                withdrawRequests: action.payload
             };
         default:
             return state;

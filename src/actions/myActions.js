@@ -1,4 +1,4 @@
-import {SET_PLAYED_GAMES, SET_TRANSACTIONS} from "../constants/actionTypes";
+import {SET_PLAYED_GAMES, SET_TRANSACTIONS, SET_WITHDRAW_REQUESTS} from "../constants/actionTypes";
 
 export function setPlayedGames(payload) {
     return {
@@ -10,6 +10,13 @@ export function setPlayedGames(payload) {
 export function setTransactions(payload) {
     return {
         type: SET_TRANSACTIONS,
+        payload
+    }
+}
+
+export function setWithdrawRequests(payload) {
+    return {
+        type: SET_WITHDRAW_REQUESTS,
         payload
     }
 }

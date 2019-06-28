@@ -123,6 +123,8 @@ const Me = {
         requests('GET', API_BASE_URL + "/me/played-games"),
     getTransactions: (data) =>
         requests('GET', API_BASE_URL + "/me/transactions"),
+    getWithdrawRequests: (data) =>
+        requests('GET', API_BASE_URL + "/me/withdraw-requests"),
 };
 
 /**

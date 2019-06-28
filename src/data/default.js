@@ -24,5 +24,6 @@ export const DEFAULT_LOTTERY_STATE = {
 export const DEFAULT_MY_STATE = {
     playedGames: {},
     transactions: {},
-    profile: {}
+    profile: {},
+    withdrawRequests: {}
 };

@@ -59,19 +59,19 @@ class Dashboard extends React.Component {
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
                                     <div className="card-header">Usable Amount</div>
-                                    <div className="card-body">{ inCurrency(wallet.usable_amount) }</div>
+                                    <div className="card-body">{ wallet && inCurrency(wallet.usable_amount) }</div>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
                                     <div className="card-header">Withdrawable Amount</div>
-                                    <div className="card-body">{ inCurrency(wallet.withdrawable_amount) }</div>
+                                    <div className="card-body">{ wallet && inCurrency(wallet.withdrawable_amount) }</div>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
                                     <div className="card-header">Total Amount</div>
-                                    <div className="card-body">{ inCurrency(wallet.total_amount) }</div>
+                                    <div className="card-body">{ wallet && inCurrency(wallet.total_amount) }</div>
                                 </div>
                             </div>
                         </div>
