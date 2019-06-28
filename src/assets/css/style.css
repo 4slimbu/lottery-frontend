@@ -459,3 +459,22 @@ ul.social-icons a:hover {
 .dropdown-toggle::after {
     color: #fff;
 }
+
+.my-menu a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #f9f9f9;
+    margin: 5px;
+    text-decoration: none;
+    color: #656565;
+}
+
+.my-menu a::hover, .my-menu a::active {
+    text-decoration: none;
+}
+
+.my-menu a.is-active {
+    background: #eeeeee;
+    color: blue;
+}
