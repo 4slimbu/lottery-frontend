@@ -119,6 +119,10 @@ const Me = {
         requests('GET', API_BASE_URL + "/me"),
     play: (data) =>
         requests('POST', API_BASE_URL + "/me/play", data),
+    getPlayedGames: (data) =>
+        requests('GET', API_BASE_URL + "/me/played-games"),
+    getTransactions: (data) =>
+        requests('GET', API_BASE_URL + "/me/transactions"),
 };
 
 /**

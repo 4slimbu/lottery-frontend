@@ -5,13 +5,16 @@ const PrizePool = (props) =>  {
     const {amount} = props;
     return (
         <Fragment>
-            <div className="prizepool-head">
-                <h6>Prize Pool</h6>
-                <div className="prizepool-amount">
-                    <span>{inCurrency(amount)}</span>
-                    <span></span>
+            {
+                amount &&
+                <div className="prizepool-head">
+                    <h6>Prize Pool</h6>
+                    <div className="prizepool-amount">
+                        <span>{inCurrency(amount)}</span>
+                        <span></span>
+                    </div>
                 </div>
-            </div>
+            }
         </Fragment>
     )
 };

@@ -20,3 +20,9 @@ export const DEFAULT_LOTTERY_STATE = {
     },
     result: []
 };
+
+export const DEFAULT_MY_STATE = {
+    playedGames: {},
+    transactions: {},
+    profile: {}
+};

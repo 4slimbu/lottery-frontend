@@ -78,20 +78,20 @@ class My extends Component {
                                                 <Nav className="my-menu">
                                                     <NavLink exact={true} activeClassName='is-active'
                                                              to='/my/dashboard'>Dashbaord</NavLink>
-                                                    <NavLink exact={true} activeClassName='is-active' to='/my/wallet'>Wallet</NavLink>
+                                                    <NavLink exact={true} activeClassName='is-active' to='/my/profile'>profile</NavLink>
+                                                    {/*<NavLink exact={true} activeClassName='is-active' to='/my/wallet'>Wallet</NavLink>*/}
                                                     <NavLink exact={true} activeClassName='is-active'
                                                              to='/my/transactions'>Transactions</NavLink>
-                                                    <NavLink exact={true} activeClassName='is-active' to='/my/withdraw'>Withdraw</NavLink>
                                                     <NavLink exact={true} activeClassName='is-active'
                                                              to='/my/played-games'>Played Games</NavLink>
-                                                    <NavLink exact={true} activeClassName='is-active' to='/my/profile'>profile</NavLink>
+                                                    <NavLink exact={true} activeClassName='is-active' to='/my/withdraw'>Withdraw</NavLink>
                                                 </Nav>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-sm-12 col-md-8 col-lg-9">
                                         {path === "/my/dashboard" && <Dashboard/>}
-                                        {path === "/my/wallet" && <Wallet/>}
+                                        {/*{path === "/my/wallet" && <Wallet/>}*/}
                                         {path === "/my/transactions" && <Transactions/>}
                                         {path === "/my/withdraw" && <Withdraw/>}
                                         {path === "/my/played-games" && <PlayedGames/>}

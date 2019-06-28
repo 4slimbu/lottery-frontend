@@ -53,4 +53,3 @@ export function setLotteryData(payload) {
         payload
     }
 }
-
