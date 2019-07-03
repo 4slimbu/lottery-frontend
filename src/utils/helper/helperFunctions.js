@@ -176,7 +176,7 @@ export function inCurrency(coins) {
 
         amountInCurrency = (coins / appCurrencyDetail.value_in_app_coin) + " " + appCurrency.value;
     } catch (err) {
-        console.log('currency conversion error', err);
+        // console.log('currency conversion error', err);
     }
 
 
