@@ -13,7 +13,8 @@ import LotteryPicker from "./LotteryPicker";
 import GameInfo from "../../Components/AppCommon/GameInfo";
 import Players from "./Players";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
-import {setCurrencies, setSettings} from "../../actions/appStatusAction";
+import {setCurrencies, setModal, setSettings} from "../../actions/appStatusAction";
+import DepositButton from "../AppCommon/DepositButton";
 
 class Home extends Component {
 
@@ -44,7 +45,7 @@ class Home extends Component {
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <div className="buttons">
-                                            <a href="https://commerce.coinbase.com/checkout/294e64a2-e757-4745-91c5-69f3a168abe7" className="btn btn-secondary">Deposit</a>
+                                            <DepositButton/>
                                             <a href="#" className="btn btn-primary">Let's play</a>
                                         </div>
                                     </div>
@@ -92,5 +93,5 @@ function mapStateToProps(state) {
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot
+    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot, setModal
 })(Home));

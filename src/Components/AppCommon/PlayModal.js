@@ -1,16 +1,15 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup, Row, Col} from 'reactstrap';
+import {Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 import {setModal} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
-import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
-import {Loader} from 'react-loaders';
 import PickedNumbers from "./PickedNumbers";
 import {findSetting, inCurrency} from "../../utils/helper/helperFunctions";
 import {setUser} from "../../actions/authActions";
+import DepositButton from "./DepositButton";
 
 class PlayModal extends Component {
     constructor(props) {
@@ -97,7 +96,7 @@ class PlayModal extends Component {
                                 :
                                     <div>
                                         <span>You don't have enough balance.</span>
-                                        <a href="https://commerce.coinbase.com/checkout/294e64a2-e757-4745-91c5-69f3a168abe7">Deposit</a>
+                                        <DepositButton/>
                                     </div>
 
                             }

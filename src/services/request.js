@@ -129,6 +129,14 @@ const Me = {
 };
 
 /**
+ * Handles all Coinbase related requests
+ */
+const Coinbase = {
+    createCharge: (data) =>
+        requests('POST', API_BASE_URL + "/coinbase/create-charge", data),
+};
+
+/**
  * Handles all Lottery related requests
  */
 const Lottery = {
@@ -159,6 +167,7 @@ export default {
     Users,
     Permissions,
     Me,
+    Coinbase,
     Settings,
     Currencies,
     Lottery,

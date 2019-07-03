@@ -10,7 +10,6 @@ import PlayModal from "../../Components/AppCommon/PlayModal";
 
 class AppFooter extends Component {
     render() {
-        const {user} = this.props.auth;
         return (
             <Fragment>
                 <footer>
