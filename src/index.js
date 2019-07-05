@@ -17,6 +17,7 @@ import {
 } from "./actions/lotteryActions";
 import {setCurrencies, setSettings} from "./actions/appStatusAction";
 
+let jwtToken = '';
 const store = configureStore();
 const rootElement = document.getElementById('root');
 
@@ -25,7 +26,8 @@ if (localStorage.getItem("jwtToken")) {
     try {
         const decodedToken = jwt_decode(localStorage.getItem("jwtToken"));
         if (decodedToken.exp > (new Date().getTime() / 1000)) {
-            setAuthorizationToken(localStorage.getItem("jwtToken"));
+            jwtToken = localStorage.getItem("jwtToken");
+            setAuthorizationToken(jwtToken);
             store.dispatch(setAuth(decodedToken));
         } else {
             localStorage.removeItem("jwtToken");
@@ -40,9 +42,11 @@ if (localStorage.getItem("jwtToken")) {
 }
 
 // set user
+let userId = null;
 if (localStorage.getItem("user")) {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
+        userId = user.id;
         store.dispatch(setUser(user));
     } catch (err) {
     }
@@ -85,9 +89,15 @@ window.io = require('socket.io-client');
 window.Echo = new Echo({
     broadcaster: 'socket.io',
     // host: "https://a91f7814.ngrok.io"
-    host: window.location.hostname + ':6001'
+    host: window.location.hostname + ':6001',
+    auth: {
+        headers: {
+            'Authorization' : 'Bearer ' + jwtToken
+        }
+    }
 });
 
+console.log('userId', userId);
 window.Echo.channel('lottery')
     .listen('LotterySlotCreatedEvent', (e) => {
         console.log('lottery slot created event', e);
@@ -103,4 +113,14 @@ window.Echo.channel('lottery')
         console.log(e);
         store.dispatch(setLotterySlot(slot));
         store.dispatch(addLotterySlotPlayer(participant));
+    }).listen('App.User.' + userId, (e) => {
+        let slot = e.data;
+        console.log(e);
+    });
+
+window.Echo.private('App.User.' + userId)
+    .listen('UserUpdateEvent', (e) => {
+        if (e.data && e.data.id) {
+            store.dispatch(setUser(e.data));
+        }
     });

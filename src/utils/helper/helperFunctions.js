@@ -161,7 +161,7 @@ export function isItemLoaded(item) {
     return !!(Object.keys(item).length > 0);
 }
 
-export function inCurrency(coins) {
+export function inCurrency(coins, withUnit = true) {
     let amountInCurrency = coins + " coins";
 
     if (! coins) {
@@ -174,12 +174,42 @@ export function inCurrency(coins) {
         const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
         const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
 
-        amountInCurrency = (coins / appCurrencyDetail.value_in_app_coin) + " " + appCurrency.value;
+        amountInCurrency =  parseFloat((coins / appCurrencyDetail.value_in_app_coin).toFixed(9));
+        if (withUnit) {
+            amountInCurrency += " " + appCurrency.value;
+        }
     } catch (err) {
         // console.log('currency conversion error', err);
     }
 
 
     return amountInCurrency;
+
+}
+
+export function inCoin(currency, withUnit = true) {
+    let amountInCoin = 0;
+
+    if (! currency) {
+        return "";
+    }
+
+    try {
+        const currencies = JSON.parse(localStorage.getItem("currencies"));
+        const settings = JSON.parse(localStorage.getItem("settings"));
+        const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
+        const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
+
+        amountInCoin = (currency * appCurrencyDetail.value_in_app_coin);
+
+        if (withUnit) {
+            amountInCoin += " coins";
+        }
+    } catch (err) {
+        // console.log('currency conversion error', err);
+    }
+
+
+    return amountInCoin;
 
 }

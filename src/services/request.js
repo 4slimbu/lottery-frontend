@@ -126,6 +126,8 @@ const Me = {
         requests('GET', API_BASE_URL + "/me/transactions"),
     getWithdrawRequests: (data) =>
         requests('GET', API_BASE_URL + "/me/withdraw-requests"),
+    createWithdrawRequest: (data) =>
+        requests('POST', API_BASE_URL + "/me/create-withdraw-request", data),
 };
 
 /**

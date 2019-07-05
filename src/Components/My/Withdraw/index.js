@@ -10,15 +10,25 @@ import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
 import {setWithdrawRequests} from "../../../actions/myActions";
 import ReactTable from "react-table";
-import {inCurrency} from "../../../utils/helper/helperFunctions";
+import {inCoin, inCurrency} from "../../../utils/helper/helperFunctions";
+import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
+import {Button, Col, FormGroup, Row} from "reactstrap";
+import {setUser} from "../../../actions/authActions";
 
 class Withdraw extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoading: false
-        }
+            isLoading: false,
+            amount: "",
+            error: "",
+        };
+
+        this.getWithdrawRequests = this.getWithdrawRequests.bind(this);
+        this.resetFields = this.resetFields.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleWithdraw = this.handleWithdraw.bind(this);
     }
 
     componentDidMount() {
@@ -28,10 +38,77 @@ class Withdraw extends Component {
     bootstrap() {
         // Get Withdraw Requests
         this.setState({isLoading: true});
+        this.getWithdrawRequests();
+    }
+
+    getWithdrawRequests() {
         this.props.makeRequest(request.Me.getWithdrawRequests, {}, {message: MESSAGES.LOGGING}).then(
             (res) => { if (res.data) { this.props.setWithdrawRequests(res); this.setState({isLoading: false}); } },
             (errorData) => {}
         );
+    }
+
+    getUserInfo() {
+        this.props.makeRequest(request.Me.get, {}, {message: MESSAGES.LOGGING}).then(
+            (res) => {
+                this.props.setUser(res.data);
+                this.setState({ isLoading: false });
+            },
+            (errorData) => {
+                this.setState({isLoading: false});
+            }
+        );
+    }
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleWithdraw(e) {
+        e.preventDefault();
+
+        const {wallet} = this.props.auth.user;
+        if (this.state.amount <= 0) {
+            this.setState({
+                error: "Please enter valid amount"
+            });
+            return;
+        }
+
+        if (inCoin(this.state.amount) > wallet.withdrawable_amount) {
+            this.setState({
+                error: "Amount cannot be greater than Withdrawable amount"
+            });
+            return;
+        }
+
+        const data = {
+            amount: inCoin(this.state.amount)
+        };
+
+        this.setState({isLoading: true});
+        this.props.makeRequest(request.Me.createWithdrawRequest, data, {message: MESSAGES.LOGGING}).then(
+            (responseData) => {
+                this.getUserInfo();
+                this.getWithdrawRequests();
+                this.resetFields();
+                this.setState({isLoading: false});
+            },
+            (errorData) => {
+                this.resetFields();
+                this.setState({error: errorData.message});
+                this.setState({isLoading: false});
+            }
+        );
+    }
+
+    resetFields() {
+        this.setState({
+            amount: "",
+            error: ""
+        })
     }
 
     render() {
@@ -53,15 +130,18 @@ class Withdraw extends Component {
                                     <div className="card-header">Withdraw</div>
                                     <div className="card-body">
                                         <p>Withdrawable Amount: <strong>{wallet && inCurrency(wallet.withdrawable_amount)}</strong></p>
-                                        <form>
-                                            <div className="form-group">
-                                                <label htmlFor="amount">Withdraw Amount:</label>
-                                                <div className="input-group">
-                                                    <input type="text" className="form-control" aria-label="Amount (to the nearest dollar)" />
-                                                    <div className="input-group-append">
-                                                        <span className="input-group-text">BTC</span>
-                                                    </div>
+                                        <form onSubmit={this.handleWithdraw}>
+                                            <div className="input-group">
+                                                <input name="amount" type="text" className="form-control" placeholder="0.00"
+                                                       onChange={this.handleChange}
+                                                       value={this.state.amount}
+                                                />
+                                                <div className="input-group-append">
+                                                    <span className="input-group-text">BTC</span>
                                                 </div>
+                                            </div>
+                                            <div>
+                                                { this.state.error && <span className="text text-danger">{ this.state.error }</span>}
                                             </div>
                                             <div className="btn-group">
                                                 <button className="btn btn-primary">Withdraw</button>
@@ -101,8 +181,8 @@ class Withdraw extends Component {
                                                     ]
                                                 },
                                             ]}
-                                            defaultPageSize={5}
-                                            showPagination={false}
+                                            defaultPageSize={10}
+                                            showPagination={true}
                                             className="-striped -highlight"
                                         />
                                     </div>
@@ -132,5 +212,5 @@ function mapStateToProps(state) {
 
 export default withRouter(connect(mapStateToProps, {
     makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot,
-    setWithdrawRequests
+    setWithdrawRequests, setUser
 })(Withdraw));

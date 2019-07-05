@@ -94,8 +94,8 @@ class AppHeader extends Component {
                                             <img className="img-profile" src={user.profile_pic} alt="profile picture"/>
                                         </DropdownToggle>
                                         <DropdownMenu>
-                                            <DropdownItem><Badge>{ inCurrency(user.wallet.usable_amount) }</Badge></DropdownItem>
                                             <DropdownItem onClick={() => this.props.history.push("/my/dashboard")}>Dashboard</DropdownItem>
+                                            <DropdownItem onClick={() => this.props.history.push("/my/profile")}>My Profile</DropdownItem>
                                             <DropdownItem onClick={this.logoutHandler}>Logout</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
