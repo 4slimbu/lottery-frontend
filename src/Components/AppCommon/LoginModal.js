@@ -82,7 +82,8 @@ class LoginModal extends Component {
         this.props.makeRequest(request.Auth.login, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 this.props.setModal();
-                this.props.history.push("/");
+                window.location.reload();
+                // this.props.history.push("/");
             },
             (errorData) => {
                 this.setState({error: errorData.message});

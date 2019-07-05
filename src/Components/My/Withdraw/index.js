@@ -77,15 +77,15 @@ class Withdraw extends Component {
             return;
         }
 
-        if (inCoin(this.state.amount) > wallet.withdrawable_amount) {
+        if (inCoin(this.state.amount, false) > wallet.won) {
             this.setState({
-                error: "Amount cannot be greater than Withdrawable amount"
+                error: "Amount cannot be greater than Won amount"
             });
             return;
         }
 
         const data = {
-            amount: inCoin(this.state.amount)
+            amount: inCoin(this.state.amount, false)
         };
 
         this.setState({isLoading: true});
@@ -129,7 +129,7 @@ class Withdraw extends Component {
                                 <div className="card">
                                     <div className="card-header">Withdraw</div>
                                     <div className="card-body">
-                                        <p>Withdrawable Amount: <strong>{wallet && inCurrency(wallet.withdrawable_amount)}</strong></p>
+                                        <p>Won: <strong>{wallet && inCurrency(wallet.won)}</strong></p>
                                         <form onSubmit={this.handleWithdraw}>
                                             <div className="input-group">
                                                 <input name="amount" type="text" className="form-control" placeholder="0.00"

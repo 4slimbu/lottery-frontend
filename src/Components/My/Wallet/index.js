@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
 import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
-import {inCurrency} from "../../../utils/helper/helperFunctions";
+import {inAppCoin, inCurrency} from "../../../utils/helper/helperFunctions";
 
 class Wallet extends React.Component {
 
@@ -26,20 +26,20 @@ class Wallet extends React.Component {
                         <div className="row">
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
-                                    <div className="card-header">Usable Amount</div>
-                                    <div className="card-body">{ inCurrency(wallet.usable_amount) }</div>
+                                    <div className="card-header">Pending Withdraw</div>
+                                    <div className="card-body">{ inCurrency(wallet && wallet.pending_withdraw) }</div>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
-                                    <div className="card-header">Withdrawable Amount</div>
-                                    <div className="card-body">{ inCurrency(wallet.withdrawable_amount) }</div>
+                                    <div className="card-header">Deposit</div>
+                                    <div className="card-body">{ wallet && inAppCoin(wallet.deposit) }</div>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
-                                    <div className="card-header">Total Amount</div>
-                                    <div className="card-body">{ inCurrency(wallet.total_amount) }</div>
+                                    <div className="card-header">Won</div>
+                                    <div className="card-body">{ wallet && inCurrency(wallet.won) }</div>
                                 </div>
                             </div>
                         </div>
@@ -51,10 +51,9 @@ class Wallet extends React.Component {
                                         <ul className="list-group list-group-flush">
                                             <li className="list-group-item"><strong>ID: </strong> { wallet.id}</li>
                                             <li className="list-group-item"><strong>Owner: </strong> { user.full_name }</li>
-                                            <li className="list-group-item"><strong>Withdrawable Amount: </strong> { inCurrency(wallet.withdrawable_amount) }</li>
-                                            <li className="list-group-item"><strong>Pending Withdraw Amount: </strong> { inCurrency(wallet.pending_withdraw_amount) }</li>
-                                            <li className="list-group-item"><strong>Usable Amount: </strong> { inCurrency(wallet.usable_amount) }</li>
-                                            <li className="list-group-item"><strong>Total Amount: </strong> { inCurrency(wallet.total_amount) }</li>
+                                            <li className="list-group-item"><strong>Pending Withdraw: </strong> { wallet.pending_withdraw }</li>
+                                            <li className="list-group-item"><strong>Deposit: </strong> { inCurrency(wallet.deposit) }</li>
+                                            <li className="list-group-item"><strong>Won: </strong> { inCurrency(wallet.won) }</li>
                                             <li className="list-group-item"><strong>Created on: </strong> { wallet.created_at }</li>
                                             <li className="list-group-item"><strong>Last Updated on: </strong> { wallet.updated_at }</li>
                                         </ul>

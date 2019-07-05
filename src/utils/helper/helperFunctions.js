@@ -161,6 +161,17 @@ export function isItemLoaded(item) {
     return !!(Object.keys(item).length > 0);
 }
 
+export function inAppCoin(coins, withUnit = true) {
+    let amountInCurrency = parseFloat(coins) + " coins";
+
+    if (! coins) {
+        return "";
+    }
+
+    return amountInCurrency;
+
+}
+
 export function inCurrency(coins, withUnit = true) {
     let amountInCurrency = coins + " coins";
 

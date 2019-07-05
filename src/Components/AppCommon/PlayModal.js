@@ -7,7 +7,7 @@ import {setModal} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import PickedNumbers from "./PickedNumbers";
-import {findSetting, inCurrency} from "../../utils/helper/helperFunctions";
+import {findSetting, inAppCoin, inCurrency} from "../../utils/helper/helperFunctions";
 import {setUser} from "../../actions/authActions";
 import DepositButton from "./DepositButton";
 
@@ -66,13 +66,14 @@ class PlayModal extends Component {
 
     render() {
         const {modal, settings} = this.props.appStatus;
-        const {wallet} = this.props.auth && this.props.auth.user;
+        const {user} = this.props.auth;
+        const {wallet} = user;
         const {pickedNumbers} = this.props.lottery;
         const isOpen = modal === 'playLottery';
 
         // check if have enough balance
         let entryFee = findSetting(settings, 'lottery_slot_entry_fee');
-        const canPay = wallet && entryFee &&  (wallet.usable_amount > entryFee.value);
+        const canPay = (wallet && entryFee &&  (wallet.deposit > entryFee.value)) || user.free_games > 0;
 
         return (
             <Fragment>
@@ -86,7 +87,8 @@ class PlayModal extends Component {
                                 liClass="lottery-table-number"
                                 numbers={pickedNumbers}
                             />
-                            <h3>Entry Fee: {inCurrency(entryFee && entryFee.value)}</h3>
+                            <h3>Entry Fee: {inAppCoin(entryFee && entryFee.value)}</h3>
+                            <h3>Free Games Left: {user.free_games}</h3>
                             {
                                 canPay ?
                                     <div>

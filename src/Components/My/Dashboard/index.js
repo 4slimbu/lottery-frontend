@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
 import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
-import {inCurrency} from "../../../utils/helper/helperFunctions";
+import {inAppCoin, inCurrency} from "../../../utils/helper/helperFunctions";
 import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
 import {setPlayedGames, setTransactions} from "../../../actions/myActions";
@@ -43,7 +43,8 @@ class Dashboard extends React.Component {
 
     render() {
         const {isLoading} = this.state;
-        const {wallet} = this.props.auth.user;
+        const {user} = this.props.auth;
+        const {wallet} = user;
         const {playedGames, transactions} = this.props.my;
         return (
             <Fragment>
@@ -58,20 +59,20 @@ class Dashboard extends React.Component {
                         <div className="row">
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
-                                    <div className="card-header">Usable Amount</div>
-                                    <div className="card-body">{ wallet && inCurrency(wallet.usable_amount) }</div>
+                                    <div className="card-header">Free Games</div>
+                                    <div className="card-body">{ user && user.free_games }</div>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
-                                    <div className="card-header">Withdrawable Amount</div>
-                                    <div className="card-body">{ wallet && inCurrency(wallet.withdrawable_amount) }</div>
+                                    <div className="card-header">Deposit</div>
+                                    <div className="card-body">{ wallet && inAppCoin(wallet.deposit) }</div>
                                 </div>
                             </div>
                             <div className="col-md-4 mb-md-4">
                                 <div className="card">
-                                    <div className="card-header">Total Amount</div>
-                                    <div className="card-body">{ wallet && inCurrency(wallet.total_amount) }</div>
+                                    <div className="card-header">Won</div>
+                                    <div className="card-body">{ wallet && inCurrency(wallet.won) }</div>
                                 </div>
                             </div>
                         </div>

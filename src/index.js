@@ -97,7 +97,6 @@ window.Echo = new Echo({
     }
 });
 
-console.log('userId', userId);
 window.Echo.channel('lottery')
     .listen('LotterySlotCreatedEvent', (e) => {
         console.log('lottery slot created event', e);
@@ -113,9 +112,6 @@ window.Echo.channel('lottery')
         console.log(e);
         store.dispatch(setLotterySlot(slot));
         store.dispatch(addLotterySlotPlayer(participant));
-    }).listen('App.User.' + userId, (e) => {
-        let slot = e.data;
-        console.log(e);
     });
 
 window.Echo.private('App.User.' + userId)

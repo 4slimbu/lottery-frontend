@@ -22,8 +22,9 @@ class AppMain extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.setState({isLoading: true});
-        this.bootstrap();
+        this._isMounted && this.bootstrap();
     }
 
     bootstrap() {
@@ -91,6 +92,10 @@ class AppMain extends Component {
                 this.setState({isLoading: false});
             }
         );
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render () {
