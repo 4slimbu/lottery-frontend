@@ -17,6 +17,25 @@ import {setCurrencies, setModal, setSettings} from "../../actions/appStatusActio
 import DepositButton from "../AppCommon/DepositButton";
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+
+        this.playLottery = this.playLottery.bind(this);
+    }
+
+    playLottery() {
+        const {isAuthenticated} = this.props.auth;
+
+        // check if authenticated
+        if (! isAuthenticated) {
+            this.props.setModal('login');
+            return;
+        }
+
+        this.props.setModal('playLottery');
+
+        this.props.history.push('/');
+    }
 
     render() {
         const {slot, players} = this.props.lottery;
@@ -46,7 +65,7 @@ class Home extends Component {
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <div className="buttons">
                                             <DepositButton/>
-                                            <a href="#" className="btn btn-primary">Let's play</a>
+                                            <button onClick={this.playLottery} className="btn btn-primary">Let's play</button>
                                         </div>
                                     </div>
                                 </div>

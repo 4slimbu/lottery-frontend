@@ -26,6 +26,7 @@ class Withdraw extends Component {
         };
 
         this.getWithdrawRequests = this.getWithdrawRequests.bind(this);
+        this.cancelWithdrawRequest = this.cancelWithdrawRequest.bind(this);
         this.resetFields = this.resetFields.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleWithdraw = this.handleWithdraw.bind(this);
@@ -57,6 +58,13 @@ class Withdraw extends Component {
             (errorData) => {
                 this.setState({isLoading: false});
             }
+        );
+    }
+
+    cancelWithdrawRequest(id) {
+        this.props.makeRequest(request.Me.cancelWithdrawRequest, {id: id}, {message: MESSAGES.LOGGING}).then(
+            (res) => { if (res.data) { this.getWithdrawRequests(); this.setState({isLoading: false}); } },
+            (errorData) => {}
         );
     }
 
@@ -177,6 +185,18 @@ class Withdraw extends Component {
                                                         {
                                                             Header: 'Status',
                                                             accessor: 'status'
+                                                        },
+                                                        {
+                                                            Header: 'Action',
+                                                            accessor: 'action',
+                                                            Cell: props => (
+                                                                <div>
+                                                                    {
+                                                                        props.original.status === 'pending' &&
+                                                                        <button onClick={() => this.cancelWithdrawRequest(props.original.id)}>Cancel</button>
+                                                                    }
+                                                                </div>
+                                                            )
                                                         },
                                                     ]
                                                 },

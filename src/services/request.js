@@ -128,6 +128,8 @@ const Me = {
         requests('GET', API_BASE_URL + "/me/withdraw-requests"),
     createWithdrawRequest: (data) =>
         requests('POST', API_BASE_URL + "/me/create-withdraw-request", data),
+    cancelWithdrawRequest: (data) =>
+        requests('PUT', API_BASE_URL + "/me/cancel-withdraw-request/" + data.id),
 };
 
 /**

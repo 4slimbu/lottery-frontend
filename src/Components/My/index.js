@@ -9,7 +9,7 @@ import AppFooter from "../../Layout/AppFooter";
 import AppLogo from "../../Components/AppCommon/AppLogo";
 import PrizePool from "../../Components/AppCommon/PrizePool";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
-import {setCurrencies, setSettings} from "../../actions/appStatusAction";
+import {setCurrencies, setModal, setSettings} from "../../actions/appStatusAction";
 import {Nav} from "reactstrap";
 import Dashboard from "./Dashboard";
 import Wallet from "./Wallet";
@@ -17,6 +17,7 @@ import Transactions from "./Transactions";
 import Withdraw from "./Withdraw";
 import PlayedGames from "./PlayedGames";
 import Profile from "./Profile";
+import DepositButton from "../AppCommon/DepositButton";
 
 class My extends Component {
     constructor(props) {
@@ -25,12 +26,28 @@ class My extends Component {
         this.state = {
             path: "/my/dashboard"
         };
+
+        this.playLottery = this.playLottery.bind(this);
     }
 
     componentDidMount() {
         this.setState({
             path: this.props.match.path
         });
+    }
+
+    playLottery() {
+        const {isAuthenticated} = this.props.auth;
+
+        // check if authenticated
+        if (! isAuthenticated) {
+            this.props.setModal('login');
+            return;
+        }
+
+        this.props.setModal('playLottery');
+
+        this.props.history.push('/');
     }
 
     render() {
@@ -69,9 +86,8 @@ class My extends Component {
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <div className="buttons">
-                                            <a href="https://commerce.coinbase.com/checkout/294e64a2-e757-4745-91c5-69f3a168abe7"
-                                               className="btn btn-secondary">Deposit</a>
-                                            <a href="#" className="btn btn-primary">Let's play</a>
+                                            <DepositButton/>
+                                            <button onClick={this.playLottery} className="btn btn-primary">Let's play</button>
                                         </div>
                                     </div>
                                 </div>
@@ -135,5 +151,5 @@ function mapStateToProps(state) {
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot
+    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot, setModal
 })(My));
