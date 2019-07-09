@@ -16,6 +16,7 @@ class LoginModal extends Component {
             modal: false,
             backdrop: true,
             email: "",
+            guestEmail: "",
             password: "",
             recoveryEmail: "",
             passwordResetCode: "",
@@ -30,6 +31,7 @@ class LoginModal extends Component {
         this.changeBackdrop = this.changeBackdrop.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleLoginAsGuest = this.handleLoginAsGuest.bind(this);
         this.handleSendRecoveryEmail = this.handleSendRecoveryEmail.bind(this);
         this.handleResetPassword = this.handleResetPassword.bind(this);
         this.activateScreen = this.activateScreen.bind(this);
@@ -54,6 +56,7 @@ class LoginModal extends Component {
     resetFields() {
         this.setState({
             email: "",
+            guestEmail: "",
             password: "",
             recoveryEmail: "",
             passwordResetCode: "",
@@ -80,6 +83,30 @@ class LoginModal extends Component {
 
         this.setState({isLoading: true});
         this.props.makeRequest(request.Auth.login, data, {message: MESSAGES.LOGGING}).then(
+            (responseData) => {
+                this.props.setModal();
+                window.location.reload();
+                // this.props.history.push("/");
+            },
+            (errorData) => {
+                this.setState({error: errorData.message});
+                this.resetFields();
+                this.setState({isLoading: false});
+            }
+        );
+    }
+
+    handleLoginAsGuest(event, errors, values) {
+        if (errors.length > 0) {
+            return;
+        }
+
+        const data = {
+            email: this.state.guestEmail,
+        };
+
+        this.setState({isLoading: true});
+        this.props.makeRequest(request.Auth.loginAsGuest, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 this.props.setModal();
                 window.location.reload();
@@ -145,7 +172,7 @@ class LoginModal extends Component {
         const {modal} = this.props.appStatus;
         const isOpen = modal === 'login';
 
-        const {error, email, password, recoveryEmail, passwordResetCode, newPassword, confirmNewPassword, isLoading, activeScreen} = this.state;
+        const {error, email, guestEmail, password, recoveryEmail, passwordResetCode, newPassword, confirmNewPassword, isLoading, activeScreen} = this.state;
 
         return (
             <Fragment>
@@ -208,10 +235,6 @@ class LoginModal extends Component {
                                                     </FormGroup>
                                                 </Col>
                                             </Row>
-                                            {/*<FormGroup check>*/}
-                                            {/*<Input type="checkbox" name="check" id="exampleCheck"/>*/}
-                                            {/*<Label for="exampleCheck" check>Keep me logged in</Label>*/}
-                                            {/*</FormGroup>*/}
                                             <Row className="divider"/>
                                             <div className="d-flex align-items-center">
                                                 <div className="ml-auto">
@@ -219,6 +242,49 @@ class LoginModal extends Component {
                                                         Password</a>{' '}{' '}
                                                     <Button color="primary" size="lg">
                                                             Login
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </AvForm>
+                                    </div>
+
+                                    <h4 className="mb-0">
+                                        <span>Login as guest.</span>
+                                    </h4>
+                                    <Row className="divider"/>
+                                    <div>
+                                        <AvForm onSubmit={this.handleLoginAsGuest}>
+                                            <Row form>
+                                                <Col md={6}>
+                                                    <FormGroup>
+                                                        <AvGroup>
+                                                            <AvField name="guestEmail"
+                                                                     label="Email"
+                                                                     type="email"
+                                                                     placeholder="Email here..."
+                                                                     onChange={this.handleChange}
+                                                                     value={guestEmail}
+                                                                     validate={{
+                                                                         email: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter a valid email address'
+                                                                         },
+                                                                         required: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter an email address'
+                                                                         }
+                                                                     }}
+                                                            />
+                                                            <AvFeedback/>
+                                                        </AvGroup>
+                                                    </FormGroup>
+                                                </Col>
+                                            </Row>
+                                            <Row className="divider"/>
+                                            <div className="d-flex align-items-center">
+                                                <div className="ml-auto">
+                                                    <Button color="primary" size="lg">
+                                                        Login as Guest
                                                     </Button>
                                                 </div>
                                             </div>
