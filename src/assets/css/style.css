@@ -546,3 +546,6 @@ ul.social-icons a:hover {
 .TabsAnimation-appear .card .card-body button:hover{
     background-color: #28a9e1!important;
 }
+.count-down-table.card{
+    margin-bottom: 30px;
+}
