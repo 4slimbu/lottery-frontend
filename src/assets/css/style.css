@@ -59,8 +59,9 @@ main
 section.main {
     background-image: url(../images/background.jpg);
     background-size: cover;
-    padding: 30px 0 100px;
+    padding: 80px 0 80px;
     background-position: center;
+    min-height: 85vh;
 }
 /*-----------------
 first section
@@ -455,6 +456,11 @@ ul.social-icons a:hover {
     background: none !important;
     padding: 0;
 }
+.top-dropdown.dropdown button.btn-secondary:not(:disabled):not(.disabled):active:focus, 
+.top-dropdown.dropdown button.btn-secondary:not(:disabled):not(.disabled).active:focus, 
+.show > .top-dropdown.dropdown button.btn-secondary.dropdown-toggle:focus{
+    box-shadow: none;
+}
 
 .dropdown-toggle::after {
     color: #fff;
@@ -486,4 +492,30 @@ ul.social-icons a:hover {
 
 .my-profile {
     text-align: center;
+}
+
+.dropdown-menu{
+    padding: 0px;
+    background-color: transparent;
+    border: 0px;
+    margin: 0px;
+}
+.dropdown-menu button:focus{
+    outline: 0;
+}
+.dropdown-item:hover,
+.dropdown-item:focus{
+    color: #212529;
+}
+.top-dropdown.dropdown .dropdown-item{
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+    padding: 15px 15px!important;
+    line-height: 1;
+    border-bottom: 1px solid #cacaca;
+    background-color: #fff!important;
+}
+.top-dropdown.dropdown .dropdown-item:last-child{
+    border-bottom:0px;
 }
