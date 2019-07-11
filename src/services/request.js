@@ -167,6 +167,14 @@ const Lottery = {
     }
 };
 
+/**
+ * Handles all pages related requests
+ */
+const Page = {
+    get: (data) =>
+        requests('GET', API_BASE_URL + "/pages"),
+};
+
 export default {
     Auth,
     Users,
@@ -176,4 +184,5 @@ export default {
     Settings,
     Currencies,
     Lottery,
+    Page
 };

@@ -11,6 +11,7 @@ import {setCurrencies, setSettings} from "../../actions/appStatusAction";
 
 const Home = lazy(() => import('../../Components/Home'));
 const My = lazy(() => import('../../Components/My'));
+const Page = lazy(() => import('../../Components/Page'));
 
 class AppMain extends Component {
     constructor(props) {
@@ -118,6 +119,7 @@ class AppMain extends Component {
                     <Route exact path="/my/withdraw" component={My}/>
                     <Route exact path="/my/played-games" component={My}/>
                     <Route exact path="/my/profile" component={My}/>
+                    <Route exact path="/:slug" component={Page}/>
                 </Suspense>
 
             </Fragment>

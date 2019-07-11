@@ -66,13 +66,13 @@ class AppHeader extends Component {
                                 <div className="collapse navbar-collapse" id="headerNavbar">
                                     <ul className="navbar-nav mr-auto">
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">About </a>
+                                            <a className="nav-link" href="#" onClick={() => this.props.history.push('/about')}>About </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">Faq </a>
+                                            <a className="nav-link" href="#" onClick={() => this.props.history.push('/faq')}>Faq </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">Contact </a>
+                                            <a className="nav-link" href="#" onClick={() => this.props.history.push('/contact')}>Contact </a>
                                         </li>
                                     </ul>
                                 </div>
