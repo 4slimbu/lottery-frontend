@@ -8,6 +8,7 @@ import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from 
 import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
 import ReactTable from "react-table";
 import {inCurrency} from "../../../utils/helper/helperFunctions";
+import LotteryNumberList from "../../AppCommon/LotteryNumberList";
 
 class PlayedGames extends Component {
 
@@ -55,7 +56,11 @@ class PlayedGames extends Component {
                                                                             accessor: 'result',
                                                                             Cell: props => (
                                                                                 <div>
-                                                                                    { props.original.lottery_slot.result }
+                                                                                    <LotteryNumberList
+                                                                                        ulClass="number-in-column"
+                                                                                        numbers={props.original.lottery_slot.result}
+                                                                                        handleClick={this.handleNumberClick}
+                                                                                    />
                                                                                 </div>
                                                                             )
                                                                         },

@@ -66,11 +66,6 @@ class Transactions extends Component {
                                                             className="-striped -highlight"
                                                         />
                                                     </div>
-                                                    <div className="card-footer">
-                                                        <div className="text-center">
-                                                            <Link to="/my/transactions">View all</Link>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 :
                                                 <div className="card-body">You have not made any transactions.</div>

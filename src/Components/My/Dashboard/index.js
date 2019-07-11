@@ -12,6 +12,7 @@ import {MESSAGES} from "../../../constants/messages";
 import {setPlayedGames, setTransactions} from "../../../actions/myActions";
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
+import LotteryNumberList from "../../AppCommon/LotteryNumberList";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -107,7 +108,11 @@ class Dashboard extends React.Component {
                                                                         accessor: 'result',
                                                                         Cell: props => (
                                                                             <div>
-                                                                                { props.original.lottery_slot.result }
+                                                                                <LotteryNumberList
+                                                                                    ulClass="number-in-column"
+                                                                                    numbers={props.original.lottery_slot.result}
+                                                                                    handleClick={this.handleNumberClick}
+                                                                                />
                                                                             </div>
                                                                         )
                                                                     },
