@@ -772,6 +772,33 @@ input::placeholder{
     font-size: 15px;
     display: inline-block;
 }
+.ReactTable ul.number-in-column{
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    justify-content: center;
+}
+.ReactTable ul.number-in-column li{
+    width: calc(16.67% - 2px);
+    margin-left: 2px;
+}
+.ReactTable ul.number-in-column li span{
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+    border: 1px solid #28a9e1;
+    color: #28a9e1;
+    line-height: 1;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.ReactTable ul.number-in-column li:first-child{
+    margin-left: 0px;
+}
+
 @media (max-width: 991px){
     ul.lottery-table-numbers li.lottery-table-number a {
         width: 40px;
