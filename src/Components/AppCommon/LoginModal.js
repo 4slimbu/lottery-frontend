@@ -333,77 +333,69 @@ class LoginModal extends Component {
                                     <div>
                                         <AvForm onSubmit={this.handleResetPassword}>
                                             <Row form>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="passwordResetCode"
-                                                                     type="text"
-                                                                     placeholder="Enter your reset code..."
-                                                                     onChange={this.handleChange}
-                                                                     value={passwordResetCode}
-                                                                     validate={{
-                                                                         required: {value: true, errorMessage: 'Please enter your password reset code'},
-                                                                         minLength: {value: 8, errorMessage: 'Invalid code'},
-                                                                     }}
-                                                            />
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="recoveryEmail"
-                                                                     type="email"
-                                                                     placeholder="Recovery Email here..."
-                                                                     onChange={this.handleChange}
-                                                                     value={recoveryEmail}
-                                                                     validate={{
-                                                                         email: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter a valid email address'
-                                                                         },
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter an email address'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="newPassword"
-                                                                     type="password"
-                                                                     placeholder="Enter your password..."
-                                                                     onChange={this.handleChange}
-                                                                     value={newPassword}
-                                                                     validate={{
-                                                                         required: {value: true, errorMessage: 'Please enter your password'},
-                                                                         minLength: {value: 6, errorMessage: 'Your name must be at least 6 characters'},
-                                                                     }}
-                                                            />
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="confirmPassword"
-                                                                     type="password"
-                                                                     placeholder="Confirm your password..."
-                                                                     onChange={this.handleChange}
-                                                                     value={confirmNewPassword}
-                                                                     validate={{
-                                                                         required: {value: true, errorMessage: 'Please enter your password'},
-                                                                         match: {value: "newPassword", errorMessage: 'Password and Confirm Password must match'},
-                                                                     }}
-                                                            />
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="passwordResetCode"
+                                                                 type="text"
+                                                                 placeholder="Enter your reset code..."
+                                                                 onChange={this.handleChange}
+                                                                 value={passwordResetCode}
+                                                                 validate={{
+                                                                     required: {value: true, errorMessage: 'Please enter your password reset code'},
+                                                                     minLength: {value: 8, errorMessage: 'Invalid code'},
+                                                                 }}
+                                                        />
+                                                    </AvGroup>
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="recoveryEmail"
+                                                                 type="email"
+                                                                 placeholder="Recovery Email here..."
+                                                                 onChange={this.handleChange}
+                                                                 value={recoveryEmail}
+                                                                 validate={{
+                                                                     email: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter a valid email address'
+                                                                     },
+                                                                     required: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter an email address'
+                                                                     }
+                                                                 }}
+                                                        />
+                                                        <AvFeedback/>
+                                                    </AvGroup>
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="newPassword"
+                                                                 type="password"
+                                                                 placeholder="Enter your password..."
+                                                                 onChange={this.handleChange}
+                                                                 value={newPassword}
+                                                                 validate={{
+                                                                     required: {value: true, errorMessage: 'Please enter your password'},
+                                                                     minLength: {value: 6, errorMessage: 'Your name must be at least 6 characters'},
+                                                                 }}
+                                                        />
+                                                    </AvGroup>
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="confirmPassword"
+                                                                 type="password"
+                                                                 placeholder="Confirm your password..."
+                                                                 onChange={this.handleChange}
+                                                                 value={confirmNewPassword}
+                                                                 validate={{
+                                                                     required: {value: true, errorMessage: 'Please enter your password'},
+                                                                     match: {value: "newPassword", errorMessage: 'Password and Confirm Password must match'},
+                                                                 }}
+                                                        />
+                                                    </AvGroup>
+                                                </FormGroup>
                                             </Row>
                                             <div className="link-btn">
                                                 <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-lg btn btn-link">Go Back</a>{' '}{' '}
