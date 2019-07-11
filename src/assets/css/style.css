@@ -391,94 +391,6 @@ ul.social-icons a:hover {
 .wining-numbers-table.card .card-body {
     padding: 20px;
 }
-@media (max-width: 991px){
-    ul.lottery-table-numbers li.lottery-table-number a {
-        width: 40px;
-        height: 40px;
-    }
-    .winners-table.card,
-    .lottery-table.card {
-        margin-bottom: 20px;
-    }
-    .lottery-table h4.card-header {
-        flex-direction: column;
-    }
-    .lottery-table h4.card-header ul li.picked-number {
-        width: 16.66%;
-        padding: 0 2px;
-    }
-    .prizepool-head {
-        margin-left: 0px;
-        margin-bottom: 20px;
-    }
-}
-@media (max-width: 767px){
-    .navbar-collapse.show ,
-    .navbar-collapse.collapsing{
-        position: absolute;
-        width: 100%;
-        top: 38px;
-        background-color: #222;
-        left: 0;
-        right: 0;
-        display: block;
-        z-index: 999;
-        padding: 10px 15px;
-    }
-    .navbar-collapse li.nav-item a {
-        padding: 5px 0;
-    }
-    button.navbar-toggler {
-        padding: 0;
-        outline: none;
-        box-shadow: unset;
-    }
-    .navbar-toggler-icon {
-        height: 100%;
-        width: auto;
-    }
-    button.navbar-toggler span.navbar-toggler-icon:after {
-        content: "\f0c9";
-        font-family: fontawesome;
-        color: #fff;
-        font-size: 22px;
-    }
-    ul.nav-items-link .nav-item a {
-        font-size: 13px;
-    }
-    a.navbar-brand {
-        display: block;
-    }
-    a.navbar-brand img {
-        margin: 0 auto 20px;
-        display: block;
-    }
-    .prizepool-head {
-        margin-bottom: 10px;
-    }
-    .lottery-table.card .card-body .buttons .btn {
-        padding: 10px 0;
-    }
-    .lottery-table.card .card-body .buttons {
-        padding: 0 0px;
-    }
-    ul.footer-items li.footer-item a {
-        font-size: 12px;
-        margin-right: 10px;
-    }
-    ul.footer-items {
-        justify-content: center;
-    }
-    .footer-left p {
-        font-size: 12px;
-        color: #fff;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    .footer-right {
-        justify-content: center;
-    }
-}
 
 .placeholder-div {
     min-height: 25px;
@@ -854,4 +766,113 @@ input::placeholder{
 .modal-content {
     border: 0;
     border-radius: 5px;
+}
+.picked-number.empty a:before{
+    content: '-';
+    font-size: 15px;
+    display: inline-block;
+}
+@media (max-width: 991px){
+    ul.lottery-table-numbers li.lottery-table-number a {
+        width: 40px;
+        height: 40px;
+    }
+    .winners-table.card,
+    .lottery-table.card {
+        margin-bottom: 20px;
+    }
+    .lottery-table h4.card-header {
+        flex-direction: column;
+    }
+    .lottery-table h4.card-header ul li.picked-number {
+        width: 16.66%;
+        padding: 0 2px;
+    }
+    .prizepool-head {
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 767px){
+    .navbar-collapse.show ,
+    .navbar-collapse.collapsing{
+        position: absolute;
+        width: 100%;
+        top: 38px;
+        background-color: #222;
+        left: 0;
+        right: 0;
+        display: block;
+        z-index: 999;
+        padding: 10px 15px;
+    }
+    .navbar-collapse li.nav-item a {
+        padding: 5px 0;
+    }
+    button.navbar-toggler {
+        padding: 0;
+        outline: none;
+        box-shadow: unset;
+    }
+    .navbar-toggler-icon {
+        height: 100%;
+        width: auto;
+    }
+    button.navbar-toggler span.navbar-toggler-icon:after {
+        content: "\f0c9";
+        font-family: fontawesome;
+        color: #fff;
+        font-size: 22px;
+    }
+    ul.nav-items-link .nav-item a {
+        font-size: 13px;
+    }
+    a.navbar-brand {
+        display: block;
+    }
+    a.navbar-brand img {
+        margin: 0 auto 20px;
+        display: block;
+    }
+    .prizepool-head {
+        margin-bottom: 10px;
+        display: inline-flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .lottery-table.card .card-body .buttons .btn {
+        padding: 10px 0;
+    }
+    .lottery-table.card .card-body .buttons {
+        padding: 0 0px;
+    }
+    ul.footer-items li.footer-item a {
+        font-size: 12px;
+        margin-right: 10px;
+    }
+    ul.footer-items {
+        justify-content: center;
+    }
+    .footer-left p {
+        font-size: 12px;
+        color: #fff;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .footer-right {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 481px){
+    ul.lottery-table-numbers li.lottery-table-number {
+        width: calc(12.5% - 0px);
+    }
+}
+
+@media (max-width: 360px){
+    ul.lottery-table-numbers li.lottery-table-number {
+        width: calc(16.67% - 1px);
+    }
 }
