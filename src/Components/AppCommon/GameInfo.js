@@ -15,10 +15,11 @@ class GameInfo extends Component {
                 days: '00',
                 hours: '00',
                 minutes: '00',
-                seconds: '00'
+                seconds: '00',
+                miliSeconds: '000'
             }
 
-        }
+        };
 
         this.handleNumberClick = this.handleNumberClick.bind(this);
     }
@@ -48,11 +49,12 @@ class GameInfo extends Component {
             // Find the distance between now and the count down date
             let distance = countDownDate - now;
 
-            // Time calculations for days, hours, minutes and seconds
+            // Time calculations for days, hours, minutes, seconds and mili seconds
             let days = Math.floor(distance / (1000 * 60 * 60 * 24));
             let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            let miliSeconds = Math.floor(distance % (1000));
 
             // set timer values
             that.setState({
@@ -60,7 +62,8 @@ class GameInfo extends Component {
                     days: days < 10 ? '0' + days: days,
                     hours: hours < 10 ? '0' + hours: hours,
                     minutes: minutes < 10 ? '0' + minutes: minutes,
-                    seconds: seconds < 10 ? '0' + seconds: seconds
+                    seconds: seconds < 10 ? '0' + seconds: seconds,
+                    miliSeconds: miliSeconds < 10 ? '00' + miliSeconds : (miliSeconds < 100 ? '0' + miliSeconds : miliSeconds)
                 }
             });
 
@@ -75,7 +78,7 @@ class GameInfo extends Component {
                     gameStatus: "running"
                 })
             }
-        }, 1000);
+        }, 1);
     }
 
     handleNumberClick() {
@@ -97,7 +100,7 @@ class GameInfo extends Component {
                             <div className="countdown">
                                 <div className="text-center">Closing on</div>
                                 <h3 className="countdown-text">
-                                    <span>{ timer.days }</span> :<span>{ timer.hours }</span> :<span>{ timer.minutes }</span> :<span>{ timer.seconds }</span>
+                                    <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.miliSeconds }</span>
                                 </h3>
                             </div>
                         </div>
