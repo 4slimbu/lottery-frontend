@@ -19,6 +19,8 @@ class GameInfo extends Component {
             }
 
         }
+
+        this.handleNumberClick = this.handleNumberClick.bind(this);
     }
 
     componentWillReceiveProps() {
@@ -75,6 +77,11 @@ class GameInfo extends Component {
             }
         }, 1000);
     }
+
+    handleNumberClick() {
+
+    }
+
 
     render() {
         const {user} = this.props.auth;
@@ -135,6 +142,7 @@ class GameInfo extends Component {
                                     liClass="lottery-table-number"
                                     numbers={lastSlot.result}
                                     activeNumbers={lastSlot.result}
+                                    handleClick={this.handleNumberClick}
                                 />
                             </div>
 

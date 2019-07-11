@@ -23,6 +23,7 @@ class PlayModal extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.changeBackdrop = this.changeBackdrop.bind(this);
         this.play = this.play.bind(this);
+        this.handleNumberClick = this.handleNumberClick.bind(this);
     }
 
     play() {
@@ -63,6 +64,9 @@ class PlayModal extends Component {
         this.setState({backdrop: value});
     }
 
+    handleNumberClick() {
+
+    }
 
     render() {
         const {modal, settings} = this.props.appStatus;
@@ -86,6 +90,7 @@ class PlayModal extends Component {
                                 ulClass="lottery-table-numbers"
                                 liClass="lottery-table-number"
                                 numbers={pickedNumbers}
+                                handleClick={this.handleNumberClick}
                             />
                             <h3 className="play-title">Entry Fee: {inAppCoin(entryFee && entryFee.value)}</h3>
                             <h3 className="play-title">Free Games Left: {user.free_games}</h3>

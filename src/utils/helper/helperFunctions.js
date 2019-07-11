@@ -145,6 +145,19 @@ export function getFirstEmptyPosition(pickedNumbers) {
     return firstEmptyKey;
 }
 
+export function isNumberPickedCorrectly(pickedNumbers) {
+    let bool = true;
+    _.forEach(pickedNumbers, function (item, key) {
+        if (bool) {
+            if (typeof item !== 'number') {
+                bool = false;
+            }
+        }
+    });
+
+    return bool;
+}
+
 export function findSetting(settings, key) {
     return _.find(settings, {key: key});
 }
