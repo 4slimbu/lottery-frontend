@@ -177,7 +177,8 @@ export function isItemLoaded(item) {
 export function inAppCoin(coins, withUnit = true) {
     let amountInCurrency = parseFloat(coins) + " coins";
 
-    if (! coins) {
+    // If coin not set or undefined or empty. Skip for 0
+    if (! coins && coins !== 0) {
         return "";
     }
 
@@ -186,9 +187,10 @@ export function inAppCoin(coins, withUnit = true) {
 }
 
 export function inCurrency(coins, withUnit = true) {
-    let amountInCurrency = coins + " coins";
+    let amountInCurrency = 0;
 
-    if (! coins) {
+    // If coin not set or undefined or empty. Skip for 0
+    if (! coins && coins !== 0) {
         return "";
     }
 
@@ -213,6 +215,12 @@ export function inCurrency(coins, withUnit = true) {
 
 export function inCoin(currency, withUnit = true) {
     let amountInCoin = 0;
+
+    // If currency not set or undefined or empty. Skip for 0
+    if (! currency && currency !== 0) {
+        return "";
+    }
+
 
     if (! currency) {
         return "";
