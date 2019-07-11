@@ -298,8 +298,10 @@ li.lottery-table-number:hover a {
     line-height: 1;
 }
 h3.countdown-text span {
-    margin: 0 5px;
+    margin: 0 2px;
     line-height: 1;
+    display: inline-block;
+    width: 49px;
 }
 h3.countdown-text {
     text-align: center;
