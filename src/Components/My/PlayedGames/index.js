@@ -49,7 +49,15 @@ class PlayedGames extends Component {
                                                                         },
                                                                         {
                                                                             Header: 'Lottery Number',
-                                                                            accessor: 'lottery_number'
+                                                                            accessor: 'lottery_number',
+                                                                            Cell: props => (
+                                                                                <div>
+                                                                                    <LotteryNumberList
+                                                                                        ulClass="number-in-column"
+                                                                                        numbers={props.original.lottery_number}
+                                                                                    />
+                                                                                </div>
+                                                                            )
                                                                         },
                                                                         {
                                                                             Header: 'Result',

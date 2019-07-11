@@ -101,7 +101,14 @@ class Dashboard extends React.Component {
                                                                     },
                                                                     {
                                                                         Header: 'Lottery Number',
-                                                                        accessor: 'lottery_number'
+                                                                        Cell: props => (
+                                                                            <div>
+                                                                                <LotteryNumberList
+                                                                                    ulClass="number-in-column"
+                                                                                    numbers={props.original.lottery_number}
+                                                                                />
+                                                                            </div>
+                                                                        )
                                                                     },
                                                                     {
                                                                         Header: 'Result',
@@ -111,7 +118,6 @@ class Dashboard extends React.Component {
                                                                                 <LotteryNumberList
                                                                                     ulClass="number-in-column"
                                                                                     numbers={props.original.lottery_slot.result}
-                                                                                    handleClick={this.handleNumberClick}
                                                                                 />
                                                                             </div>
                                                                         )
