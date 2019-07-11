@@ -128,158 +128,116 @@ class LoginModal extends Component  {
                         <ModalBody>
                             <AvForm onSubmit={this.handleSubmit} model={this.state}>
                                 <Row form>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="username"
-                                                         label="Username"
-                                                         type="text"
-                                                         placeholder="Username..."
-                                                         onChange={this.handleChange}
-                                                         value={username}
-                                                         validate={{
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter a username'
-                                                             }
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="email"
-                                                         label="Email"
-                                                         type="email"
-                                                         placeholder="Email here..."
-                                                         onChange={this.handleChange}
-                                                         value={email}
-                                                         validate={{
-                                                             email: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter a valid email address'
-                                                             },
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter an email address'
-                                                             }
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="password"
-                                                         label="Password"
-                                                         type="password"
-                                                         placeholder="Enter your password..."
-                                                         onChange={this.handleChange}
-                                                         value={password}
-                                                         validate={{
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter your password'
-                                                             },
-                                                             minLength: {
-                                                                 value: 6,
-                                                                 errorMessage: 'Your name must be at least 6 characters'
-                                                             },
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="confirmPassword"
-                                                         label="Confirm Password"
-                                                         type="password"
-                                                         placeholder="Confirm your password..."
-                                                         onChange={this.handleChange}
-                                                         value={confirmPassword}
-                                                         validate={{
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please confirm your password'
-                                                             },
-                                                             match: {
-                                                                 value: 'password',
-                                                                 errorMessage: 'Password and Confirm Password must match'
-                                                             },
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="firstName"
-                                                         label="First Name"
-                                                         type="text"
-                                                         placeholder="First Name ..."
-                                                         onChange={this.handleChange}
-                                                         value={firstName}
-                                                         validate={{
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter First Name'
-                                                             },
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="lastName"
-                                                         label="Last Name"
-                                                         type="text"
-                                                         placeholder="Last Name ..."
-                                                         onChange={this.handleChange}
-                                                         value={lastName}
-                                                         validate={{
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter Last Name'
-                                                             },
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <AvGroup>
-                                                <AvField name="contactNumber"
-                                                         label="Contact Number"
-                                                         type="text"
-                                                         placeholder="Contact Number ..."
-                                                         onChange={this.handleChange}
-                                                         value={contactNumber}
-                                                         validate={{
-                                                             required: {
-                                                                 value: true,
-                                                                 errorMessage: 'Please enter your contact number'
-                                                             },
-                                                         }}
-                                                />
-                                            </AvGroup>
-                                        </FormGroup>
-                                    </Col>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="username"
+                                                     type="text"
+                                                     placeholder="Username..."
+                                                     onChange={this.handleChange}
+                                                     value={username}
+                                                     validate={{
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter a username'
+                                                         }
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="firstName"
+                                                     type="text"
+                                                     placeholder="Full Name ..."
+                                                     onChange={this.handleChange}
+                                                     value={firstName}
+                                                     validate={{
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter your full name'
+                                                         },
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="email"
+                                                     type="email"
+                                                     placeholder="Email here..."
+                                                     onChange={this.handleChange}
+                                                     value={email}
+                                                     validate={{
+                                                         email: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter a valid email address'
+                                                         },
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter an email address'
+                                                         }
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="password"
+                                                     type="password"
+                                                     placeholder="Enter your password..."
+                                                     onChange={this.handleChange}
+                                                     value={password}
+                                                     validate={{
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter your password'
+                                                         },
+                                                         minLength: {
+                                                             value: 6,
+                                                             errorMessage: 'Your name must be at least 6 characters'
+                                                         },
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="confirmPassword"
+                                                     type="password"
+                                                     placeholder="Confirm your password..."
+                                                     onChange={this.handleChange}
+                                                     value={confirmPassword}
+                                                     validate={{
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please confirm your password'
+                                                         },
+                                                         match: {
+                                                             value: 'password',
+                                                             errorMessage: 'Password and Confirm Password must match'
+                                                         },
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="contactNumber"
+                                                     type="text"
+                                                     placeholder="Contact Number ..."
+                                                     onChange={this.handleChange}
+                                                     value={contactNumber}
+                                                     validate={{
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter your contact number'
+                                                         },
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
                                 </Row>
-                                <Row className="divider"/>
-                                <div className="d-flex align-items-center">
-                                    <Button color="primary" size="lg">
-                                        Register
-                                    </Button>
-                                </div>
+                                <Button className="popup-btn register-btn">Register</Button>
                             </AvForm>
                         </ModalBody>
                     </Modal>

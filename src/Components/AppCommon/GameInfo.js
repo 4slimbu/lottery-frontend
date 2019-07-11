@@ -113,23 +113,23 @@ class GameInfo extends Component {
                     <div className="count-down-table card">
                         <div className="card-body">
                             <h4>Last Result</h4>
-                            <div className="text-center"><strong>Prize Pool: { inCurrency(lastSlot.total_amount) }</strong></div>
+                            <div className="text-center prize-pool-wrap"><strong>Prize Pool: { inCurrency(lastSlot.total_amount) }</strong></div>
 
                             {
                                 lastSlot.winners.length > 0 ?
-                                <div>
-                                    <div className="text-center">Winners:</div>
-                                    <div className="text-center"><strong>Congratulations !!</strong></div>
+                                <div className="congratulation-note">
+                                    <div className="text-center"><strong>Congratulation to Winners</strong></div>
                                     {
                                         _.map(lastSlot.winners, function (winner, key) {
-                                            return <div key={key} className="text-center">{winner.full_name} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }</div>
+                                            return <div key={key} className="winner-sec text-center">{winner.full_name} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }</div>
                                         })
                                     }
                                 </div> :
-                                <div className="text-center">No Winners so pool prize has been moved to next game.</div>
+                                <div></div>
                             }
 
                             <div className="countdown">
+                                <h5 className="counter-title text-center">Winning Numbers</h5>
                                 <LotteryNumberList
                                     ulClass="lottery-table-numbers result"
                                     liClass="lottery-table-number"
@@ -137,6 +137,8 @@ class GameInfo extends Component {
                                     activeNumbers={lastSlot.result}
                                 />
                             </div>
+
+                            <div className="text-center no-winners">No Winners so pool prize has been added to next game.</div>
 
                         </div>
                     </div>

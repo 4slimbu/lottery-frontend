@@ -87,13 +87,13 @@ class PlayModal extends Component {
                                 liClass="lottery-table-number"
                                 numbers={pickedNumbers}
                             />
-                            <h3>Entry Fee: {inAppCoin(entryFee && entryFee.value)}</h3>
-                            <h3>Free Games Left: {user.free_games}</h3>
+                            <h3 className="play-title">Entry Fee: {inAppCoin(entryFee && entryFee.value)}</h3>
+                            <h3 className="play-title">Free Games Left: {user.free_games}</h3>
                             {
                                 canPay ?
                                     <div>
-                                        <span>Click on play to pay the entry fee and join the game.</span>
-                                        <button onClick={this.play}>Play</button>
+                                        <span className="short-note">Click on play to pay the entry fee and join the game.</span>
+                                        <button class="play-btn" onClick={this.play}>Play</button>
                                     </div>
                                 :
                                     <div>

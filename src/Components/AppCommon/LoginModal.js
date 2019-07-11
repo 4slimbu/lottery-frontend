@@ -186,108 +186,90 @@ class LoginModal extends Component {
                                 activeScreen === "login" &&
                                 <div>
                                     { error && <p className="text-danger">{error}</p>}
-                                    <h4 className="mb-0">
-                                        <span>Please sign in to your account.</span>
-                                    </h4>
-                                    <Row className="divider"/>
-                                    <div>
+                                    
+                                    <div className="login-as-user popup-form-wrap">
+                                        <h4 className="popup-title">
+                                            <span>Please sign in to your account.</span>
+                                        </h4>
                                         <AvForm onSubmit={this.handleLogin}>
                                             <Row form>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="email"
-                                                                     label="Email"
-                                                                     type="email"
-                                                                     placeholder="Email here..."
-                                                                     onChange={this.handleChange}
-                                                                     value={email}
-                                                                     validate={{
-                                                                         email: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter a valid email address'
-                                                                         },
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter an email address'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="password"
-                                                                     label="Password"
-                                                                     type="password"
-                                                                     placeholder="Enter your password..."
-                                                                     onChange={this.handleChange}
-                                                                     value={password}
-                                                                     validate={{
-                                                                         required: {value: true, errorMessage: 'Please enter your password'},
-                                                                         minLength: {value: 6, errorMessage: 'Your name must be at least 6 characters'},
-                                                                     }}
-                                                            />
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="email"
+                                                                 type="email"
+                                                                 placeholder="Email here..."
+                                                                 onChange={this.handleChange}
+                                                                 value={email}
+                                                                 validate={{
+                                                                     email: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter a valid email address'
+                                                                     },
+                                                                     required: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter an email address'
+                                                                     }
+                                                                 }}
+                                                        />
+                                                        <AvFeedback/>
+                                                    </AvGroup>
+                                                </FormGroup>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="password"
+                                                                 type="password"
+                                                                 placeholder="Enter your password..."
+                                                                 onChange={this.handleChange}
+                                                                 value={password}
+                                                                 validate={{
+                                                                     required: {value: true, errorMessage: 'Please enter your password'},
+                                                                     minLength: {value: 6, errorMessage: 'Your name must be at least 6 characters'},
+                                                                 }}
+                                                        />
+                                                    </AvGroup>
+                                                </FormGroup>
                                             </Row>
-                                            <Row className="divider"/>
-                                            <div className="d-flex align-items-center">
-                                                <div className="ml-auto">
-                                                    <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-lg btn btn-link">Recover
+
+                                            <Button className="popup-btn">Login</Button>
+
+                                            <div className="optional-links">
+                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-link">Recover
                                                         Password</a>{' '}{' '}
-                                                    <Button color="primary" size="lg">
-                                                            Login
-                                                    </Button>
-                                                </div>
+                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-link">Login as Guest</a>{' '}{' '}
                                             </div>
+                                                   
                                         </AvForm>
                                     </div>
 
-                                    <h4 className="mb-0">
-                                        <span>Login as guest.</span>
-                                    </h4>
-                                    <Row className="divider"/>
-                                    <div>
+                                    <div className="login-as-guest popup-form-wrap">
+                                        <h4 className="popup-title">
+                                            <span>Login as guest.</span>
+                                        </h4>
                                         <AvForm onSubmit={this.handleLoginAsGuest}>
                                             <Row form>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="guestEmail"
-                                                                     label="Email"
-                                                                     type="email"
-                                                                     placeholder="Email here..."
-                                                                     onChange={this.handleChange}
-                                                                     value={guestEmail}
-                                                                     validate={{
-                                                                         email: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter a valid email address'
-                                                                         },
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter an email address'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="guestEmail"
+                                                                 type="email"
+                                                                 placeholder="Email here..."
+                                                                 onChange={this.handleChange}
+                                                                 value={guestEmail}
+                                                                 validate={{
+                                                                     email: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter a valid email address'
+                                                                     },
+                                                                     required: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter an email address'
+                                                                     }
+                                                                 }}
+                                                        />
+                                                        <AvFeedback/>
+                                                    </AvGroup>
+                                                </FormGroup>
                                             </Row>
-                                            <Row className="divider"/>
-                                            <div className="d-flex align-items-center">
-                                                <div className="ml-auto">
-                                                    <Button color="primary" size="lg">
-                                                        Login as Guest
-                                                    </Button>
-                                                </div>
-                                            </div>
+                                            <Button className="popup-btn">Login as Guest</Button>
                                         </AvForm>
                                     </div>
                                 </div>
@@ -296,50 +278,44 @@ class LoginModal extends Component {
                             {/*============== Send Password Recovery Email Screen ==================*/}
                             {
                                 activeScreen === "sendRecoveryEmail" &&
-                                <div>
+                                <div className="popup-form-wrap">
                                     { error && <p className="text-danger">{error}</p>}
-                                    <h4 className="mb-0">
+                                    <h4 className="popup-title">
                                         <span>Please enter your email address to recover your password</span>
                                     </h4>
-                                    <Row className="divider"/>
                                     <div>
                                         <AvForm onSubmit={this.handleSendRecoveryEmail}>
                                             <Row form>
-                                                <Col md={6}>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="recoveryEmail"
-                                                                     label="Recovery Email"
-                                                                     type="email"
-                                                                     placeholder="Recovery Email here..."
-                                                                     onChange={this.handleChange}
-                                                                     value={recoveryEmail}
-                                                                     validate={{
-                                                                         email: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter a valid email address'
-                                                                         },
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter an email address'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                </Col>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="recoveryEmail"
+                                                                 type="email"
+                                                                 placeholder="Recovery Email here..."
+                                                                 onChange={this.handleChange}
+                                                                 value={recoveryEmail}
+                                                                 validate={{
+                                                                     email: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter a valid email address'
+                                                                     },
+                                                                     required: {
+                                                                         value: true,
+                                                                         errorMessage: 'Please enter an email address'
+                                                                     }
+                                                                 }}
+                                                        />
+                                                        <AvFeedback/>
+                                                    </AvGroup>
+                                                </FormGroup>
                                             </Row>
-                                            <Row className="divider"/>
-                                            <div className="d-flex align-items-center">
-                                                <div className="ml-auto">
-                                                    <a href="javascript:void(0);" onClick={() => this.activateScreen("login")} className="btn-lg btn btn-link">Go Back</a>{' '}{' '}
+
+                                            <Button className="popup-btn">Send Recovery Email</Button>
+
+                                            <div className="optional-links">
+                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("login")} className="btn-lg btn btn-link">Go Back</a>{' '}{' '}
                                                     <a href="javascript:void(0);" onClick={() => this.activateScreen("resetPassword")} className="btn-lg btn btn-link">Skip to Password Reset Screen</a>{' '}{' '}
-                                                    <Button color="primary" size="lg">
-                                                        Send Recovery Email
-                                                    </Button>
-                                                </div>
                                             </div>
+
                                         </AvForm>
                                     </div>
                                 </div>
@@ -348,9 +324,9 @@ class LoginModal extends Component {
                             {/*============== Password Reset Screen ==================*/}
                             {
                                 activeScreen === "resetPassword" &&
-                                <div>
+                                <div className="popup-form-wrap">
                                     { error && <p className="text-danger">{error}</p>}
-                                    <h4 className="mb-0">
+                                    <h4 className="popup-title">
                                         <span>Please enter the password reset code and your new password</span>
                                     </h4>
                                     <Row className="divider"/>
@@ -361,7 +337,6 @@ class LoginModal extends Component {
                                                     <FormGroup>
                                                         <AvGroup>
                                                             <AvField name="passwordResetCode"
-                                                                     label="Password Reset Code"
                                                                      type="text"
                                                                      placeholder="Enter your reset code..."
                                                                      onChange={this.handleChange}
@@ -378,7 +353,6 @@ class LoginModal extends Component {
                                                     <FormGroup>
                                                         <AvGroup>
                                                             <AvField name="recoveryEmail"
-                                                                     label="Recovery Email"
                                                                      type="email"
                                                                      placeholder="Recovery Email here..."
                                                                      onChange={this.handleChange}
@@ -402,7 +376,6 @@ class LoginModal extends Component {
                                                     <FormGroup>
                                                         <AvGroup>
                                                             <AvField name="newPassword"
-                                                                     label="New Password"
                                                                      type="password"
                                                                      placeholder="Enter your password..."
                                                                      onChange={this.handleChange}
@@ -419,7 +392,6 @@ class LoginModal extends Component {
                                                     <FormGroup>
                                                         <AvGroup>
                                                             <AvField name="confirmPassword"
-                                                                     label="Confirm New Password"
                                                                      type="password"
                                                                      placeholder="Confirm your password..."
                                                                      onChange={this.handleChange}
@@ -433,14 +405,9 @@ class LoginModal extends Component {
                                                     </FormGroup>
                                                 </Col>
                                             </Row>
-                                            <Row className="divider"/>
-                                            <div className="d-flex align-items-center">
-                                                <div className="ml-auto">
-                                                    <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-lg btn btn-link">Go Back</a>{' '}{' '}
-                                                    <Button color="primary" size="lg">
-                                                        Reset Password
-                                                    </Button>
-                                                </div>
+                                            <div className="link-btn">
+                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-lg btn btn-link">Go Back</a>{' '}{' '}
+                                                <Button className="popup-btn">Reset Password</Button>
                                             </div>
                                         </AvForm>
                                     </div>

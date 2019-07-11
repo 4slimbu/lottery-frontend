@@ -68,7 +68,7 @@ class AppMain extends Component {
         );
 
         // Get Winners
-        this.props.makeRequest(request.Lottery.slots.winners, {query: ''}, {message: MESSAGES.LOGGING}).then(
+        this.props.makeRequest(request.Lottery.slots.winners, {query: 'limit=12'}, {message: MESSAGES.LOGGING}).then(
             (res) => {
                 if (res.data) {
                     this.props.setLotteryWinners(res);
