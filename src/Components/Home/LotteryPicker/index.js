@@ -28,6 +28,7 @@ class LotteryPicker extends React.Component {
                 91, 92, 93, 94, 95, 96, 97, 98, 99
             ],
             pickedNumbers: [],
+            isFirstLoad: false
         };
 
         this.randomPick = this.randomPick.bind(this);
@@ -36,6 +37,10 @@ class LotteryPicker extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({
+            isFirstLoad: true
+        });
+
         this.randomPick();
     }
 
@@ -76,6 +81,13 @@ class LotteryPicker extends React.Component {
 
                 if (--i) {          // If i > 0, keep going
                     theLoop(i);       // Call the loop again, and pass it the current value of i
+                } else {
+                    // Reset to blank after random number shuffle
+                    if (that.state.isFirstLoad) {
+                        that.setState({
+                            pickedNumbers: [undefined, undefined, undefined, undefined, undefined, undefined],
+                        });
+                    }
                 }
             }, 200);
         })(10);
@@ -95,11 +107,13 @@ class LotteryPicker extends React.Component {
 
     render() {
         const {numbers, pickedNumbers} = this.state;
+        let firstEmptyKey = getFirstEmptyPosition(pickedNumbers);
+
         return (
             <Fragment>
                 <div className="lottery-table card">
                     <h4 className="card-header">
-                        <span>Picked Numbers</span>
+                        <span>{ typeof firstEmptyKey !== 'undefined' ? 'Pick Numbers' : 'Picked Numbers' }</span>
                         <PickedNumbers
                             liClass="picked-number"
                             numbers={pickedNumbers}
@@ -115,7 +129,7 @@ class LotteryPicker extends React.Component {
                             handleClick={this.handleNumberClick}
                         />
                         <div className="buttons">
-                            <button className="btn btn-info" onClick={this.randomPick}>Shuffle</button>
+                            <button className="btn btn-info" onClick={this.randomPick}>Random Pick</button>
                             <button className="btn btn-primary" onClick={this.playLottery}>Play Now</button>
                         </div>
                     </div>
