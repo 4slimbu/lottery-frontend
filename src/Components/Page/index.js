@@ -77,7 +77,7 @@ class Page extends React.Component {
                     transitionLeave={false}>
                     <AppHeader/>
 
-                    <section className="main" style={{backgroundImage: 'none'}}>
+                    <section className="main inner-pages">
                         <div className="section-top">
                             <div className="container">
                                 <div className="row">
@@ -99,9 +99,11 @@ class Page extends React.Component {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        <h1>{currentPage.title}</h1>
-                                        <div className="content">
-                                            {currentPage.content}
+                                        <div className="inner-content-wrap">
+                                            <h2>{currentPage.title}</h2>
+                                            <div className="content">
+                                                {currentPage.content}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
