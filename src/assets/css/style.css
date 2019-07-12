@@ -136,9 +136,10 @@ last section
 }
 .card-header {
     text-align: center;
-    background-color:#d2d2d2;
-    color: #000;
-    padding: 20px;
+    background-color:#464646;
+    color: #fff;
+    padding: 15px;
+    font-weight: 600;
 }
 .winners-table .card-header {
     background-color: #7ebf30;
@@ -146,6 +147,9 @@ last section
 }
 .lottery-table .card-header{
     color: #fff;
+}
+.winners-table .list-group{
+    min-height: 575px;
 }
 .list-group-item{
     padding: 16px 20px;
@@ -470,14 +474,23 @@ ul.social-icons a:hover {
     width: 100%;
     padding: 10px;
     background: #f9f9f9;
-    margin: 5px;
+    margin-top: 1px;
     text-decoration: none;
     color: #656565;
+    text-transform: capitalize;
     -webkit-transition: all .4s ease-in-out;
        -moz-transition: all .4s ease-in-out;
         -ms-transition: all .4s ease-in-out;
          -o-transition: all .4s ease-in-out;
             transition: all .4s ease-in-out;
+}
+
+.my-menu a:nth-child(even){
+    background-color: #fff;
+}
+
+.TabsAnimation-appear .winners-table.card.dashboard-wrap .card-body {
+    padding: 0;
 }
 
 .my-menu a::hover, .my-menu a::active {
@@ -486,7 +499,7 @@ ul.social-icons a:hover {
 
 .my-menu a.is-active,
 .my-menu a:hover{
-    background: #28a9e1;
+    background: #a2a2a2;
     color: #fff;
 }
 
@@ -774,6 +787,9 @@ input::placeholder{
     font-size: 15px;
     display: inline-block;
 }
+.ReactTable{
+    border:0px;
+}
 .ReactTable ul.number-in-column{
     display: flex;
     list-style-type: none;
@@ -810,12 +826,61 @@ input::placeholder{
 }
 .inner-content-wrap h2{
     font-size: 32px;
-    border-bottom: 3px solid #28a9e1;
     color: #000;
-    padding-bottom: 10px;
     margin-bottom: 15px;
     display: inline-block;
     line-height: 1;
+}
+
+.pagination-bottom .-pagination button {
+    background-color: #206e9e!important;
+    color: #fff!important;
+    margin-top: 0 !important;
+    cursor: pointer!important;
+    padding-right: 15px!important;
+    text-transform: uppercase;
+    padding-left: 15px!important;
+    -webkit-transition: all .4s ease-in-out!important;
+       -moz-transition: all .4s ease-in-out!important;
+        -ms-transition: all .4s ease-in-out!important;
+         -o-transition: all .4s ease-in-out!important;
+            transition: all .4s ease-in-out!important;
+}
+.pagination-bottom .-pagination button:hover{
+    opacity: 1!important;
+}
+
+.btn-black{
+    background-color: #464646!important;
+}
+
+.withdraw-form .form-control{
+    flex: none!important;
+    width: 30%;
+}
+.withdraw-form .input-group-append .input-group-text{
+    font-size: 14px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.ReactTable .rt-thead .rt-resizable-header-content{
+    font-weight: 600;
+    font-size: 14px;
+}
+.ReactTable .rt-tbody .rt-td {
+    padding: 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+.rt-thead.-header{
+    background-color: #a2a2a2;
+    color: #fff;
+    padding: 10px;
+}
+.ReactTable.-striped.-highlight .rt-table .rt-thead:nth-child(1){
+    display: none;
 }
 
 @media (max-width: 991px){

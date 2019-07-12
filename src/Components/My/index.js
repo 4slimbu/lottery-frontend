@@ -96,7 +96,7 @@ class My extends Component {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-sm-12 col-md-4 col-lg-3">
-                                        <div className="winners-table card">
+                                        <div className="winners-table dashboard-wrap card">
                                             <div className="card-header">Menu</div>
                                             <div className="card-body">
                                                 <Nav className="my-menu">

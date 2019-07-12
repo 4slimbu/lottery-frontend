@@ -137,8 +137,8 @@ class Withdraw extends Component {
                                 <div className="card">
                                     <div className="card-header">Withdraw</div>
                                     <div className="card-body">
-                                        <p>Won: <strong>{wallet && inCurrency(wallet.won)}</strong></p>
-                                        <form onSubmit={this.handleWithdraw}>
+                                        <p>Available Balance: <strong>{wallet && inCurrency(wallet.won)}</strong></p>
+                                        <form className="withdraw-form" onSubmit={this.handleWithdraw}>
                                             <div className="input-group">
                                                 <input name="amount" type="text" className="form-control" placeholder="0.00"
                                                        onChange={this.handleChange}
@@ -152,7 +152,7 @@ class Withdraw extends Component {
                                                 { this.state.error && <span className="text text-danger">{ this.state.error }</span>}
                                             </div>
                                             <div className="btn-group">
-                                                <button className="btn btn-primary">Withdraw</button>
+                                                <button className="btn btn-primary btn-black">Withdraw</button>
                                             </div>
                                         </form>
                                     </div>
