@@ -31,7 +31,6 @@ class LotteryPicker extends React.Component {
                 91, 92, 93, 94, 95, 96, 97, 98, 99
             ],
             pickedNumbers: [],
-            isFirstLoad: false
         };
 
         this.randomPick = this.randomPick.bind(this);
@@ -40,11 +39,7 @@ class LotteryPicker extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({
-            isFirstLoad: true
-        });
-
-        this.randomPick();
+        this.randomPick(false);
     }
 
     componentWillUnmount() {
@@ -70,7 +65,7 @@ class LotteryPicker extends React.Component {
         this.props.setLotteryPickedNumbers(pickedNumbers);
     }
 
-    randomPick() {
+    randomPick(pick = true) {
         let that = this;
         (function theLoop(i) {
             setTimeout(function () {
@@ -86,7 +81,7 @@ class LotteryPicker extends React.Component {
                     theLoop(i);       // Call the loop again, and pass it the current value of i
                 } else {
                     // Reset to blank after random number shuffle
-                    if (that.state.isFirstLoad) {
+                    if (! pick) {
                         let noPick = [undefined, undefined, undefined, undefined, undefined, undefined];
                         that.setState({
                             pickedNumbers: noPick
