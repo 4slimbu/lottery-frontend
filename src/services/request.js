@@ -170,9 +170,11 @@ const Lottery = {
 /**
  * Handles all pages related requests
  */
-const Page = {
+const Pages = {
     get: (data) =>
         requests('GET', API_BASE_URL + "/pages"),
+    show: (data) =>
+        requests('GET', API_BASE_URL + '/pages/' + data.slug)
 };
 
 export default {
@@ -184,5 +186,5 @@ export default {
     Settings,
     Currencies,
     Lottery,
-    Page
+    Pages
 };

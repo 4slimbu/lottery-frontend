@@ -27,3 +27,7 @@ export const DEFAULT_MY_STATE = {
     profile: {},
     withdrawRequests: {}
 };
+
+export const DEFAULT_PAGE_STATE = {
+    pages: []
+};

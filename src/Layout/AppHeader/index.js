@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {setModal} from "../../actions/appStatusAction";
 import {logout} from "../../actions/authActions";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Badge, Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from "reactstrap";
 import {inCurrency} from "../../utils/helper/helperFunctions";
 
@@ -66,13 +66,13 @@ class AppHeader extends Component {
                                 <div className="collapse navbar-collapse" id="headerNavbar">
                                     <ul className="navbar-nav mr-auto">
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#" onClick={() => this.props.history.push('/about')}>About </a>
+                                            <Link className="nav-link" to={"/about"}>About </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#" onClick={() => this.props.history.push('/faq')}>Faq </a>
+                                            <Link className="nav-link" to={"/faq"}>Faq </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#" onClick={() => this.props.history.push('/contact')}>Contact </a>
+                                            <Link className="nav-link" to={"/contact"}>Contact </Link>
                                         </li>
                                     </ul>
                                 </div>

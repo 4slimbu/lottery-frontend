@@ -245,3 +245,14 @@ export function inCoin(currency, withUnit = true) {
     return amountInCoin;
 
 }
+
+// stripslashes
+export function stripslashes(str) {
+    return str.replace(/\\'/g,'\'').replace(/\"/g,'"').replace(/\\\\/g,'\\').replace(/\\0/g,'\0');
+}
+
+// get by slug
+export function getBySlug(collection, slug) {
+    let item = _.find(collection, {slug: slug});
+    return item ? item : {};
+}

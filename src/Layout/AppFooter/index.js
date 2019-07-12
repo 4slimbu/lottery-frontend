@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFacebook, faTwitter} from "@fortawesome/free-brands-svg-icons";
 import LoginModal from "../../Components/AppCommon/LoginModal";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 import RegisterModal from "../../Components/AppCommon/RegisterModal";
@@ -18,16 +18,16 @@ class AppFooter extends Component {
                             <div className="col-sm-12 col-md-6 col-lg-6 footer-left">
                                 <ul className="footer-items">
                                     <li className="footer-item">
-                                        <a href="#" className="footer-link">Privacy Policy</a>
+                                        <Link to={"/privacy-policy"} className="footer-link">Privacy Policy</Link>
                                     </li>
                                     <li className="footer-item">
-                                        <a href="#" className="footer-link">Terms</a>
+                                        <Link to={"/terms"} className="footer-link">Terms</Link>
                                     </li>
                                     <li className="footer-item">
-                                        <a href="#" className="footer-link">Faq</a>
+                                        <Link to={"/faq"} className="footer-link">Faq</Link>
                                     </li>
                                     <li className="footer-item">
-                                        <a href="#" className="footer-link">Contact Us</a>
+                                        <Link to={"/contact"} className="footer-link">Contact Us</Link>
                                     </li>
                                 </ul>
                                 <p>© 2019 Bitlot Crypto Lottery. All rights reserved.</p>

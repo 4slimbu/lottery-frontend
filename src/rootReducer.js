@@ -5,12 +5,14 @@ import appStatusReducer from "./reducers/appStatusReducer";
 import loadingMessageReducer from "./reducers/loadingMessageReducer";
 import lotteryReducer from "./reducers/lotteryReducer";
 import myReducer from "./reducers/myReducer";
+import pageReducer from "./reducers/pageReducer";
 
 export default combineReducers({
     authReducer,
     appStatusReducer,
     lotteryReducer,
     myReducer,
+    pageReducer,
     flashMessageReducer,
     loadingMessageReducer,
 });

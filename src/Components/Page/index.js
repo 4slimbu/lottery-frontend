@@ -4,15 +4,16 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import 'react-table/react-table.css'
-import request from "../../services/request";
-import {MESSAGES} from "../../constants/messages";
 import {makeRequest} from "../../actions/requestAction";
 
 import AppHeader from "../../Layout/AppHeader";
 import AppFooter from "../../Layout/AppFooter";
 import AppLogo from "../AppCommon/AppLogo";
-import PrizePool from "../AppCommon/PrizePool";
 import DepositButton from "../AppCommon/DepositButton";
+import request from "../../services/request";
+import {MESSAGES} from "../../constants/messages";
+import {setPage} from "../../actions/pageActions";
+import {getBySlug, stripslashes} from "../../utils/helper/helperFunctions";
 
 class Page extends React.Component {
     constructor(props) {
@@ -21,32 +22,50 @@ class Page extends React.Component {
         this.state = {
             isLoading: false
         }
+
+        this.playLottery = this.playLottery.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.match.params.slug !== nextProps.match.params.slug) {
+            this.bootstrap(nextProps.match.params.slug);
+        }
     }
 
     componentDidMount() {
-        this.bootstrap();
+        this.bootstrap(this.props.match.params.slug);
     }
 
-    bootstrap() {
-        // Get Played Games
+    bootstrap(slug) {
+        // Get Page
         this.setState({isLoading: true});
-        this.props.makeRequest(request.Me.getPlayedGames, {}, {message: MESSAGES.LOGGING}).then(
-            (res) => {
-                if (res.data) {
-                    this.props.setPlayedGames(res);
-                    this.setState({isLoading: false});
-                }
-            },
-            (errorData) => {
-            }
-        );
+
+        if (! this.props.page[slug]) {
+            this.props.makeRequest(request.Pages.show, {slug: slug }, {message: MESSAGES.LOGGING}).then(
+                (res) => { if (res.data) { this.props.setPage(res); this.setState({isLoading: false}); } },
+                (errorData) => {}
+            );
+        }
+    }
+
+    playLottery() {
+        const {isAuthenticated} = this.props.auth;
+
+        // check if authenticated
+        if (! isAuthenticated) {
+            this.props.setModal('login');
+            return;
+        }
+
+        this.props.setModal('playLottery');
+
+        this.props.history.push('/');
     }
 
     render() {
-        const {isLoading} = this.state;
-        const {user} = this.props.auth;
-        const {wallet} = user;
-        const {playedGames, transactions} = this.props.my;
+        const {slug} = this.props.match.params;
+        const {pages} = this.props.page;
+        const currentPage = getBySlug(pages, slug);
         return (
             <Fragment>
                 <ReactCSSTransitionGroup
@@ -58,7 +77,7 @@ class Page extends React.Component {
                     transitionLeave={false}>
                     <AppHeader/>
 
-                    <section className="main">
+                    <section className="main" style={{backgroundImage: 'none'}}>
                         <div className="section-top">
                             <div className="container">
                                 <div className="row">
@@ -70,8 +89,7 @@ class Page extends React.Component {
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <div className="buttons">
                                             <DepositButton/>
-                                            <button onClick={this.playLottery} className="btn btn-primary">Let's play
-                                            </button>
+                                            <button onClick={this.playLottery} className="btn btn-primary">Let's play</button>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +99,10 @@ class Page extends React.Component {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        Hello test
+                                        <h1>{currentPage.title}</h1>
+                                        <div className="content">
+                                            {currentPage.content}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,11 +127,12 @@ function mapStateToProps(state) {
         auth: state.authReducer,
         appStatus: state.appStatusReducer,
         lottery: state.lotteryReducer,
-        my: state.myReducer
+        my: state.myReducer,
+        page: state.pageReducer
     }
 }
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest
+    makeRequest, setPage
 })(Page));

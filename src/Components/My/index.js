@@ -82,7 +82,6 @@ class My extends Component {
                                         <AppLogo/>
                                     </div>
                                     <div className="col-sm-12 col-md-7 col-lg-5">
-                                        <PrizePool amount={lotterySlotAmount}/>
                                     </div>
                                     <div className="col-sm-12 col-md-12 col-lg-3">
                                         <div className="buttons">
