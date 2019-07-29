@@ -26,6 +26,14 @@ class DepositButton extends Component {
 
     createCharge() {
 
+        const {isAuthenticated} = this.props.auth;
+
+        // check if authenticated
+        if (! isAuthenticated) {
+            this.props.setModal('login');
+            return;
+        }
+
         this.props.makeRequest(request.Coinbase.createCharge, {}, {message: MESSAGES.LOGGING}).then(
             (res) => {
                 this.setState({charge: res.data, isLoading: false });
@@ -56,6 +64,7 @@ class DepositButton extends Component {
 
 function mapStateToProps(state) {
     return {
+        auth: state.authReducer
     }
 }
 

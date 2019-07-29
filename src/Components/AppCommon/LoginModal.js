@@ -262,7 +262,7 @@ class LoginModal extends Component {
                                 activeScreen === "loginAsGuest" &&
                                 <div className="login-as-guest popup-form-wrap">
                                     <h4 className="popup-title">
-                                        <span>Login as guest.</span>
+                                        <span>Only email is required to login as guest.</span>
                                     </h4>
                                     <AvForm onSubmit={this.handleLoginAsGuest}>
                                         <Row form>
@@ -289,6 +289,10 @@ class LoginModal extends Component {
                                             </FormGroup>
                                         </Row>
                                         <Button className="popup-btn">Login as Guest</Button>
+
+                                        <div className="optional-links">
+                                            <a href="javascript:void(0);" onClick={() => this.activateScreen("login")} className="btn-lg btn btn-link">Go Back</a>
+                                        </div>
                                     </AvForm>
                                 </div>
                             }
