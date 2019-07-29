@@ -23,7 +23,7 @@ class LoginModal extends Component {
             newPassword: "",
             confirmNewPassword: "",
             error: "",
-            activeScreen: "login", // login | sendRecoveryEmail | resetPassword
+            activeScreen: "login", // login | sendRecoveryEmail | resetPassword | loginAsGuest
             isLoading: true
         };
 
@@ -47,6 +47,7 @@ class LoginModal extends Component {
     }
 
     closeModal() {
+        this.activateScreen("login");
         this.props.setModal();
     }
 
@@ -188,7 +189,11 @@ class LoginModal extends Component {
                 <div>
                     <Modal isOpen={isOpen} toggle={this.closeModal} className={this.props.className}
                            backdrop={this.state.backdrop}>
-                        <ModalHeader toggle={this.closeModal}>Login</ModalHeader>
+                        { activeScreen === "login" && <ModalHeader toggle={this.closeModal}>Login</ModalHeader> }
+                        { activeScreen === "loginAsGuest" && <ModalHeader toggle={this.closeModal}>Login As Guest</ModalHeader> }
+                        { activeScreen === "sendRecoveryEmail" && <ModalHeader toggle={this.closeModal}>Recover Password</ModalHeader> }
+                        { activeScreen === "resetPassword" && <ModalHeader toggle={this.closeModal}>Reset Password</ModalHeader> }
+
                         <ModalBody>
                             {/*============== Login Screen ==================*/}
                             {
@@ -244,43 +249,47 @@ class LoginModal extends Component {
                                             <div className="optional-links">
                                                 <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-link">Recover
                                                         Password</a>{' '}{' '}
-                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-link">Login as Guest</a>{' '}{' '}
+                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("loginAsGuest")} className="btn-link">Login as Guest</a>{' '}{' '}
                                             </div>
                                                    
                                         </AvForm>
                                     </div>
+                                </div>
+                            }
 
-                                    <div className="login-as-guest popup-form-wrap">
-                                        <h4 className="popup-title">
-                                            <span>Login as guest.</span>
-                                        </h4>
-                                        <AvForm onSubmit={this.handleLoginAsGuest}>
-                                            <Row form>
-                                                <FormGroup>
-                                                    <AvGroup>
-                                                        <AvField name="guestEmail"
-                                                                 type="email"
-                                                                 placeholder="Email here..."
-                                                                 onChange={this.handleChange}
-                                                                 value={guestEmail}
-                                                                 validate={{
-                                                                     email: {
-                                                                         value: true,
-                                                                         errorMessage: 'Please enter a valid email address'
-                                                                     },
-                                                                     required: {
-                                                                         value: true,
-                                                                         errorMessage: 'Please enter an email address'
-                                                                     }
-                                                                 }}
-                                                        />
-                                                        <AvFeedback/>
-                                                    </AvGroup>
-                                                </FormGroup>
-                                            </Row>
-                                            <Button className="popup-btn">Login as Guest</Button>
-                                        </AvForm>
-                                    </div>
+                            {/*============== Login As Guest Screen ==================*/}
+                            {
+                                activeScreen === "loginAsGuest" &&
+                                <div className="login-as-guest popup-form-wrap">
+                                    <h4 className="popup-title">
+                                        <span>Login as guest.</span>
+                                    </h4>
+                                    <AvForm onSubmit={this.handleLoginAsGuest}>
+                                        <Row form>
+                                            <FormGroup>
+                                                <AvGroup>
+                                                    <AvField name="guestEmail"
+                                                             type="email"
+                                                             placeholder="Email here..."
+                                                             onChange={this.handleChange}
+                                                             value={guestEmail}
+                                                             validate={{
+                                                                 email: {
+                                                                     value: true,
+                                                                     errorMessage: 'Please enter a valid email address'
+                                                                 },
+                                                                 required: {
+                                                                     value: true,
+                                                                     errorMessage: 'Please enter an email address'
+                                                                 }
+                                                             }}
+                                                    />
+                                                    <AvFeedback/>
+                                                </AvGroup>
+                                            </FormGroup>
+                                        </Row>
+                                        <Button className="popup-btn">Login as Guest</Button>
+                                    </AvForm>
                                 </div>
                             }
 
@@ -360,7 +369,7 @@ class LoginModal extends Component {
                                                     <AvGroup>
                                                         <AvField name="recoveryEmail"
                                                                  type="email"
-                                                                 placeholder="Recovery Email here..."
+                                                                 placeholder="Your Email here..."
                                                                  onChange={this.handleChange}
                                                                  value={recoveryEmail}
                                                                  validate={{

@@ -638,7 +638,7 @@ input::placeholder{
     color: #888;
 }
 .login-as-guest{
-    display: none;
+    /*display: none;*/
 }
 .optional-links,
 .link-btn{
