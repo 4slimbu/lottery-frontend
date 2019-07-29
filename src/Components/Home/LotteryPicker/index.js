@@ -89,7 +89,7 @@ class LotteryPicker extends React.Component {
                         that.props.setLotteryPickedNumbers(noPick);
                     }
                 }
-            }, 200);
+            }, 150);
         })(10);
     }
 
