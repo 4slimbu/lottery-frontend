@@ -12,6 +12,7 @@ import {setCurrencies, setSettings} from "../../actions/appStatusAction";
 const Home = lazy(() => import('../../Components/Home'));
 const My = lazy(() => import('../../Components/My'));
 const Page = lazy(() => import('../../Components/Page'));
+const ContactUs = lazy(() => import('../../Components/Page/ContactUs'));
 
 class AppMain extends Component {
     constructor(props) {

@@ -14,6 +14,7 @@ import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {setPage} from "../../actions/pageActions";
 import {getBySlug, stripslashes} from "../../utils/helper/helperFunctions";
+import ContactUs from "./ContactUs";
 
 class Page extends React.Component {
     constructor(props) {
@@ -67,6 +68,9 @@ class Page extends React.Component {
         const {pages} = this.props.page;
         const currentPage = getBySlug(pages, slug);
         return (
+            slug === 'contact' ?
+            <ContactUs/>
+            :
             <Fragment>
                 <ReactCSSTransitionGroup
                     component="div"

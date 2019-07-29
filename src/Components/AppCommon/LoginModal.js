@@ -37,6 +37,15 @@ class LoginModal extends Component {
         this.activateScreen = this.activateScreen.bind(this);
     }
 
+    componentDidMount() {
+        console.log('Login modal cdm');
+    }
+
+    componentWillUnmount() {
+        console.log('login modal cwunmount');
+        this.setState({activeScreen: "login"});
+    }
+
     closeModal() {
         this.props.setModal();
     }

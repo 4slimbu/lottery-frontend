@@ -177,6 +177,14 @@ const Pages = {
         requests('GET', API_BASE_URL + '/pages/' + data.slug)
 };
 
+/**
+ * Handles all Contact form related requests
+ */
+const ContactFormEntry = {
+    create: (data) =>
+        requests('POST', API_BASE_URL + "/contact", data),
+};
+
 export default {
     Auth,
     Users,
@@ -186,5 +194,6 @@ export default {
     Settings,
     Currencies,
     Lottery,
-    Pages
+    Pages,
+    ContactFormEntry
 };
