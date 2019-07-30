@@ -1,9 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-
-import PropTypes from "prop-types";
 import {makeRequest} from "../../../actions/requestAction";
-import {withRouter} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 import LotteryWinnerList from "../../AppCommon/LotteryWinnerList";
 
 class Winners extends Component {
@@ -17,7 +15,6 @@ class Winners extends Component {
     }
 
     render() {
-        const {isLoading} = this.state;
         const {winners} = this.props.lottery;
         return (
             <Fragment>
@@ -27,7 +24,8 @@ class Winners extends Component {
                     </h4>
                     <LotteryWinnerList winners={winners.data}/>
                     <div className="card-body">
-                        <a href="#" className="card-link">View Past Winners</a>
+                        <NavLink exact={true} className='card-link'
+                                 to='/winners'>View Past Winners</NavLink>
                     </div>
                 </div>
             </Fragment>
@@ -35,11 +33,6 @@ class Winners extends Component {
     }
 
 }
-
-Winners.propTypes = {
-    makeRequest: PropTypes.func.isRequired,
-};
-
 
 function mapStateToProps(state) {
     return {

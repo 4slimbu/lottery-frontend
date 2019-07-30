@@ -1,21 +1,13 @@
 import React, {Fragment} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
 import 'react-table/react-table.css'
-import {makeRequest} from "../../actions/requestAction";
-
-import AppHeader from "../../Layout/AppHeader";
-import AppFooter from "../../Layout/AppFooter";
-import AppLogo from "../AppCommon/AppLogo";
-import DepositButton from "../AppCommon/DepositButton";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
-import {setPage} from "../../actions/pageActions";
-import {getBySlug, stripslashes} from "../../utils/helper/helperFunctions";
+import {getBySlug} from "../../utils/helper/helperFunctions";
 import ContactUs from "./ContactUs";
 import withLayout from "../HOC/withLayout";
+import PastWinners from "./PastWinners";
 
 class Page extends React.Component {
     constructor(props) {
@@ -69,23 +61,29 @@ class Page extends React.Component {
         const {pages} = this.props.page;
         const currentPage = getBySlug(pages, slug);
         return (
-            slug === 'contact' ?
-            <ContactUs {...this.props}/>
-            :
-            <div className="section-bottom">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-sm-12">
-                            <div className="inner-content-wrap">
-                                <h2>{currentPage.title}</h2>
-                                <div className="content">
-                                    {currentPage.content}
+            <Fragment>
+                { slug === 'contact' && <ContactUs {...this.props}/> }
+
+                { slug === 'winners' && <PastWinners {...this.props}/> }
+
+                {
+                    slug !== 'contact' && slug !== 'winners' &&
+                    <div className="section-bottom">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <div className="inner-content-wrap">
+                                        <h2>{currentPage.title}</h2>
+                                        <div className="content">
+                                            {currentPage.content}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                }
+            </Fragment>
         )
     }
 }

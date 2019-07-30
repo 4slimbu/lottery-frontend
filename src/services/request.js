@@ -152,6 +152,8 @@ const Lottery = {
             requests('GET',API_BASE_URL + `/lottery/slots/${data.id}?` + data.query),
         getWinners: (data) =>
             requests('GET',API_BASE_URL + `/lottery/slots/winners?` + data.query),
+        getPastWinners: (query) =>
+            requests('GET',API_BASE_URL + `/lottery/slots/winners?` + query),
         create: (data) =>
             requests('POST', API_BASE_URL + "/lottery/slots", data),
         update: (data) =>
