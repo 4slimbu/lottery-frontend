@@ -1,18 +1,13 @@
 import React, {Fragment} from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import PropTypes from "prop-types";
 import {Link, withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {makeRequest} from "../../../actions/requestAction";
-import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
-import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
 import {inAppCoin, inCurrency} from "../../../utils/helper/helperFunctions";
 import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
-import {setPlayedGames, setTransactions} from "../../../actions/myActions";
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
 import LotteryNumberList from "../../AppCommon/LotteryNumberList";
+import AnimatedSection from "../../AppCommon/AnimatedSection";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -49,185 +44,159 @@ class Dashboard extends React.Component {
         const {playedGames, transactions} = this.props.my;
         return (
             <Fragment>
-                <ReactCSSTransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <div>
-                        <div className="row">
-                            <div className="col-md-4 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Free Games</div>
-                                    <div className="card-body">{ user && user.free_games }</div>
-                                </div>
-                            </div>
-                            <div className="col-md-4 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Deposit</div>
-                                    <div className="card-body">{ wallet && inAppCoin(wallet.deposit) }</div>
-                                </div>
-                            </div>
-                            <div className="col-md-4 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Won</div>
-                                    <div className="card-body">{ wallet && inCurrency(wallet.won) }</div>
-                                </div>
+                <AnimatedSection>
+                    <div className="row">
+                        <div className="col-md-4 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Free Games</div>
+                                <div className="card-body">{ user && user.free_games }</div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-md-12 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Latest Played Games</div>
-                                    {
-                                        playedGames && playedGames.data ?
-                                            <div>
-                                                <div className="card-body">
-                                                    <ReactTable
-                                                        data={playedGames.data}
-                                                        columns={[
-                                                            {
-                                                                columns: [
-                                                                    {
-                                                                        Header: 'Slot Ref',
-                                                                        accessor: 'slot_ref',
-                                                                        Cell: props => (
-                                                                            <div>
-                                                                                { props.original.lottery_slot.slot_ref }
-                                                                            </div>
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        Header: 'Lottery Number',
-                                                                        Cell: props => (
-                                                                            <div>
-                                                                                <LotteryNumberList
-                                                                                    ulClass="number-in-column"
-                                                                                    numbers={props.original.lottery_number}
-                                                                                />
-                                                                            </div>
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        Header: 'Result',
-                                                                        accessor: 'result',
-                                                                        Cell: props => (
-                                                                            <div>
-                                                                                <LotteryNumberList
-                                                                                    ulClass="number-in-column"
-                                                                                    numbers={props.original.lottery_slot.result}
-                                                                                />
-                                                                            </div>
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        Header: 'Won',
-                                                                        accessor: 'won_amount',
-                                                                        Cell: props => (
-                                                                            <div>
-                                                                                { inCurrency(props.original.won_amount) }
-                                                                            </div>
-                                                                        )
-                                                                    }
-                                                                ]
-                                                            },
-                                                        ]}
-                                                        defaultPageSize={5}
-                                                        showPagination={false}
-                                                        className="-striped -highlight"
-                                                    />
-                                                </div>
-                                                <div className="card-footer">
-                                                    <div className="text-center">
-                                                        <Link to="/my/played-games">View all</Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            :
-                                            <div className="card-body">You have not played any games.</div>
-                                    }
-                                </div>
+                        <div className="col-md-4 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Deposit</div>
+                                <div className="card-body">{ wallet && inAppCoin(wallet.deposit) }</div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-md-12 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Latest Transactions</div>
-                                    {
-                                        transactions && transactions.data ?
-                                            <div>
-                                                <div className="card-body">
-                                                    <ReactTable
-                                                        data={transactions.data}
-                                                        columns={[
-                                                            {
-                                                                columns: [
-                                                                    {
-                                                                        Header: 'Transaction Code',
-                                                                        accessor: 'transaction_code',
-                                                                    },
-                                                                    {
-                                                                        Header: 'Type',
-                                                                        accessor: 'type'
-                                                                    },
-                                                                    {
-                                                                        Header: 'Amount',
-                                                                        accessor: 'amount',
-                                                                        Cell: props => (
-                                                                            <div>
-                                                                                { inCurrency(props.original.amount) }
-                                                                            </div>
-                                                                        )
-                                                                    },
-                                                                    {
-                                                                        Header: 'Date',
-                                                                        accessor: 'updated_at'
-                                                                    }
-                                                                ]
-                                                            },
-                                                        ]}
-                                                        defaultPageSize={5}
-                                                        showPagination={false}
-                                                        className="-striped -highlight"
-                                                    />
-                                                </div>
-                                                <div className="card-footer">
-                                                    <div className="text-center">
-                                                        <Link to="/my/transactions">View all</Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            :
-                                            <div className="card-body">You have not made any transactions.</div>
-                                    }
-                                </div>
+                        <div className="col-md-4 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Won</div>
+                                <div className="card-body">{ wallet && inCurrency(wallet.won) }</div>
                             </div>
                         </div>
                     </div>
-                </ReactCSSTransitionGroup>
+                    <div className="row">
+                        <div className="col-md-12 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Latest Played Games</div>
+                                {
+                                    playedGames && playedGames.data ?
+                                        <div>
+                                            <div className="card-body">
+                                                <ReactTable
+                                                    data={playedGames.data}
+                                                    columns={[
+                                                        {
+                                                            columns: [
+                                                                {
+                                                                    Header: 'Slot Ref',
+                                                                    accessor: 'slot_ref',
+                                                                    Cell: props => (
+                                                                        <div>
+                                                                            { props.original.lottery_slot.slot_ref }
+                                                                        </div>
+                                                                    )
+                                                                },
+                                                                {
+                                                                    Header: 'Lottery Number',
+                                                                    Cell: props => (
+                                                                        <div>
+                                                                            <LotteryNumberList
+                                                                                ulClass="number-in-column"
+                                                                                numbers={props.original.lottery_number}
+                                                                            />
+                                                                        </div>
+                                                                    )
+                                                                },
+                                                                {
+                                                                    Header: 'Winning Number',
+                                                                    accessor: 'result',
+                                                                    Cell: props => (
+                                                                        <div>
+                                                                            <LotteryNumberList
+                                                                                ulClass="number-in-column"
+                                                                                numbers={props.original.lottery_slot.result}
+                                                                            />
+                                                                        </div>
+                                                                    )
+                                                                },
+                                                                {
+                                                                    Header: 'Won',
+                                                                    accessor: 'won_amount',
+                                                                    Cell: props => (
+                                                                        <div>
+                                                                            { props.original.won_amount && "Winner "} ({ inCurrency(props.original.won_amount) })
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            ]
+                                                        },
+                                                    ]}
+                                                    defaultPageSize={5}
+                                                    showPagination={false}
+                                                    className="-striped -highlight"
+                                                />
+                                            </div>
+                                            <div className="card-footer">
+                                                <div className="text-center">
+                                                    <Link to="/my/played-games">View all</Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className="card-body">You have not played any games.</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Latest Transactions</div>
+                                {
+                                    transactions && transactions.data ?
+                                        <div>
+                                            <div className="card-body">
+                                                <ReactTable
+                                                    data={transactions.data}
+                                                    columns={[
+                                                        {
+                                                            columns: [
+                                                                {
+                                                                    Header: 'Transaction Code',
+                                                                    accessor: 'transaction_code',
+                                                                },
+                                                                {
+                                                                    Header: 'Type',
+                                                                    accessor: 'type'
+                                                                },
+                                                                {
+                                                                    Header: 'Amount',
+                                                                    accessor: 'amount',
+                                                                    Cell: props => (
+                                                                        <div>
+                                                                            { inCurrency(props.original.amount) }
+                                                                        </div>
+                                                                    )
+                                                                },
+                                                                {
+                                                                    Header: 'Date',
+                                                                    accessor: 'updated_at'
+                                                                }
+                                                            ]
+                                                        },
+                                                    ]}
+                                                    defaultPageSize={5}
+                                                    showPagination={false}
+                                                    className="-striped -highlight"
+                                                />
+                                            </div>
+                                            <div className="card-footer">
+                                                <div className="text-center">
+                                                    <Link to="/my/transactions">View all</Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className="card-body">You have not made any transactions.</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </AnimatedSection>
             </Fragment>
         )
     }
 }
 
-Dashboard.propTypes = {
-    makeRequest: PropTypes.func.isRequired,
-};
-
-
-function mapStateToProps(state) {
-    return {
-        auth: state.authReducer,
-        appStatus: state.appStatusReducer,
-        lottery: state.lotteryReducer,
-        my: state.myReducer
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot,
-    setPlayedGames, setTransactions
-})(Dashboard));
+export default Dashboard;

@@ -1,7 +1,8 @@
 export const DEFAULT_APP_STATUS = {
     modal: null,
     settings: [{}],
-    currencies: [{}]
+    currencies: [{}],
+    rootCssClassList: []
 };
 
 export const DEFAULT_LOTTERY_STATE = {

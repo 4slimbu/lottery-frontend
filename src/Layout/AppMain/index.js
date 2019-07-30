@@ -101,9 +101,10 @@ class AppMain extends Component {
     }
 
     render () {
+        const {rootCssClassList} = this.props.appStatus;
         return (
             <Fragment>
-
+                <div className={rootCssClassList.join(' ')}>
                 <Suspense fallback={
                     <div className="loader-container">
                         <div className="loader-container-inner">
@@ -122,7 +123,7 @@ class AppMain extends Component {
                     <Route exact path="/my/profile" component={My}/>
                     <Route exact path="/:slug" component={Page}/>
                 </Suspense>
-
+            </div>
             </Fragment>
         )
     }

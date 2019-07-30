@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
@@ -11,9 +10,8 @@ import {MESSAGES} from "../../../constants/messages";
 import {setWithdrawRequests} from "../../../actions/myActions";
 import ReactTable from "react-table";
 import {inCoin, inCurrency} from "../../../utils/helper/helperFunctions";
-import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
-import {Button, Col, FormGroup, Row} from "reactstrap";
 import {setUser} from "../../../actions/authActions";
+import AnimatedSection from "../../AppCommon/AnimatedSection";
 
 class Withdraw extends Component {
     constructor(props) {
@@ -87,7 +85,7 @@ class Withdraw extends Component {
 
         if (inCoin(this.state.amount, false) > wallet.won) {
             this.setState({
-                error: "Amount cannot be greater than Won amount"
+                error: "Amount cannot be greater than available balance"
             });
             return;
         }
@@ -124,93 +122,85 @@ class Withdraw extends Component {
         const {wallet} = this.props.auth.user;
         return (
             <Fragment>
-                <ReactCSSTransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <div>
-                        <div className="row">
-                            <div className="col-md-12 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Withdraw</div>
-                                    <div className="card-body">
-                                        <p>Available Balance: <strong>{wallet && inCurrency(wallet.won)}</strong></p>
-                                        <form className="withdraw-form" onSubmit={this.handleWithdraw}>
-                                            <div className="input-group">
-                                                <input name="amount" type="text" className="form-control" placeholder="0.00"
-                                                       onChange={this.handleChange}
-                                                       value={this.state.amount}
-                                                />
-                                                <div className="input-group-append">
-                                                    <span className="input-group-text">BTC</span>
-                                                </div>
+                <AnimatedSection>
+                    <div className="row">
+                        <div className="col-md-12 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Withdraw</div>
+                                <div className="card-body">
+                                    <p>Available Balance: <strong>{wallet && inCurrency(wallet.won)}</strong></p>
+                                    <form className="withdraw-form" onSubmit={this.handleWithdraw}>
+                                        <div className="input-group">
+                                            <input name="amount" type="text" className="form-control" placeholder="0.00"
+                                                   onChange={this.handleChange}
+                                                   value={this.state.amount}
+                                            />
+                                            <div className="input-group-append">
+                                                <span className="input-group-text">BTC</span>
                                             </div>
-                                            <div>
-                                                { this.state.error && <span className="text text-danger">{ this.state.error }</span>}
-                                            </div>
-                                            <div className="btn-group">
-                                                <button className="btn btn-primary btn-black">Withdraw</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12 mb-md-4">
-                                <div className="card">
-                                    <div className="card-header">Withdraw Requests</div>
-                                    <div className="card-body">
-                                        <ReactTable
-                                            data={withdrawRequests.data}
-                                            columns={[
-                                                {
-                                                    columns: [
-                                                        {
-                                                            Header: 'Created On',
-                                                            accessor: 'created_at',
-                                                        },
-                                                        {
-                                                            Header: 'Amount',
-                                                            accessor: 'amount',
-                                                            Cell: props => (
-                                                                <div>
-                                                                    { inCurrency(props.original.amount) }
-                                                                </div>
-                                                            )
-                                                        },
-                                                        {
-                                                            Header: 'Status',
-                                                            accessor: 'status'
-                                                        },
-                                                        {
-                                                            Header: 'Action',
-                                                            accessor: 'action',
-                                                            Cell: props => (
-                                                                <div>
-                                                                    {
-                                                                        props.original.status === 'pending' &&
-                                                                        <button onClick={() => this.cancelWithdrawRequest(props.original.id)}>Cancel</button>
-                                                                    }
-                                                                </div>
-                                                            )
-                                                        },
-                                                    ]
-                                                },
-                                            ]}
-                                            defaultPageSize={10}
-                                            showPagination={true}
-                                            className="-striped -highlight"
-                                        />
-                                    </div>
+                                        </div>
+                                        <div>
+                                            { this.state.error && <span className="text text-danger">{ this.state.error }</span>}
+                                        </div>
+                                        <div className="btn-group">
+                                            <button className="btn btn-primary btn-black">Withdraw</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </ReactCSSTransitionGroup>
+                    <div className="row">
+                        <div className="col-md-12 mb-md-4">
+                            <div className="card">
+                                <div className="card-header">Withdraw Requests</div>
+                                <div className="card-body">
+                                    <ReactTable
+                                        data={withdrawRequests.data}
+                                        columns={[
+                                            {
+                                                columns: [
+                                                    {
+                                                        Header: 'Created On',
+                                                        accessor: 'created_at',
+                                                    },
+                                                    {
+                                                        Header: 'Amount',
+                                                        accessor: 'amount',
+                                                        Cell: props => (
+                                                            <div>
+                                                                { inCurrency(props.original.amount) }
+                                                            </div>
+                                                        )
+                                                    },
+                                                    {
+                                                        Header: 'Status',
+                                                        accessor: 'status'
+                                                    },
+                                                    {
+                                                        Header: 'Action',
+                                                        accessor: 'action',
+                                                        Cell: props => (
+                                                            <div>
+                                                                {
+                                                                    props.original.status === 'pending' &&
+                                                                    <button onClick={() => this.cancelWithdrawRequest(props.original.id)}>Cancel</button>
+                                                                }
+                                                            </div>
+                                                        )
+                                                    },
+                                                ]
+                                            },
+                                        ]}
+                                        defaultPageSize={10}
+                                        showPagination={true}
+                                        className="-striped -highlight"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </AnimatedSection>
             </Fragment>
         )
     }

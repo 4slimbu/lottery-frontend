@@ -118,7 +118,7 @@ class LotteryPicker extends React.Component {
 
         return (
             <Fragment>
-                <div className="lottery-table card">
+                <div className="lottery-table card focusable">
                     <h4 className="card-header">
                         <span>{ typeof firstEmptyKey !== 'undefined' ? 'Pick Numbers' : 'Picked Numbers' }</span>
                         <PickedNumbers

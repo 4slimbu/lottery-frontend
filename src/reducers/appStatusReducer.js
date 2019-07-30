@@ -1,5 +1,7 @@
 import {DEFAULT_APP_STATUS} from "../data/default";
-import {SET_CURRENCIES, SET_MODAL, SET_SETTINGS} from "../constants/actionTypes";
+import {
+    ADD_TO_ROOT_CSS_CLASS_LIST, REMOVE_FROM_ROOT_CSS_CLASS_LIST, SET_CURRENCIES, SET_MODAL, SET_SETTINGS,
+} from "../constants/actionTypes";
 
 export default (state = DEFAULT_APP_STATUS, action = {}) => {
     switch (action.type) {
@@ -19,6 +21,26 @@ export default (state = DEFAULT_APP_STATUS, action = {}) => {
             return {
                 ...state,
                 settings: action.settings
+            };
+        case `${ADD_TO_ROOT_CSS_CLASS_LIST}` :
+            return {
+                ...state,
+                rootCssClassList: [
+                    ...state.rootCssClassList,
+                    action.payload
+                ]
+            };
+        case `${REMOVE_FROM_ROOT_CSS_CLASS_LIST}` :
+            let newClassList = [...state.rootCssClassList];
+            let index = newClassList.indexOf(action.payload);
+
+            if (index > -1) {
+                newClassList.splice(index, 1);
+            }
+
+            return {
+                ...state,
+                rootCssClassList: newClassList
             };
         default:
             return state;

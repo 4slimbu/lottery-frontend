@@ -1,116 +1,38 @@
 import React, {Component, Fragment} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {makeRequest} from "../../actions/requestAction";
-import AppHeader from "../../Layout/AppHeader";
-import AppFooter from "../../Layout/AppFooter";
-import AppLogo from "../../Components/AppCommon/AppLogo";
-import PrizePool from "../../Components/AppCommon/PrizePool";
 import Winners from "./Winners";
 import LotteryPicker from "./LotteryPicker";
 import GameInfo from "../../Components/AppCommon/GameInfo";
 import Players from "./Players";
-import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
-import {setCurrencies, setModal, setSettings} from "../../actions/appStatusAction";
-import DepositButton from "../AppCommon/DepositButton";
+import withLayout from "../HOC/withLayout";
 
 class Home extends Component {
     constructor(props) {
         super(props);
-
-        this.playLottery = this.playLottery.bind(this);
-    }
-
-    playLottery() {
-        const {isAuthenticated} = this.props.auth;
-
-        // check if authenticated
-        if (! isAuthenticated) {
-            this.props.setModal('login');
-            return;
-        }
-
-        this.props.setModal('playLottery');
-
-        this.props.history.push('/');
     }
 
     render() {
         const {slot, players} = this.props.lottery;
-        const lotterySlotAmount = slot && slot.total_amount;
         const lotterySlotParticipantsCount = slot && slot.total_participants;
         return (
-            <Fragment>
-                <ReactCSSTransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <AppHeader/>
-
-                    <section className="main">
-                        <div className="section-top">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-sm-12 col-md-5 col-lg-4">
-                                        <AppLogo/>
-                                    </div>
-                                    <div className="col-sm-12 col-md-7 col-lg-5">
-                                        <PrizePool amount={lotterySlotAmount}/>
-                                    </div>
-                                    <div className="col-sm-12 col-md-12 col-lg-3">
-                                        <div className="buttons">
-                                            <DepositButton/>
-                                            <button onClick={this.playLottery} className="btn btn-primary">Let's play</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <div className="section-bottom">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12 col-md-5 col-lg-4">
+                            <Winners/>
                         </div>
-                        <div className="section-bottom">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-sm-12 col-md-5 col-lg-4">
-                                        <Winners/>
-                                    </div>
-                                    <div className="col-sm-12 col-md-7 col-lg-5">
-                                        <LotteryPicker/>
-                                    </div>
-                                    <div className="col-sm-12 col-md-12 col-lg-3">
-                                        <GameInfo lottery={this.props.lottery} auth={this.props.auth}/>
-                                        <Players players={players.data} total={lotterySlotParticipantsCount}/>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className="col-sm-12 col-md-7 col-lg-5">
+                            <LotteryPicker/>
                         </div>
-                    </section>
-
-                    <AppFooter/>
-
-                </ReactCSSTransitionGroup>
-            </Fragment>
+                        <div className="col-sm-12 col-md-12 col-lg-3">
+                            <GameInfo lottery={this.props.lottery} auth={this.props.auth}/>
+                            <Players players={players.data} total={lotterySlotParticipantsCount}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
 
-Home.propTypes = {
-    makeRequest: PropTypes.func.isRequired,
-};
-
-
-function mapStateToProps(state) {
-    return {
-        auth: state.authReducer,
-        appStatus: state.appStatusReducer,
-        lottery: state.lotteryReducer
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot, setModal
-})(Home));
+export default withLayout(Home);

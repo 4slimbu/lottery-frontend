@@ -256,3 +256,16 @@ export function getBySlug(collection, slug) {
     let item = _.find(collection, {slug: slug});
     return item ? item : {};
 }
+
+export function toggleItemInArray(itemsArray, item) {
+    let arr = itemsArray && itemsArray.length > 0 ? itemsArray : [];
+
+    let index = arr.indexOf(item);
+    if (index > -1) {
+        arr.splice(index, 1);
+    } else {
+        arr.push(item);
+    }
+
+    return arr;
+}

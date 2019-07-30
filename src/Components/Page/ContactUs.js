@@ -1,22 +1,10 @@
-import React, {Component, Fragment} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import PropTypes from "prop-types";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
+import React, {Component} from 'react'
 import 'react-table/react-table.css'
-import {makeRequest} from "../../actions/requestAction";
-
-import AppHeader from "../../Layout/AppHeader";
-import AppFooter from "../../Layout/AppFooter";
-import AppLogo from "../AppCommon/AppLogo";
-import DepositButton from "../AppCommon/DepositButton";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
-import {setPage} from "../../actions/pageActions";
-import {getBySlug} from "../../utils/helper/helperFunctions";
 import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
 import {Button, FormGroup, Row} from "reactstrap";
-import {ReCAPTCHA} from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 class ContactUs extends Component {
     constructor(props) {
@@ -28,14 +16,13 @@ class ContactUs extends Component {
             subject: "",
             message: "",
             captchaResponse: "",
-            error: "",
-            success: "",
+            errors: [],
+            response: {},
             isLoading: false
         };
 
-        this.playLottery = this.playLottery.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.resetFields = this.resetFields.bind(this);
+        this.resetErrors = this.resetErrors.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -62,13 +49,25 @@ class ContactUs extends Component {
     }
 
     handleChange(e) {
+        if (typeof e === 'string') {
+            this.setState({
+                captchaResponse: e
+            });
+            return;
+        }
+
         this.setState({
             [e.target.name]: e.target.value
         });
     }
 
     handleSubmit(event, errors, values) {
+        if (! this.state.captchaResponse) {
+            errors.push('captchaResponse');
+        }
+
         if (errors.length > 0) {
+            this.setState({errors: errors});
             return;
         }
 
@@ -76,222 +75,156 @@ class ContactUs extends Component {
             name: this.state.name,
             email: this.state.email,
             subject: this.state.subject,
-            message: this.state.message
+            message: this.state.message,
+            captcha_response: this.state.captchaResponse
         };
 
         this.setState({isLoading: true});
         this.props.makeRequest(request.ContactFormEntry.create, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 this.setState({
-                    success: 'Form submitted successfully.'
+                    response: responseData
                 });
+                this.form.reset();
+                this.reCaptcha.reset();
+                this.resetErrors();
             },
             (errorData) => {
                 this.setState({
-                    error: 'Something went wrong. Please try again!'
+                    response: errorData
                 });
+                this.reCaptcha.reset();
             }
         );
     }
 
-    resetFields() {
+    resetErrors() {
         this.setState({
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
+            errors: []
         })
     }
 
-    playLottery() {
-        const {isAuthenticated} = this.props.auth;
-
-        // check if authenticated
-        if (! isAuthenticated) {
-            this.props.setModal('login');
-            return;
-        }
-
-        this.props.setModal('playLottery');
-
-        this.props.history.push('/');
-    }
-
     render() {
-        const {slug} = this.props.match.params;
-        const {pages} = this.props.page;
-        const currentPage = getBySlug(pages, slug);
-        const {name, email, subject, message, error, success} = this.state;
+        const {name, email, subject, message, response, errors} = this.state;
         return (
-            <Fragment>
-                <ReactCSSTransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <AppHeader/>
+            <div className="section-bottom">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <div className="inner-content-wrap">
+                                <h2>Contact Us</h2>
+                                <div className="content">
+                                    <div>
+                                        { response.errors && <p className="text-danger">Something went wrong. Try Again!</p>}
+                                        { response.success && <p className="text-success">Form was submitted successfully.</p>}
 
-                    <section className="main inner-pages">
-                        <div className="section-top">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-sm-12 col-md-5 col-lg-4">
-                                        <AppLogo/>
-                                    </div>
-                                    <div className="col-sm-12 col-md-7 col-lg-5">
-                                    </div>
-                                    <div className="col-sm-12 col-md-12 col-lg-3">
-                                        <div className="buttons">
-                                            <DepositButton/>
-                                            <button onClick={this.playLottery} className="btn btn-primary">Let's play</button>
+                                        <div>
+                                            <AvForm onSubmit={this.handleSubmit} ref={c => (this.form = c)}>
+                                                <Row form>
+                                                    <FormGroup>
+                                                        <AvGroup>
+                                                            <AvField name="name"
+                                                                     type="text"
+                                                                     placeholder="Full Name ..."
+                                                                     onChange={this.handleChange}
+                                                                     value={name}
+                                                                     validate={{
+                                                                         required: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter your name'
+                                                                         }
+                                                                     }}
+                                                            />
+                                                            <AvFeedback/>
+                                                        </AvGroup>
+                                                    </FormGroup>
+                                                    <FormGroup>
+                                                        <AvGroup>
+                                                            <AvField name="email"
+                                                                     type="email"
+                                                                     placeholder="Email ..."
+                                                                     onChange={this.handleChange}
+                                                                     value={email}
+                                                                     validate={{
+                                                                         email: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter a valid email address'
+                                                                         },
+                                                                         required: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter an email address'
+                                                                         }
+                                                                     }}
+                                                            />
+                                                            <AvFeedback/>
+                                                        </AvGroup>
+                                                    </FormGroup>
+
+                                                    <FormGroup>
+                                                        <AvGroup>
+                                                            <AvField name="subject"
+                                                                     type="text"
+                                                                     placeholder="Subject ..."
+                                                                     onChange={this.handleChange}
+                                                                     value={subject}
+                                                                     validate={{
+                                                                         required: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter your subject ...'
+                                                                         }
+                                                                     }}
+                                                            />
+                                                            <AvFeedback/>
+                                                        </AvGroup>
+                                                    </FormGroup>
+
+                                                    <FormGroup>
+                                                        <AvGroup>
+                                                            <AvField name="message"
+                                                                     type="textarea"
+                                                                     placeholder="Message ..."
+                                                                     onChange={this.handleChange}
+                                                                     value={message}
+                                                                     rows={10}
+                                                                     validate={{
+                                                                         required: {
+                                                                             value: true,
+                                                                             errorMessage: 'Please enter your message ...'
+                                                                         }
+                                                                     }}
+                                                            />
+                                                            <AvFeedback/>
+                                                        </AvGroup>
+                                                    </FormGroup>
+                                                    <FormGroup>
+                                                        <AvGroup>
+                                                            <div className="form-group re-captcha">
+                                                                <ReCAPTCHA
+                                                                    sitekey="6LdGP7AUAAAAAGy1mZYvgSR5tSAgV9SMdD5J89Dh"
+                                                                    onChange={this.handleChange}
+                                                                    ref={c => (this.reCaptcha = c)}
+                                                                />
+
+                                                                {(errors.indexOf('captchaResponse') !== -1) && <span className="text-danger">Re-captcha must be solved.</span>}
+                                                            </div>
+                                                        </AvGroup>
+                                                    </FormGroup>
+                                                </Row>
+
+                                                <Button className="popup-btn">Contact Us</Button>
+
+                                            </AvForm>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="section-bottom">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        <div className="inner-content-wrap">
-                                            <h2>Contact Us</h2>
-                                            <div className="content">
-                                                <div>
-                                                    { error && <p className="text-danger">{error}</p>}
-                                                    { success && <p className="text-success">{success}</p>}
-
-                                                    <div>
-                                                        <AvForm onSubmit={this.handleSubmit}>
-                                                            <Row form>
-                                                                <FormGroup>
-                                                                    <AvGroup>
-                                                                        <AvField name="name"
-                                                                                 type="text"
-                                                                                 placeholder="Full Name ..."
-                                                                                 onChange={this.handleChange}
-                                                                                 value={name}
-                                                                                 validate={{
-                                                                                     required: {
-                                                                                         value: true,
-                                                                                         errorMessage: 'Please enter your name'
-                                                                                     }
-                                                                                 }}
-                                                                        />
-                                                                        <AvFeedback/>
-                                                                    </AvGroup>
-                                                                </FormGroup>
-                                                                <FormGroup>
-                                                                    <AvGroup>
-                                                                        <AvField name="email"
-                                                                                 type="email"
-                                                                                 placeholder="Email ..."
-                                                                                 onChange={this.handleChange}
-                                                                                 value={email}
-                                                                                 validate={{
-                                                                                     email: {
-                                                                                         value: true,
-                                                                                         errorMessage: 'Please enter a valid email address'
-                                                                                     },
-                                                                                     required: {
-                                                                                         value: true,
-                                                                                         errorMessage: 'Please enter an email address'
-                                                                                     }
-                                                                                 }}
-                                                                        />
-                                                                        <AvFeedback/>
-                                                                    </AvGroup>
-                                                                </FormGroup>
-
-                                                                <FormGroup>
-                                                                    <AvGroup>
-                                                                        <AvField name="subject"
-                                                                                 type="text"
-                                                                                 placeholder="Subject ..."
-                                                                                 onChange={this.handleChange}
-                                                                                 value={subject}
-                                                                                 validate={{
-                                                                                     required: {
-                                                                                         value: true,
-                                                                                         errorMessage: 'Please enter your subject ...'
-                                                                                     }
-                                                                                 }}
-                                                                        />
-                                                                        <AvFeedback/>
-                                                                    </AvGroup>
-                                                                </FormGroup>
-
-                                                                <FormGroup>
-                                                                    <AvGroup>
-                                                                        <AvField name="message"
-                                                                                 type="textarea"
-                                                                                 placeholder="Message ..."
-                                                                                 onChange={this.handleChange}
-                                                                                 value={message}
-                                                                                 rows={10}
-                                                                                 validate={{
-                                                                                     required: {
-                                                                                         value: true,
-                                                                                         errorMessage: 'Please enter your message ...'
-                                                                                     }
-                                                                                 }}
-                                                                        />
-                                                                        <AvFeedback/>
-                                                                    </AvGroup>
-                                                                </FormGroup>
-                                                                <FormGroup>
-                                                                    <AvGroup>
-                                                                        <div className="form-group re-captcha">
-                                                                            <ReCAPTCHA
-                                                                                sitekey="6LfywmMUAAAAAH51QWhKz33Nel43Fh8uAq3xUN1j"
-                                                                                onChange={this.handleChange}
-                                                                            />
-
-                                                                            {error.captcha_response && <span className="form-error-message">{error.captcha_response}</span>}
-                                                                        </div>
-                                                                    </AvGroup>
-                                                                </FormGroup>
-                                                            </Row>
-
-                                                            <Button className="popup-btn">Contact Us</Button>
-
-                                                        </AvForm>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <AppFooter/>
-
-                </ReactCSSTransitionGroup>
-            </Fragment>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
 
-ContactUs.propTypes = {
-    makeRequest: PropTypes.func.isRequired,
-};
-
-
-function mapStateToProps(state) {
-    return {
-        auth: state.authReducer,
-        appStatus: state.appStatusReducer,
-        lottery: state.lotteryReducer,
-        my: state.myReducer,
-        page: state.pageReducer
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, {
-    makeRequest, setPage
-})(ContactUs));
+export default ContactUs;
