@@ -115,7 +115,7 @@ class Dashboard extends React.Component {
                                                                     accessor: 'won_amount',
                                                                     Cell: props => (
                                                                         <div>
-                                                                            { props.original.won_amount && "Winner "} ({ inCurrency(props.original.won_amount) })
+                                                                            { inCurrency(props.original.won_amount) }
                                                                         </div>
                                                                     )
                                                                 }

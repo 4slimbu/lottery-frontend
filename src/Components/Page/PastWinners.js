@@ -5,6 +5,8 @@ import 'react-table/react-table.css'
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import AnimatedSection from "../AppCommon/AnimatedSection";
+import {inCurrency} from "../../utils/helper/helperFunctions";
+import LotteryNumberList from "../AppCommon/LotteryNumberList";
 
 class PastWinners extends React.Component {
     constructor(props) {
@@ -21,7 +23,7 @@ class PastWinners extends React.Component {
         this.fetchData = this.fetchData.bind(this);
     }
 
-    async fetchData(state, instance = null) {
+    fetchData(state, instance = null) {
         let query = "";
         this.setState({reactTableState: state});
 
@@ -59,7 +61,7 @@ class PastWinners extends React.Component {
         // Start loading indicator and call api
         this.setState({isLoading: true});
 
-        await this.props.makeRequest(request.getPastWinners, query, {message: MESSAGES.LOGGING}).then(
+        this.props.makeRequest(request.Lottery.slots.winners, {query: query}, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 if (responseData.data) {
                     this.setState({
@@ -112,7 +114,10 @@ class PastWinners extends React.Component {
                                                                             accessor: 'lottery_number',
                                                                             Cell: props => (
                                                                                 <div className="d-block w-100 text-center">
-                                                                                    {props.original.lottery_number}
+                                                                                    <LotteryNumberList
+                                                                                        ulClass="number-in-column"
+                                                                                        numbers={props.original.lottery_number}
+                                                                                    />
                                                                                 </div>
                                                                             ),
                                                                         },
@@ -121,18 +126,13 @@ class PastWinners extends React.Component {
                                                                             accessor: 'won_amount',
                                                                             Cell: props => (
                                                                                 <div className="d-block w-100 text-center">
-                                                                                    {props.original.won_amount}
+                                                                                    { inCurrency(props.original.won_amount * 1 + props.original.service_charge * 1)}
                                                                                 </div>
                                                                             ),
                                                                         },
                                                                         {
-                                                                            Header: 'Service Charge',
-                                                                            accessor: 'service_charge',
-                                                                            Cell: props => (
-                                                                                <div className="d-block w-100 text-center">
-                                                                                    {props.original.service_charge}
-                                                                                </div>
-                                                                            ),
+                                                                            Header: 'Date',
+                                                                            accessor: 'updated_at',
                                                                         },
                                                                     ]
                                                                 },
@@ -145,6 +145,7 @@ class PastWinners extends React.Component {
                                                             loading={isLoading} // Display the loading overlay when we need it
                                                             onFetchData={this.fetchData} // Request new data when things change
                                                             filterable={false}
+                                                            sortable={false}
                                                         />
                                                     </div>
                                                     :

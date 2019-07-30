@@ -15,7 +15,7 @@ class Page extends React.Component {
 
         this.state = {
             isLoading: false
-        }
+        };
 
         this.playLottery = this.playLottery.bind(this);
     }
@@ -33,6 +33,10 @@ class Page extends React.Component {
     bootstrap(slug) {
         // Get Page
         this.setState({isLoading: true});
+
+        if (slug === 'contact' || slug === 'winners') {
+            return;
+        }
 
         if (! this.props.page[slug]) {
             this.props.makeRequest(request.Pages.show, {slug: slug }, {message: MESSAGES.LOGGING}).then(

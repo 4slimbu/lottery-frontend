@@ -16,6 +16,7 @@ const requests = (type, url, userData = {}) => {
     if (getEnv('ENV') === 'mock-api') {
         // return mockApi(type, url, userData = {});
     } else {
+        console.log(type, url, userData);
         return axios({
             method: type,
             url: url,
@@ -150,16 +151,10 @@ const Lottery = {
             requests('GET', API_BASE_URL + "/lottery/slots?" + query),
         get: (data) =>
             requests('GET',API_BASE_URL + `/lottery/slots/${data.id}?` + data.query),
-        getWinners: (data) =>
-            requests('GET',API_BASE_URL + `/lottery/slots/winners?` + data.query),
-        getPastWinners: (query) =>
-            requests('GET',API_BASE_URL + `/lottery/slots/winners?` + query),
         create: (data) =>
             requests('POST', API_BASE_URL + "/lottery/slots", data),
         update: (data) =>
             requests('PUT', API_BASE_URL + "/lottery/slots/" + data.id, data),
-        deleteMultiple: (data) =>
-            requests('DELETE', API_BASE_URL + "/lottery/slots", data),
         winners: (data) =>
             requests('GET',API_BASE_URL + `/lottery/slots/winners?` + data.query),
         getActive: (data) =>
