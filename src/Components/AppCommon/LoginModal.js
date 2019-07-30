@@ -3,7 +3,7 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, 
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
-import {setModal} from "../../actions/appStatusAction";
+import {setModal, updateBrowseHistory} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
@@ -48,6 +48,9 @@ class LoginModal extends Component {
 
     closeModal() {
         this.activateScreen("login");
+        this.props.updateBrowseHistory({
+            autoTasks: [],
+        });
         this.props.setModal();
     }
 
@@ -446,4 +449,5 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     setModal,
     makeRequest,
+    updateBrowseHistory
 })(LoginModal));

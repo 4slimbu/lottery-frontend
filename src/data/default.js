@@ -2,7 +2,11 @@ export const DEFAULT_APP_STATUS = {
     modal: null,
     settings: [{}],
     currencies: [{}],
-    rootCssClassList: []
+    rootCssClassList: [],
+    browseHistory: {
+        locations: [],
+        autoTasks: []
+    }
 };
 
 export const DEFAULT_LOTTERY_STATE = {

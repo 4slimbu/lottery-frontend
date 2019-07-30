@@ -3,7 +3,7 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, 
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
-import {setModal} from "../../actions/appStatusAction";
+import {setModal, updateBrowseHistory} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
@@ -24,12 +24,35 @@ class DepositButton extends Component {
         this.openPopUp = this.openPopUp.bind(this);
     }
 
+    componentDidMount() {
+        //Listen to browser history
+        this.unlisten = this.props.history.listen((location, action) => {
+            // Run create charge if createCharge is set on autoTasks
+            let {autoTasks} = this.props.browseHistory;
+            let index = autoTasks.indexOf('createCharge');
+            if (index !== -1) {
+                this.createCharge();
+                this.props.updateBrowseHistory({
+                    autoTasks: [...autoTasks.splice(index, 1)]
+                })
+            }
+        });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
+    }
+
     createCharge() {
 
         const {isAuthenticated} = this.props.auth;
 
         // check if authenticated
         if (! isAuthenticated) {
+            this.props.updateBrowseHistory({
+                autoTasks: ['createCharge'],
+            });
+
             this.props.setModal('login');
             return;
         }
@@ -64,7 +87,8 @@ class DepositButton extends Component {
 
 function mapStateToProps(state) {
     return {
-        auth: state.authReducer
+        auth: state.authReducer,
+        browseHistory: state.appStatusReducer.browseHistory
     }
 }
 
@@ -73,4 +97,5 @@ export default withRouter(connect(mapStateToProps, {
     setUser,
     setModal,
     makeRequest,
+    updateBrowseHistory
 })(DepositButton));

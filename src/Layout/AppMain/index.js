@@ -6,13 +6,12 @@ import {makeRequest} from "../../actions/requestAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
-import {setCurrencies, setSettings} from "../../actions/appStatusAction";
+import {setCurrencies, setSettings, updateBrowseHistory} from "../../actions/appStatusAction";
 
 
 const Home = lazy(() => import('../../Components/Home'));
 const My = lazy(() => import('../../Components/My'));
 const Page = lazy(() => import('../../Components/Page'));
-const ContactUs = lazy(() => import('../../Components/Page/ContactUs'));
 
 class AppMain extends Component {
     constructor(props) {
@@ -27,6 +26,17 @@ class AppMain extends Component {
         this._isMounted = true;
         this.setState({isLoading: true});
         this._isMounted && this.bootstrap();
+
+        //Listen to browser history
+        this.unlisten = this.props.history.listen((location, action) => {
+            this.props.updateBrowseHistory({
+                location: location,
+            })
+        });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
     }
 
     bootstrap() {
@@ -138,5 +148,6 @@ function mapStateToProps(state) {
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLastSlot, setCurrencies, setSettings, setLotteryWinners, setLotterySlot, setLotteryPlayers
+    makeRequest, setLastSlot, setCurrencies, setSettings, setLotteryWinners, setLotterySlot, setLotteryPlayers,
+    updateBrowseHistory
 })(AppMain));

@@ -1,10 +1,13 @@
 import {
-    ADD_TO_ROOT_CSS_CLASS_LIST, REMOVE_FROM_ROOT_CSS_CLASS_LIST,
-    SET_APP_SETTINGS, SET_CURRENCIES,
-    SET_EVENTS, SET_MODAL, SET_SETTINGS, UPDATE_ROOT_CSS_CLASS_LIST,
+    ADD_TO_ROOT_CSS_CLASS_LIST,
+    REMOVE_FROM_ROOT_CSS_CLASS_LIST,
+    SET_APP_SETTINGS,
+    SET_CURRENCIES,
+    SET_EVENTS,
+    SET_MODAL,
+    SET_SETTINGS,
+    UPDATE_BROWSE_HISTORY,
 } from "../constants/actionTypes";
-import * as _ from "lodash";
-import {toggleItemInArray} from "../utils/helper/helperFunctions";
 
 export function setEvents(events) {
     return {
@@ -54,5 +57,13 @@ export function removeFromRootCssClassList(cssClass) {
     return {
         type: REMOVE_FROM_ROOT_CSS_CLASS_LIST,
         payload: cssClass
+    }
+}
+
+export function updateBrowseHistory(data) {
+
+    return {
+        type: UPDATE_BROWSE_HISTORY,
+        payload: data
     }
 }
