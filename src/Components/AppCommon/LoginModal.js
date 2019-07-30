@@ -48,6 +48,7 @@ class LoginModal extends Component {
 
     closeModal() {
         this.activateScreen("login");
+        this.resetFields();
         this.props.updateBrowseHistory({
             autoTasks: [],
         });
@@ -145,12 +146,12 @@ class LoginModal extends Component {
         this.setState({isLoading: true});
         this.props.makeRequest(request.Auth.forgotPassword, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
-                this.resetFields();
+                // this.resetFields();
                 this.setState({activeScreen: "resetPassword", isLoading: false});
             },
             (errorData) => {
                 this.setState({error: errorData.message});
-                this.resetFields();
+                // this.resetFields();
                 this.setState({isLoading: false});
             }
         );
@@ -175,7 +176,6 @@ class LoginModal extends Component {
             },
             (errorData) => {
                 this.setState({error: errorData.message});
-                this.resetFields();
                 this.setState({isLoading: false});
             }
         );
@@ -338,7 +338,7 @@ class LoginModal extends Component {
 
                                             <div className="optional-links">
                                                 <a href="javascript:void(0);" onClick={() => this.activateScreen("login")} className="btn-lg btn btn-link">Go Back</a>{' '}{' '}
-                                                    <a href="javascript:void(0);" onClick={() => this.activateScreen("resetPassword")} className="btn-lg btn btn-link">Skip to Password Reset Screen</a>{' '}{' '}
+                                                    {/*<a href="javascript:void(0);" onClick={() => this.activateScreen("resetPassword")} className="btn-lg btn btn-link">Skip to Password Reset Screen</a>{' '}{' '}*/}
                                             </div>
 
                                         </AvForm>
@@ -352,7 +352,7 @@ class LoginModal extends Component {
                                 <div className="popup-form-wrap">
                                     { error && <p className="text-danger">{error}</p>}
                                     <h4 className="popup-title">
-                                        <span>Please enter the password reset code and your new password</span>
+                                        <span>A password reset code has been sent to your email. Please use it to reset your password.</span>
                                     </h4>
                                     <Row className="divider"/>
                                     <div>
@@ -372,27 +372,27 @@ class LoginModal extends Component {
                                                         />
                                                     </AvGroup>
                                                 </FormGroup>
-                                                <FormGroup>
-                                                    <AvGroup>
-                                                        <AvField name="recoveryEmail"
-                                                                 type="email"
-                                                                 placeholder="Your Email here..."
-                                                                 onChange={this.handleChange}
-                                                                 value={recoveryEmail}
-                                                                 validate={{
-                                                                     email: {
-                                                                         value: true,
-                                                                         errorMessage: 'Please enter a valid email address'
-                                                                     },
-                                                                     required: {
-                                                                         value: true,
-                                                                         errorMessage: 'Please enter an email address'
-                                                                     }
-                                                                 }}
-                                                        />
-                                                        <AvFeedback/>
-                                                    </AvGroup>
-                                                </FormGroup>
+                                                {/*<FormGroup>*/}
+                                                    {/*<AvGroup>*/}
+                                                        {/*<AvField name="recoveryEmail"*/}
+                                                                 {/*type="email"*/}
+                                                                 {/*placeholder="Your Email here..."*/}
+                                                                 {/*onChange={this.handleChange}*/}
+                                                                 {/*value={recoveryEmail}*/}
+                                                                 {/*validate={{*/}
+                                                                     {/*email: {*/}
+                                                                         {/*value: true,*/}
+                                                                         {/*errorMessage: 'Please enter a valid email address'*/}
+                                                                     {/*},*/}
+                                                                     {/*required: {*/}
+                                                                         {/*value: true,*/}
+                                                                         {/*errorMessage: 'Please enter an email address'*/}
+                                                                     {/*}*/}
+                                                                 {/*}}*/}
+                                                        {/*/>*/}
+                                                        {/*<AvFeedback/>*/}
+                                                    {/*</AvGroup>*/}
+                                                {/*</FormGroup>*/}
                                                 <FormGroup>
                                                     <AvGroup>
                                                         <AvField name="newPassword"
