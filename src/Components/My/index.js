@@ -7,6 +7,7 @@ import PlayedGames from "./PlayedGames";
 import Profile from "./Profile";
 import withLayout from "../HOC/withLayout";
 import DashboardMenu from "../AppCommon/DashboardMenu";
+import {Redirect, Route} from "react-router-dom";
 
 class My extends Component {
     constructor(props) {
@@ -47,9 +48,6 @@ class My extends Component {
             this.props.history.push('/');
         }
 
-        // Proceed as usual
-        const {path} = this.state;
-
         return (
             <div className="section-bottom">
                 <div className="container">
@@ -58,12 +56,14 @@ class My extends Component {
                             <DashboardMenu/>
                         </div>
                         <div className="col-sm-12 col-md-8 col-lg-9">
-                            {path === "/my/dashboard" && <Dashboard {...this.props}/>}
-                            {path === "/my/wallet" && <Wallet {...this.props}/>}
-                            {path === "/my/transactions" && <Transactions {...this.props}/>}
-                            {path === "/my/withdraw" && <Withdraw {...this.props}/>}
-                            {path === "/my/played-games" && <PlayedGames {...this.props}/>}
-                            {path === "/my/profile" && <Profile {...this.props}/>}
+                            <Route path={`/my/dashboard`} render={() => <Dashboard{...this.props}/>}/>
+                            <Route path={`/my/wallet`} render={() => <Wallet {...this.props}/>}/>
+                            <Route path={`/my/transactions`} render={() => <Transactions {...this.props}/>}/>
+                            <Route path={`/my/withdraw`} render={() => <Withdraw {...this.props}/>}/>
+                            <Route path={`/my/played-games`} render={() => <PlayedGames {...this.props}/>}/>
+                            <Route path={`/my/profile`} render={() => <Profile {...this.props}/>}/>
+                            <Route path={`/my/profile/:slug`} render={() => <Profile {...this.props}/>}/>
+                            <Route exact path="/my" render={() => <Redirect to="/my/dashboard"/>}/>
                         </div>
 
                     </div>

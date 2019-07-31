@@ -10,23 +10,7 @@ import ViewProfile from "./ViewProfile";
 import EditProfile from "./EditProfile";
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            path: "/my/profile"
-        };
-
-    }
-
-    componentDidMount() {
-        this.setState({
-            path: this.props.match.path
-        });
-    }
-
     render() {
-        const {path} = this.state;
         return (
             <Fragment>
                 <AnimatedSection>
@@ -41,8 +25,8 @@ class Profile extends Component {
                                     </div>
                                 </div>
                             }>
-                                {path === "/my/profile/edit" && <EditProfile {...this.props}/>}
-                                {path === "/my/profile" && <ViewProfile {...this.props}/>}
+                                <Route path={`/my/profile`} render={() => <ViewProfile {...this.props}/>}/>
+                                <Route path={`/my/profile/edit`} render={() => <EditProfile {...this.props}/>}/>
                             </Suspense>
                         </div>
                     </div>
