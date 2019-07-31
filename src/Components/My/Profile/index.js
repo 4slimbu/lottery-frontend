@@ -25,7 +25,7 @@ class Profile extends Component {
                                     </div>
                                 </div>
                             }>
-                                <Route path={`/my/profile`} render={() => <ViewProfile {...this.props}/>}/>
+                                <Route exact path={`/my/profile`} render={() => <ViewProfile {...this.props}/>}/>
                                 <Route path={`/my/profile/edit`} render={() => <EditProfile {...this.props}/>}/>
                             </Suspense>
                         </div>

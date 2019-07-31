@@ -1012,3 +1012,29 @@ input::placeholder{
     z-index: 100;
     box-shadow: 0 0 26px -2px rgba(0,0,0,0.75);
 }
+
+.after-img {
+    width: 100%;
+    max-width: 300px;
+}
+
+.loading-spinner-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.loading-spinner-wrapper .loading-spinner {
+    display: inline-block;
+}
+
+.loading-spinner-wrapper .content {
+    background: rgba(187, 187, 187, 0.6);
+    padding: 1px 10px;
+    border-radius: 3px;
+    margin-top: 10px;
+    color: #222222;
+}

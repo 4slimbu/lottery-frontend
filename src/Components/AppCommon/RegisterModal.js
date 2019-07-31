@@ -148,13 +148,29 @@ class LoginModal extends Component  {
                                         <AvGroup>
                                             <AvField name="firstName"
                                                      type="text"
-                                                     placeholder="Full Name ..."
+                                                     placeholder="First Name ..."
                                                      onChange={this.handleChange}
                                                      value={firstName}
                                                      validate={{
                                                          required: {
                                                              value: true,
-                                                             errorMessage: 'Please enter your full name'
+                                                             errorMessage: 'Please enter your first name'
+                                                         },
+                                                     }}
+                                            />
+                                        </AvGroup>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <AvGroup>
+                                            <AvField name="lastName"
+                                                     type="text"
+                                                     placeholder="Last Name ..."
+                                                     onChange={this.handleChange}
+                                                     value={lastName}
+                                                     validate={{
+                                                         required: {
+                                                             value: true,
+                                                             errorMessage: 'Please enter your last name'
                                                          },
                                                      }}
                                             />

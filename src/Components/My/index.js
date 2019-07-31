@@ -61,9 +61,7 @@ class My extends Component {
                             <Route path={`/my/transactions`} render={() => <Transactions {...this.props}/>}/>
                             <Route path={`/my/withdraw`} render={() => <Withdraw {...this.props}/>}/>
                             <Route path={`/my/played-games`} render={() => <PlayedGames {...this.props}/>}/>
-                            <Route path={`/my/profile`} render={() => <Profile {...this.props}/>}/>
-                            <Route path={`/my/profile/:slug`} render={() => <Profile {...this.props}/>}/>
-                            <Route exact path="/my" render={() => <Redirect to="/my/dashboard"/>}/>
+                            <Route path={`/my/profile/:slug?`} render={() => <Profile {...this.props}/>}/>
                         </div>
 
                     </div>

@@ -7,6 +7,8 @@ import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
 import {setCurrencies, setSettings, updateBrowseHistory} from "../../actions/appStatusAction";
+import LoadingMessage from "../../Components/AppCommon/loading/LoadingMessage";
+import FlashMessageList from "../../Components/AppCommon/flash/FlashMessageList";
 
 
 const Home = lazy(() => import('../../Components/Home'));
@@ -125,11 +127,11 @@ class AppMain extends Component {
                     </div>
                 }>
                     <Route exact path="/" component={Home}/>
-                    <Route exact path="/my" component={My}/>
-                    <Route exact path="/my/:slug" component={My}/>
-                    <Route exact path="/my/:slug/:slug" component={My}/>
+                    <Route exact path="/my/:slug?/:slug?" component={My}/>
                     <Route exact path="/:slug" component={Page}/>
                 </Suspense>
+                    <LoadingMessage/>
+                    {/*<FlashMessageList/>*/}
             </div>
             </Fragment>
         )

@@ -74,6 +74,9 @@ class AppHeader extends Component {
                                         <li className="nav-item">
                                             <Link className="nav-link" to={"/contact"}>Contact </Link>
                                         </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to={"/winners"}>Winners</Link>
+                                        </li>
                                     </ul>
                                 </div>
                                 {

@@ -120,6 +120,8 @@ const Currencies = {
 const Me = {
     get: (data) =>
         requests('GET', API_BASE_URL + "/me"),
+    updateProfile: (data) =>
+        requests('PUT', API_BASE_URL + "/me/profile/update", data),
     play: (data) =>
         requests('POST', API_BASE_URL + "/me/play", data),
     getPlayedGames: (data) =>
