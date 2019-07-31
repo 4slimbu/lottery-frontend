@@ -130,7 +130,7 @@ class AppMain extends Component {
                     <Route exact path="/my/transactions" component={My}/>
                     <Route exact path="/my/withdraw" component={My}/>
                     <Route exact path="/my/played-games" component={My}/>
-                    <Route exact path="/my/profile" component={My}/>
+                    <Route path="/my/profile" component={My}/>
                     <Route exact path="/:slug" component={Page}/>
                 </Suspense>
             </div>
