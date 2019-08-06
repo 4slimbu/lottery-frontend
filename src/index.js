@@ -18,7 +18,7 @@ import {
 import {setCurrencies, setSettings} from "./actions/appStatusAction";
 
 let jwtToken = '';
-const store = configureStore();
+export const store = configureStore();
 const rootElement = document.getElementById('root');
 
 // check if jwtToken exist in local storage and is valid

@@ -1,10 +1,10 @@
 {
-  "name": "lottery-backend",
+  "name": "krypttolotto",
   "version": "0.1.0",
   "private": true,
-  "description": "Lottery Frontend",
+  "description": "Krypttolotto",
   "author": "responsive-pixel.com",
-  "homepage": "https://frontend.lottery.com",
+  "homepage": "http://krypttolotto.com",
   "repository": {
     "type": "git",
     "url": "git+https://bitbucket.org/responsivesudip/lottery-frontend"
@@ -64,12 +64,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "browserslist": [],
   "devDependencies": {
     "react-app-env": "^1.2.3"
   }
