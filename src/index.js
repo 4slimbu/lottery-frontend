@@ -88,8 +88,8 @@ renderApp(AppMain);
 window.io = require('socket.io-client');
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    // host: "https://a91f7814.ngrok.io"
-    host: window.location.hostname + ':6001',
+    host: "http://krypttolotto.com",
+    // host: window.location.hostname + ':6001',
     auth: {
         headers: {
             'Authorization' : 'Bearer ' + jwtToken
