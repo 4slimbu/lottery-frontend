@@ -9,7 +9,7 @@ const Players = (props) => {
         <Fragment>
             <div className="wining-numbers-table card">
                 <div className="card-body">
-                    <h4>Players : {total}</h4>
+                    <h4>Active Players : {total}</h4>
                     <PlayersList players={players}/>
                 </div>
             </div>

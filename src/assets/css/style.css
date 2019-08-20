@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6{
     font-family: 'Montserrat', sans-serif;
     line-height: 1.4;
     color: #222222;
-    font-weight: 600;
+    font-weight: 500;
 }
 h4{
     font-size: 16px;
@@ -185,6 +185,10 @@ li.list-group-item span {
     font-weight: 500;
     text-transform: uppercase;
     border-bottom: 1px solid;
+    transition: all 400ms ease-in-out;
+}
+.winners-table.card .card-body a.card-link:hover{
+    color: #28a9e1;
 }
 .winners-table.card .card-body {
     text-align: center;
@@ -367,7 +371,13 @@ ul.footer-items li.footer-item a {
     margin-right: 20px;
     text-decoration: none;
 }
-ul.footer-items li.footer-item a:hover{
+
+ul.footer-items li.footer-item a,
+.navbar-expand-md .navbar-nav .nav-link {
+    transition: all 400ms ease-in-out;
+}
+ul.footer-items li.footer-item a:hover,
+.navbar-expand-md .navbar-nav .nav-link:hover{
     color: #28a9e1;
 }
 .footer-left p {
@@ -427,6 +437,7 @@ ul.social-icons a:hover {
     list-style: none;
     padding: 0px;
     margin-bottom: 0px;
+    text-align: left;
 }
 .players-list li{
     border-bottom: 1px solid #cacaca;
@@ -549,6 +560,7 @@ ul.social-icons a:hover {
     line-height: 1;
     border-bottom: 1px solid #cacaca;
     background-color: #fff!important;
+    font-weight: 300!important;
     -webkit-transition: all .4s ease-in-out;
        -moz-transition: all .4s ease-in-out;
         -ms-transition: all .4s ease-in-out;
@@ -661,6 +673,9 @@ input::placeholder{
     align-items: center;
     justify-content: space-between;
 }
+.popup-title{
+    font-weight: 300!important;
+}
 .optional-links .btn-link,
 .link-btn .btn-link{
     font-size: 14px;
@@ -668,6 +683,7 @@ input::placeholder{
     display: inline-block;
     text-decoration: none!important;
     padding: 0px;
+    font-weight: 300!important;
 }
 .optional-links .btn-link:last-child{
     color: #fd8400;
@@ -828,6 +844,10 @@ input::placeholder{
     align-items: center;
     justify-content: center;
 }
+.ReactTable .rt-tbody .rt-td .number-in-column span{
+    width: 30px;
+    height: 30px;
+}
 .ReactTable ul.number-in-column li:first-child{
     margin-left: 0px;
 }
@@ -840,7 +860,7 @@ input::placeholder{
     line-height: 1.8;
 }
 .inner-content-wrap h2{
-    font-size: 32px;
+    font-size: 20px;
     color: #000;
     margin-bottom: 15px;
     display: inline-block;
@@ -888,16 +908,39 @@ input::placeholder{
     font-size: 13px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
+.ReactTable .rt-tbody .rt-td:first-child{
+    justify-content: flex-start;
+}
+
 .rt-thead.-header{
-    background-color: #a2a2a2;
+    background-color: #666;
     color: #fff;
     padding: 10px;
 }
 .ReactTable.-striped.-highlight .rt-table .rt-thead:nth-child(1){
     display: none;
 }
-
+.card.my-profile .card-footer a {
+    color: #007bff;
+    font-size: 14px;
+    font-weight: 500;
+}
+.card.my-profile .card-footer a:hover{
+    color: #656565;
+}
+form.withdraw-form .input-group {
+    justify-content: center;
+}
+.inner-content-wrap form button.popup-btn{
+    background-color: #464646!important;
+    width: 200px;
+    margin:0 auto;
+}
+.inner-content-wrap form button.popup-btn:hover{
+    background-color: #28a9e1!important;
+}
 @media (max-width: 991px){
     ul.lottery-table-numbers li.lottery-table-number a {
         width: 40px;
