@@ -16,6 +16,7 @@ import {
     setLotteryData
 } from "./actions/lotteryActions";
 import {setCurrencies, setSettings} from "./actions/appStatusAction";
+import {getEnv} from "./utils/helper/helperFunctions";
 
 let jwtToken = '';
 export const store = configureStore();
@@ -88,7 +89,7 @@ renderApp(AppMain);
 window.io = require('socket.io-client');
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: "http://krypttolotto.com",
+    host: getEnv('APP_SOCKET_URL'),
     // host: window.location.hostname + ':6001',
     auth: {
         headers: {
