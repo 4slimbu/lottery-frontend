@@ -5,6 +5,7 @@ import {MESSAGES} from "../../constants/messages";
 import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
 import {Button, FormGroup, Row} from "reactstrap";
 import ReCAPTCHA from "react-google-recaptcha";
+import {getEnv} from "../../utils/helper/helperFunctions";
 
 class ContactUs extends Component {
     constructor(props) {
@@ -200,7 +201,7 @@ class ContactUs extends Component {
                                                         <AvGroup>
                                                             <div className="form-group re-captcha">
                                                                 <ReCAPTCHA
-                                                                    sitekey="6LdGP7AUAAAAAGy1mZYvgSR5tSAgV9SMdD5J89Dh"
+                                                                    sitekey={ getEnv('RECAPTCHA_SITE_KEY')}
                                                                     onChange={this.handleChange}
                                                                     ref={c => (this.reCaptcha = c)}
                                                                 />
