@@ -1,15 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup, Row, Col} from 'reactstrap';
-import {Link, withRouter} from "react-router-dom";
+import {Button} from 'reactstrap';
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 import {setModal, updateBrowseHistory} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
-import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
-import {Loader} from 'react-loaders';
-import PickedNumbers from "./PickedNumbers";
-import {findSetting, inCurrency} from "../../utils/helper/helperFunctions";
 import {setUser} from "../../actions/authActions";
 
 class DepositButton extends Component {

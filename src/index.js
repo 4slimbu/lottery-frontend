@@ -100,17 +100,13 @@ window.Echo = new Echo({
 
 window.Echo.channel('lottery')
     .listen('LotterySlotCreatedEvent', (e) => {
-        console.log('lottery slot created event', e);
         store.dispatch(setLotterySlot(e.data));
         store.dispatch(setLotteryPlayers({data: []}));
     }).listen('LotterySlotClosedEvent', (e) => {
-        console.log('Lottery Slot Closed Event', e);
         store.dispatch(setLotteryData(e));
     }).listen('ParticipantAddedEvent', (e) => {
         let slot = e.data;
         let participant = e.participant;
-        console.log('pae');
-        console.log(e);
         store.dispatch(setLotterySlot(slot));
         store.dispatch(addLotterySlotPlayer(participant));
     });

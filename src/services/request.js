@@ -16,7 +16,6 @@ const requests = (type, url, userData = {}) => {
     if (getEnv('ENV') === 'mock-api') {
         // return mockApi(type, url, userData = {});
     } else {
-        console.log(type, url, userData);
         return axios({
             method: type,
             url: url,
