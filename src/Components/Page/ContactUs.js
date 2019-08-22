@@ -122,62 +122,64 @@ class ContactUs extends Component {
                                         <div>
                                             <AvForm onSubmit={this.handleSubmit} ref={c => (this.form = c)}>
                                                 <Row form>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="name"
-                                                                     type="text"
-                                                                     placeholder="Full Name ..."
-                                                                     onChange={this.handleChange}
-                                                                     value={name}
-                                                                     validate={{
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter your name'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="email"
-                                                                     type="email"
-                                                                     placeholder="Email ..."
-                                                                     onChange={this.handleChange}
-                                                                     value={email}
-                                                                     validate={{
-                                                                         email: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter a valid email address'
-                                                                         },
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter an email address'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
+                                                    <div className="forminline is-inline">
+                                                        <FormGroup>
+                                                            <AvGroup>
+                                                                <AvField name="name"
+                                                                         type="text"
+                                                                         placeholder="Full Name ..."
+                                                                         onChange={this.handleChange}
+                                                                         value={name}
+                                                                         validate={{
+                                                                             required: {
+                                                                                 value: true,
+                                                                                 errorMessage: 'Please enter your name'
+                                                                             }
+                                                                         }}
+                                                                />
+                                                                <AvFeedback/>
+                                                            </AvGroup>
+                                                        </FormGroup>
+                                                        <FormGroup>
+                                                            <AvGroup>
+                                                                <AvField name="email"
+                                                                         type="email"
+                                                                         placeholder="Email ..."
+                                                                         onChange={this.handleChange}
+                                                                         value={email}
+                                                                         validate={{
+                                                                             email: {
+                                                                                 value: true,
+                                                                                 errorMessage: 'Please enter a valid email address'
+                                                                             },
+                                                                             required: {
+                                                                                 value: true,
+                                                                                 errorMessage: 'Please enter an email address'
+                                                                             }
+                                                                         }}
+                                                                />
+                                                                <AvFeedback/>
+                                                            </AvGroup>
+                                                        </FormGroup>
 
-                                                    <FormGroup>
-                                                        <AvGroup>
-                                                            <AvField name="subject"
-                                                                     type="text"
-                                                                     placeholder="Subject ..."
-                                                                     onChange={this.handleChange}
-                                                                     value={subject}
-                                                                     validate={{
-                                                                         required: {
-                                                                             value: true,
-                                                                             errorMessage: 'Please enter your subject ...'
-                                                                         }
-                                                                     }}
-                                                            />
-                                                            <AvFeedback/>
-                                                        </AvGroup>
-                                                    </FormGroup>
+                                                        <FormGroup>
+                                                            <AvGroup>
+                                                                <AvField name="subject"
+                                                                         type="text"
+                                                                         placeholder="Subject ..."
+                                                                         onChange={this.handleChange}
+                                                                         value={subject}
+                                                                         validate={{
+                                                                             required: {
+                                                                                 value: true,
+                                                                                 errorMessage: 'Please enter your subject ...'
+                                                                             }
+                                                                         }}
+                                                                />
+                                                                <AvFeedback/>
+                                                            </AvGroup>
+                                                        </FormGroup>
+                                                    </div>
 
                                                     <FormGroup>
                                                         <AvGroup>

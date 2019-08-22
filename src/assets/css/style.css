@@ -941,6 +941,23 @@ form.withdraw-form .input-group {
 .inner-content-wrap form button.popup-btn:hover{
     background-color: #28a9e1!important;
 }
+
+.forminline.is-inline{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin:0px 0px 20px;
+    flex-wrap: wrap;
+}
+.forminline.is-inline>.form-group{
+    width: calc(33.33% - 20px);
+    margin:0px 10px;
+}
+.forminline.is-inline .form-group{
+    padding: 0px;
+}
+
 @media (max-width: 991px){
     ul.lottery-table-numbers li.lottery-table-number a {
         width: 40px;
@@ -1032,6 +1049,24 @@ form.withdraw-form .input-group {
     .footer-right {
         justify-content: center;
     }
+    .forminline.is-inline{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin:0px;
+        flex-wrap: wrap;
+    }
+    .forminline.is-inline>.form-group{
+        width: 100%;
+        margin:0px 0px 15px; 
+    }
+    .forminline.is-inline .form-group{
+        padding: 0px 2px;
+    }
+    .inner-content-wrap{
+        padding: 30px;
+    }
 }
 
 @media (max-width: 481px){
@@ -1055,7 +1090,7 @@ form.withdraw-form .input-group {
     transition: opacity .5s ease-in;
 }
 
-.focus-on:before {
+.trans:before {
     content: "";
     background: rgba(0, 0, 0, 0.6);
     position: fixed;
@@ -1064,19 +1099,25 @@ form.withdraw-form .input-group {
     height: 100%;
     left: 0;
     z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 500ms ease-in-out;
+}
+.trans.focus-on:before{
+    opacity: 1;
+    visibility: visible;
 }
 
 .focus-on .focusable {
     z-index: 100;
     box-shadow: 0 0 26px -2px rgba(0,0,0,0.15);
-    animation-name: focus;
-    animation-duration: 1s;
-    -webkit-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
 }
-
+.lottery-table {
+    transition:all 400ms ease-in-out;
+}
+.focus-on .lottery-table.focusable{
+    transform: scale(1.05);
+}
 .after-img {
     width: 100%;
     max-width: 300px;
@@ -1101,16 +1142,4 @@ form.withdraw-form .input-group {
     border-radius: 3px;
     margin-top: 10px;
     color: #222222;
-}
-
-@keyframes focus{
-    0%{
-        transform: scale(1.05);
-    }
-    50%{
-        transform: scale(1.1);
-    }
-    100%{
-        transform: scale(1.05);
-    }
 }

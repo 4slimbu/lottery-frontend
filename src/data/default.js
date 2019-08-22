@@ -2,7 +2,7 @@ export const DEFAULT_APP_STATUS = {
     modal: null,
     settings: [{}],
     currencies: [{}],
-    rootCssClassList: [],
+    rootCssClassList: ['trans'],
     browseHistory: {
         locations: [],
         autoTasks: []
