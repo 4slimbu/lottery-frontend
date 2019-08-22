@@ -848,6 +848,10 @@ input::placeholder{
     width: 30px;
     height: 30px;
 }
+.card-body.played-games-data .number-in-column span{
+    width: 25px;
+    height: 25px;
+}
 .ReactTable ul.number-in-column li:first-child{
     margin-left: 0px;
 }

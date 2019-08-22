@@ -19,7 +19,7 @@ class PlayedGames extends Component {
                                     {
                                         playedGames && playedGames.data ?
                                             <div>
-                                                <div className="card-body">
+                                                <div className="card-body played-games-data">
                                                     <ReactTable
                                                         data={playedGames.data}
                                                         columns={[
