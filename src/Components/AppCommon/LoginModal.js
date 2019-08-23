@@ -93,13 +93,16 @@ class LoginModal extends Component {
         this.setState({isLoading: true});
         this.props.makeRequest(request.Auth.login, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
-                this.props.setModal();
+                if (this.props.auth.isVerified) {
+                    this.props.setModal();
+                } else {
+                    this.props.setModal('verify')
+                }
                 // window.location.reload();
                 this.props.history.push("/");
             },
             (errorData) => {
                 this.setState({error: errorData.message});
-                this.resetFields();
                 this.setState({isLoading: false});
             }
         );
@@ -123,7 +126,6 @@ class LoginModal extends Component {
             },
             (errorData) => {
                 this.setState({error: errorData.message});
-                this.resetFields();
                 this.setState({isLoading: false});
             }
         );
@@ -145,9 +147,10 @@ class LoginModal extends Component {
                 this.setState({activeScreen: "resetPassword", isLoading: false});
             },
             (errorData) => {
-                this.setState({error: errorData.message});
                 // this.resetFields();
-                this.setState({isLoading: false});
+                setTimeout(function () {
+                    this.setState({activeScreen: "resetPassword", isLoading: false});
+                }.bind(this), 300);
             }
         );
     }
@@ -193,12 +196,11 @@ class LoginModal extends Component {
                         { activeScreen === "resetPassword" && <ModalHeader toggle={this.closeModal}>Reset Password</ModalHeader> }
 
                         <ModalBody>
+                            { error && <p className="text-danger">{error}</p>}
                             {/*============== Login Screen ==================*/}
                             {
                                 activeScreen === "login" &&
                                 <div>
-                                    { error && <p className="text-danger">{error}</p>}
-                                    
                                     <div className="login-as-user popup-form-wrap">
                                         <h4 className="popup-title">
                                             <span>Please sign in to your account.</span>

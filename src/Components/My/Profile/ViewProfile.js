@@ -3,10 +3,13 @@ import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
-import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
+import {setCurrencies, setModal, setSettings} from "../../../actions/appStatusAction";
 import AnimatedSection from "../../AppCommon/AnimatedSection";
 
 class ViewProfile extends Component {
+    showVerificationModal() {
+        this.props.setModal('verify');
+    }
 
     render() {
         const {user} = this.props.auth;
@@ -24,6 +27,10 @@ class ViewProfile extends Component {
                                         <li className="list-group-item"><strong>Name: </strong> { user.full_name }</li>
                                         <li className="list-group-item"><strong>Email: </strong> { user.email }</li>
                                         <li className="list-group-item"><strong>Contact No: </strong> { user.contact_number }</li>
+                                        <li className="list-group-item">
+                                            <strong>Status: </strong> { user.isVerified ? <span className="text-success">Verified</span> : <span className="text-danger">Un-verified</span> }
+                                            <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div className="card-footer">
@@ -50,5 +57,6 @@ function mapStateToProps(state) {
 
 
 export default withRouter(connect(mapStateToProps, {
-    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot
+    makeRequest, setLotteryWinners, setLotterySlot, setLotteryPlayers, setSettings, setCurrencies, setLastSlot,
+    setModal,
 })(ViewProfile));

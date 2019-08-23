@@ -8,6 +8,7 @@ import {makeRequest} from "../../actions/requestAction";
 import RegisterModal from "../../Components/AppCommon/RegisterModal";
 import PlayModal from "../../Components/AppCommon/PlayModal";
 import {findSetting} from "../../utils/helper/helperFunctions";
+import VerifyModal from "../../Components/AppCommon/VerifyModal";
 
 class AppFooter extends Component {
     render() {
@@ -45,6 +46,7 @@ class AppFooter extends Component {
                 </footer>
                 <LoginModal/>
                 <RegisterModal/>
+                <VerifyModal/>
                 <PlayModal/>
             </Fragment>
         )}

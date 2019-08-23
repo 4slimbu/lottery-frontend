@@ -95,13 +95,6 @@ class LotteryPicker extends React.Component {
 
     playLottery() {
         const {isAuthenticated} = this.props.auth;
-        const {pickedNumbers} = this.state;
-
-        // check if all numbers are picked
-        if (! isNumberPickedCorrectly(pickedNumbers)) {
-            alert('Please pick lottery number.');
-            return;
-        }
 
         // check if authenticated
         if (! isAuthenticated) {

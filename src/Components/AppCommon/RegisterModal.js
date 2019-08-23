@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Col, FormGroup, Modal, ModalBody, ModalHeader, Row} from 'reactstrap';
+import {Button, FormGroup, Modal, ModalBody, ModalHeader, Row} from 'reactstrap';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
@@ -8,7 +8,7 @@ import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
 
-class LoginModal extends Component  {
+class RegisterModal extends Component  {
     constructor(props) {
         super(props);
 
@@ -118,7 +118,7 @@ class LoginModal extends Component  {
         const {modal} = this.props.appStatus;
         const isOpen = modal === 'register';
         const {
-            username, email, password, confirmPassword, firstName, lastName, contactNumber
+            username, email, password, confirmPassword, firstName, lastName, contactNumber, error
         } = this.state;
         return (
             <Fragment>
@@ -127,6 +127,7 @@ class LoginModal extends Component  {
                         <ModalHeader toggle={this.closeModal}>Register</ModalHeader>
                         <ModalBody>
                             <AvForm onSubmit={this.handleSubmit} model={this.state}>
+                                { error && <p className="text-danger">{error}</p>}
                                 <Row form>
                                     <FormGroup>
                                         <AvGroup>
@@ -274,4 +275,4 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     setModal,
     makeRequest,
-})(LoginModal));
+})(RegisterModal));
