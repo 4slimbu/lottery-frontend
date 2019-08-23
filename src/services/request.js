@@ -34,7 +34,7 @@ const requests = (type, url, userData = {}) => {
  */
 const Auth = {
     login: (data) =>
-        requests('POST', API_BASE_URL + "/login", data),
+        requests('POST', API_BASE_URL + "/player-login", data),
     loginAsGuest: (data) =>
         requests('POST', API_BASE_URL + "/register-as-guest", data),
     logout: () =>
