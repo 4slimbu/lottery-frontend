@@ -1071,6 +1071,15 @@ form.withdraw-form .input-group {
     .inner-content-wrap{
         padding: 30px;
     }
+    .responsive-width .rt-thead.-header, 
+    .responsive-width .rt-tbody{
+        width: 1000px!important;
+    }
+    .top-dropdown.dropdown .dropdown-menu {
+        top: 15px!important;
+        right: 0;
+        left: auto!important;
+    }
 }
 
 @media (max-width: 481px){

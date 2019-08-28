@@ -67,7 +67,7 @@ class Dashboard extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12 mb-md-4">
-                            <div className="card">
+                            <div className="card responsive-width">
                                 <div className="card-header">Latest Played Games</div>
                                 {
                                     playedGames && playedGames.data ?
@@ -141,7 +141,7 @@ class Dashboard extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12 mb-md-4">
-                            <div className="card">
+                            <div className="card responsive-width">
                                 <div className="card-header">Latest Transactions</div>
                                 {
                                     transactions && transactions.data ?

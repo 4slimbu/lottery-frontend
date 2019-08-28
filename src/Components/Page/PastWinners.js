@@ -94,7 +94,7 @@ class PastWinners extends React.Component {
                         <div className="container">
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <div className="inner-content-wrap">
+                                    <div className="inner-content-wrap  responsive-width">
                                         <h2>Past Winners</h2>
                                         <div className="content">
                                             {
