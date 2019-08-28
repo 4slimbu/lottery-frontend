@@ -106,6 +106,10 @@ class PastWinners extends React.Component {
                                                                 {
                                                                     columns: [
                                                                         {
+                                                                            Header: 'Date',
+                                                                            accessor: 'updated_at',
+                                                                        },
+                                                                        {
                                                                             Header: 'Name',
                                                                             accessor: 'full_name'
                                                                         },
@@ -129,10 +133,6 @@ class PastWinners extends React.Component {
                                                                                     { inCurrency(props.original.won_amount * 1 + props.original.service_charge * 1)}
                                                                                 </div>
                                                                             ),
-                                                                        },
-                                                                        {
-                                                                            Header: 'Date',
-                                                                            accessor: 'updated_at',
                                                                         },
                                                                     ]
                                                                 },

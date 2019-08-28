@@ -30,6 +30,11 @@ class Transactions extends Component {
                                                         columns={[
                                                             {
                                                                 columns: [
+                                                                    
+                                                                    {
+                                                                        Header: 'Date',
+                                                                        accessor: 'updated_at'
+                                                                    },
                                                                     {
                                                                         Header: 'Transaction Code',
                                                                         accessor: 'transaction_code',
@@ -46,10 +51,6 @@ class Transactions extends Component {
                                                                                 { inCurrency(props.original.amount) }
                                                                             </div>
                                                                         )
-                                                                    },
-                                                                    {
-                                                                        Header: 'Date',
-                                                                        accessor: 'updated_at'
                                                                     }
                                                                 ]
                                                             },
