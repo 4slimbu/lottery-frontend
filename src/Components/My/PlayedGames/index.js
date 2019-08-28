@@ -19,7 +19,7 @@ class PlayedGames extends Component {
                                     {
                                         playedGames && playedGames.data ?
                                             <div>
-                                                <div className="card-body played-games-data responsive-width">
+                                                <div className="card-body custom-padding played-games-data responsive-width">
                                                     <ReactTable
                                                         data={playedGames.data}
                                                         columns={[

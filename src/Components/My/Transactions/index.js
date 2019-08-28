@@ -24,7 +24,7 @@ class Transactions extends Component {
                                     {
                                         transactions && transactions.data ?
                                             <div>
-                                                <div className="card-body">
+                                                <div className="card-body custom-padding">
                                                     <ReactTable
                                                         data={transactions.data}
                                                         columns={[

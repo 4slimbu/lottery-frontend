@@ -665,6 +665,10 @@ input::placeholder{
     color: #fff;
 }
 
+.custom-padding{
+    padding: 0;
+}
+
 /*--------------------- Popup Styling -------------------------*/
 
 .popup-title{
