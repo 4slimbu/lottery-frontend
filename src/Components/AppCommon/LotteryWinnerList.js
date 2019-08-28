@@ -1,8 +1,6 @@
 import React from "react";
 import * as _ from "lodash";
 import * as classnames from "classnames";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBtc} from "@fortawesome/free-brands-svg-icons";
 import {inCurrency} from "../../utils/helper/helperFunctions";
 
 const LotteryWinnerList = (props) => {

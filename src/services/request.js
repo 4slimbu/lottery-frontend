@@ -34,7 +34,7 @@ const requests = (type, url, userData = {}) => {
  */
 const Auth = {
     login: (data) =>
-        requests('POST', API_BASE_URL + "/login", data),
+        requests('POST', API_BASE_URL + "/player-login", data),
     loginAsGuest: (data) =>
         requests('POST', API_BASE_URL + "/register-as-guest", data),
     logout: () =>
@@ -45,6 +45,10 @@ const Auth = {
         requests('POST', API_BASE_URL + "/forgot-password", data),
     resetPassword: (data) =>
         requests('PUT', API_BASE_URL + "/reset-password", data),
+    verifyEmail: (data) =>
+        requests('PUT', API_BASE_URL + "/verify-email/" + data.verificationCode),
+    resendVerificationCode: (data) =>
+        requests('GET', API_BASE_URL + "/resend-verification-code"),
 };
 
 /**

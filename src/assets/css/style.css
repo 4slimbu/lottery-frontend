@@ -65,6 +65,15 @@ ul.nav-items-link .nav-item:first-child a:after {
 .winners-table.dashboard-wrap.card .my-menu a{
     margin:0!important;
 }
+.navbar-toggler {
+    color: #ffffff;
+}
+.nav-container {
+    display: flex;
+}
+.nav-container .navbar {
+    flex: 1;
+}
 /*--------------
 main
 ----------------*/
