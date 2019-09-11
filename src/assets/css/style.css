@@ -38,6 +38,9 @@ ul.nav-items-link {
     display: flex;
     list-style-type: none;
 }
+ul.nav{
+    align-items: center;
+}
 .nav-item {
     color: #fff;
 }
@@ -82,7 +85,10 @@ section.main {
     background-size: cover;
     padding: 40px 0px;
     background-position: center;
-    min-height: 85vh;
+    min-height: calc(100vh - 91px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 /*-----------------
 first section
@@ -169,11 +175,14 @@ last section
     background-color: #4d61ab;
     color: #fff;
 }
+.main.focus-in .winners-table h4.card-header {
+    padding: 24px 15px;
+}
 .lottery-table .card-header{
     color: #fff;
 }
 .winners-table .list-group{
-    min-height: 575px;
+    min-height: 318px;
 }
 .list-group-item{
     padding: 16px 20px;
@@ -259,6 +268,9 @@ ul.lottery-table-numbers li.lottery-table-number a {
     color: #4275a4;
     text-decoration: none;
     transition: all 0.4s ease-in-out;
+}
+ul.lottery-table-numbers li.lottery-table-number a:hover {
+    transform: scale(1.2);
 }
 .modal-body ul.lottery-table-numbers li.lottery-table-number a{
     margin: 0px auto;
@@ -445,7 +457,7 @@ ul.social-icons a:hover {
 }
 
 .players-list {
-    height: 260px;
+    height: 144px;
     overflow-y: scroll;
     list-style: none;
     padding: 0px;
@@ -605,6 +617,9 @@ ul.social-icons a:hover {
 }
 .count-down-table.card{
     margin-bottom: 15px;
+}
+.count-down-table.card .card-body:last-child{
+    padding-top: 0;
 }
 
 .btn-info:focus, 
@@ -977,6 +992,10 @@ form.withdraw-form .input-group {
 }
 .forminline.is-inline .form-group{
     padding: 0px;
+}
+
+.section-bottom{
+    padding: 6% 0;
 }
 
 @media (max-width: 991px){
