@@ -345,18 +345,27 @@ h3.countdown-text span {
     margin: 0 2px;
     line-height: 1;
     display: inline-block;
-    width: 49px;
+    width: 50px;
+    background-color: #4d61ab;
+    color: #fff;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 h3.countdown-text {
     text-align: center;
     color:#4d61ab;
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 0;
     line-height: 1;
     margin-top: 10px;
 }
 .count-down-table.card{
     font-size: 14px;
+}
+.count-down-table .card-body{
+    padding-bottom: 15px;
 }
 .no-winners{
     font-size: 12px;
