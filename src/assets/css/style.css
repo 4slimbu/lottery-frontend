@@ -713,6 +713,9 @@ input::placeholder{
     align-items: center;
     justify-content: space-between;
 }
+.optional-links {
+    margin-left: -10px;
+}
 .popup-title{
     font-weight: 300!important;
 }
