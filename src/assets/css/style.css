@@ -166,10 +166,10 @@ last section
 }
 .card-header {
     text-align: center;
-    background-color:#464646;
-    color: #fff;
+    background-color: #c7cad4;
     padding: 15px;
     font-weight: 600;
+    color: #000;
 }
 .winners-table .card-header {
     background-color: #4d61ab;
@@ -181,8 +181,8 @@ last section
 .lottery-table .card-header{
     color: #fff;
 }
-.winners-table .list-group{
-    min-height: 318px;
+.winners-table .list-group {
+    min-height: 408px;
 }
 .list-group-item{
     padding: 16px 20px;
@@ -246,7 +246,7 @@ ul.lottery-table-numbers {
     text-transform: uppercase;
 }
 ul.lottery-table-numbers li.lottery-table-number {
-    width: calc(11.11% - 0px);
+    width: calc(12.5% - 0px);
 }
 .modal-body ul.lottery-table-numbers li.lottery-table-number{
     width: calc(16.67% - 10px);
@@ -263,7 +263,7 @@ ul.lottery-table-numbers li.lottery-table-number a {
     justify-content: center;
     align-items: center;
     border-radius: 50px;
-    margin: 3px auto;
+    margin: 6px auto;
     font-weight: 500;
     color: #4275a4;
     text-decoration: none;
@@ -402,7 +402,7 @@ ul.footer-items {
 ul.footer-items li.footer-item a {
     color: #fff;
     font-size: 12px;
-    margin-right: 20px;
+    margin-right: 10px;
     text-decoration: none;
 }
 
@@ -439,7 +439,7 @@ ul.social-icons a {
     justify-content: center;
     align-items: center;
     border-radius: 50px;
-    margin-left: 15px;
+    margin-left: 5px;
     text-decoration: none;
     transition: all 0.4s ease-in-out;
 }
@@ -456,7 +456,9 @@ ul.social-icons a:hover {
 .wining-numbers-table.card .card-body {
     padding: 20px;
 }
-
+strong{
+    font-weight: 700;
+}
 .placeholder-div {
     min-height: 25px;
 }
@@ -466,7 +468,7 @@ ul.social-icons a:hover {
 }
 
 .players-list {
-    height: 144px;
+    height: 228px;
     overflow-y: scroll;
     list-style: none;
     padding: 0px;
@@ -557,10 +559,10 @@ ul.social-icons a:hover {
     text-decoration: none;
 }
 
-.my-menu a.is-active,
-.my-menu a:hover{
-    background: #a2a2a2;
-    color: #fff;
+.my-menu a.is-active, 
+.my-menu a:hover {
+    background: #e2e4eb;
+    color: #000;
 }
 
 .card-img-top.img-profile {
@@ -725,6 +727,7 @@ input::placeholder{
 }
 .btn-link{
     color:#30b4d4;
+    margin-left: 10px;
 }
 .optional-links .btn-link:last-child{
     color: #fd8400;
@@ -959,10 +962,13 @@ input::placeholder{
     justify-content: flex-start;
 }
 
-.rt-thead.-header{
-    background-color: #666;
-    color: #fff;
+.rt-thead.-header {
+    background-color: #e1e2e5;
+    color: #000;
     padding: 10px;
+}
+.ReactTable.-striped .rt-tr.-odd {
+    background: #f5f5f5!important;
 }
 .ReactTable.-striped.-highlight .rt-table .rt-thead:nth-child(1){
     display: none;
@@ -1003,8 +1009,8 @@ form.withdraw-form .input-group {
     padding: 0px;
 }
 
-.section-bottom{
-    padding: 6% 0;
+.section-bottom {
+    padding: 4% 0;
 }
 
 @media (max-width: 991px){

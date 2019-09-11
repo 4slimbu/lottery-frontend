@@ -39,7 +39,7 @@ class AppFooter extends Component {
                                         <Link to={"/contact"} className="footer-link">Contact Us</Link>
                                     </li>
                                 </ul>
-                                <p>© { (new Date()).getFullYear() } { findSetting(settings, 'app_name').value }. All rights reserved.</p>
+                                <p>© { (new Date()).getFullYear() } <strong>{ findSetting(settings, 'app_name').value }.</strong> All rights reserved.</p>
                             </div>
                             <div className="col-sm-12 col-md-6 col-lg-6 footer-right">
                                 <ul className="social-icons">
