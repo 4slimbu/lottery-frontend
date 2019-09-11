@@ -15,12 +15,22 @@ import {
 import {withRouter} from "react-router-dom";
 import {setPage} from "../../actions/pageActions";
 import {setPlayedGames, setTransactions} from "../../actions/myActions";
+import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav} from "reactstrap";
+import {logout} from "../../actions/authActions";
 
 const withLayout = (PassedComponent) => {
     class WithLayout extends Component {
         constructor(props) {
             super(props);
 
+            this.state = {
+                authNavDropdownOpen: false
+            };
+
+            this.showLoginModal = this.showLoginModal.bind(this);
+            this.showRegisterModal = this.showRegisterModal.bind(this);
+            this.logoutHandler = this.logoutHandler.bind(this);
+            this.toggleAuthNav = this.toggleAuthNav.bind(this);
             this.playLottery = this.playLottery.bind(this);
         }
 
@@ -34,8 +44,29 @@ const withLayout = (PassedComponent) => {
             }.bind(this), 2000)
         }
 
+        showLoginModal() {
+            this.props.setModal("login");
+        }
+
+        showRegisterModal() {
+            this.props.setModal("register");
+        }
+
+        logoutHandler() {
+            const {logout, history} = this.props;
+
+            logout();
+        }
+
+        toggleAuthNav() {
+            this.setState(prevState => ({
+                authNavDropdownOpen: !prevState.authNavDropdownOpen
+            }));
+        }
+
         render() {
             const {slot} = this.props.lottery;
+            const {isAuthenticated, user} = this.props.auth;
             const lotterySlotAmount = slot && slot.total_amount;
             return (
                 <Fragment>
@@ -46,7 +77,7 @@ const withLayout = (PassedComponent) => {
                         transitionAppearTimeout={0}
                         transitionEnter={false}
                         transitionLeave={false}>
-                        <AppHeader/>
+                        {/*<AppHeader/>*/}
 
                         <section className="main focus-in">
                             <div className="section-top">
@@ -61,7 +92,25 @@ const withLayout = (PassedComponent) => {
                                         <div className="col-sm-12 col-md-12 col-lg-3">
                                             <div className="buttons">
                                                 <DepositButton/>
-                                                <button onClick={this.playLottery} className="btn btn-primary">Let's play</button>
+                                                {
+                                                    ! isAuthenticated &&
+                                                    <button onClick={this.showLoginModal} className="btn btn-primary">Sign In</button>
+                                                }
+                                                {
+                                                    isAuthenticated &&
+                                                    <Nav>
+                                                        <Dropdown isOpen={this.state.authNavDropdownOpen} toggle={this.toggleAuthNav} className="top-dropdown">
+                                                            <DropdownToggle caret>
+                                                                <img className="img-profile" src={user.profile_pic} alt="profile picture"/>
+                                                            </DropdownToggle>
+                                                            <DropdownMenu>
+                                                                <DropdownItem onClick={() => this.props.history.push("/my/dashboard")}>Dashboard</DropdownItem>
+                                                                <DropdownItem onClick={() => this.props.history.push("/my/profile")}>My Profile</DropdownItem>
+                                                                <DropdownItem onClick={this.logoutHandler}>Logout</DropdownItem>
+                                                            </DropdownMenu>
+                                                        </Dropdown>
+                                                    </Nav>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -106,7 +155,8 @@ const withLayout = (PassedComponent) => {
         setTransactions,
         setPlayedGames,
         addToRootCssClassList,
-        removeFromRootCssClassList
+        removeFromRootCssClassList,
+        logout
     };
 
     return  withRouter(connect(mapStateToProps, mapDispatchToProps)(WithLayout));
