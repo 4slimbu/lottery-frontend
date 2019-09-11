@@ -37,6 +37,14 @@ class LotteryPicker extends React.Component {
         this.randomPick = this.randomPick.bind(this);
         this.handleNumberClick = this.handleNumberClick.bind(this);
         this.playLottery = this.playLottery.bind(this);
+        this.handleSlotCloseEvent = this.handleSlotCloseEvent.bind(this);
+    }
+
+    componentWillMount() {
+        window.Echo.channel('lottery')
+            .listen('LotterySlotClosedEvent', (e) => {
+            this.handleSlotCloseEvent();
+        });
     }
 
     componentDidMount() {
@@ -44,6 +52,15 @@ class LotteryPicker extends React.Component {
     }
 
     componentWillUnmount() {
+    }
+
+    handleSlotCloseEvent() {
+        console.log('handle slotclose event');
+        let noPick = [undefined, undefined, undefined, undefined, undefined, undefined];
+        this.setState({
+            pickedNumbers: noPick
+        });
+        this.props.setLotteryPickedNumbers(noPick);
     }
 
     handleNumberClick(number) {

@@ -27,10 +27,15 @@ class DepositButton extends Component {
             let {autoTasks} = this.props.browseHistory;
             let index = autoTasks.indexOf('createCharge');
             if (index !== -1) {
+                const newBrowserHistory = {
+                    // Todo: find out why splice not removing createCharge
+                    // autoTasks: [...autoTasks.splice(index, 1)]
+                    autoTasks: []
+                };
+
+                this.props.updateBrowseHistory(newBrowserHistory);
+
                 this.createCharge();
-                this.props.updateBrowseHistory({
-                    autoTasks: [...autoTasks.splice(index, 1)]
-                })
             }
         });
     }
