@@ -96,12 +96,12 @@ export function setCookie(name, value, options = {}) {
 
 export function generateRandomLotteryNumber() {
     let lotteryNumber = [];
-    let max = 55;
+    let max = 56;
 
     while (lotteryNumber.length < 6) {
         let randNumber = Math.floor(Math.random() * 100) + 1;
 
-        if (randNumber < max && lotteryNumber.indexOf(randNumber) === -1) {
+        if (randNumber < (max + 1) && lotteryNumber.indexOf(randNumber) === -1) {
             lotteryNumber.push(randNumber);
         }
     }

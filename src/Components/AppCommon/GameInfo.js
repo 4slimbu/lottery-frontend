@@ -56,7 +56,7 @@ class GameInfo extends Component {
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             let miliSeconds = Math.floor(distance % (1000));
-            let deciSeconds = Math.floor(distance % (100));
+            let deciSeconds = Math.floor(distance % (10));
 
             // set timer values
             that.setState({
@@ -113,7 +113,7 @@ class GameInfo extends Component {
                             <h4>Result Processing ...</h4>
                             <div className="countdown">
                                 <h3 className="countdown-text">
-                                    <span>&nbsp;</span>
+                                    <span>00</span> : <span>00</span> : <span>00</span>
                                 </h3>
                             </div>
                         </div>
