@@ -730,7 +730,7 @@ input::placeholder{
     margin-left: 10px;
 }
 .optional-links .btn-link:last-child{
-    color: #fd8400;
+    color: #4d61ab;
 }
 .btn-link:hover{
     color:#4d61ab!important;
@@ -744,7 +744,7 @@ input::placeholder{
     margin-bottom: 15px;
 }
 .play-title{
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -756,7 +756,7 @@ input::placeholder{
     border:0px;
     padding: 10px 15px;
     margin: 0px auto;
-    background-color: #fd8400!important;
+    background-color: #4d61ab!important;
     border-radius: 5px;
     -webkit-transition: all .400s ease-in-out;
        -moz-transition: all .400s ease-in-out;
@@ -774,10 +774,7 @@ input::placeholder{
     background-color:  #28a9e1!important;
 }
 .popup-btn:hover{
-    background-color: #7ebf30!important;
-}
-.popup-btn.register-btn{
-    margin-bottom: 0;
+    background-color: #4d61ab!important;
 }
 .link-btn .popup-btn{
     width: auto;
@@ -808,8 +805,9 @@ input::placeholder{
     border:0px;
     position: relative;
 }
-.modal-header .modal-title{
+.modal-header .modal-title {
     color: #fff;
+    font-size: 16px;
 }
 .close {
     font-size: 35px;
@@ -836,7 +834,7 @@ input::placeholder{
     right: -15px;
 }
 .close:hover{
-    background-color:#7ebf30!important;
+    background-color:#4d61ab!important;
     color: #fff;
 }
 .modal .modal-dialog {
