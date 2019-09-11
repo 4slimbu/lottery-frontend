@@ -16,7 +16,8 @@ class GameInfo extends Component {
                 hours: '00',
                 minutes: '00',
                 seconds: '00',
-                miliSeconds: '000'
+                miliSeconds: '000',
+                deciSeconds: '00'
             }
 
         };
@@ -55,6 +56,7 @@ class GameInfo extends Component {
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             let miliSeconds = Math.floor(distance % (1000));
+            let deciSeconds = Math.floor(distance % (100));
 
             // set timer values
             that.setState({
@@ -63,7 +65,8 @@ class GameInfo extends Component {
                     hours: hours < 10 ? '0' + hours: hours,
                     minutes: minutes < 10 ? '0' + minutes: minutes,
                     seconds: seconds < 10 ? '0' + seconds: seconds,
-                    miliSeconds: miliSeconds < 10 ? '00' + miliSeconds : (miliSeconds < 100 ? '0' + miliSeconds : miliSeconds)
+                    miliSeconds: miliSeconds < 10 ? '00' + miliSeconds : (miliSeconds < 100 ? '0' + miliSeconds : miliSeconds),
+                    deciSeconds: deciSeconds < 10 ? '0' + deciSeconds: deciSeconds,
                 }
             });
 
@@ -100,7 +103,7 @@ class GameInfo extends Component {
                             <div className="countdown">
                                 <div className="text-center">Closing on</div>
                                 <h3 className="countdown-text">
-                                    <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.miliSeconds }</span>
+                                    <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.deciSeconds }</span>
                                 </h3>
                             </div>
                         </div>
@@ -117,25 +120,23 @@ class GameInfo extends Component {
                             </div>
                         </div>
                     }
-                </div>
-                {
-                    lastSlot && lastSlot.id &&
-                    <div className="count-down-table card">
+                    {
+                        lastSlot && lastSlot.id &&
                         <div className="card-body">
                             <h4>Last Result</h4>
                             <div className="text-center prize-pool-wrap"><strong>Prize Pool: { inCurrency(lastSlot.total_amount) }</strong></div>
 
                             {
                                 lastSlot.winners.length > 0 ?
-                                <div className="congratulation-note">
-                                    <div className="text-center"><strong>Congratulation to Winners</strong></div>
-                                    {
-                                        _.map(lastSlot.winners, function (winner, key) {
-                                            return <div key={key} className="winner-sec text-center">{winner.full_name} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }</div>
-                                        })
-                                    }
-                                </div> :
-                                <div></div>
+                                    <div className="congratulation-note">
+                                        <div className="text-center"><strong>Congratulation to Winners</strong></div>
+                                        {
+                                            _.map(lastSlot.winners, function (winner, key) {
+                                                return <div key={key} className="winner-sec text-center">{winner.full_name} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }</div>
+                                            })
+                                        }
+                                    </div> :
+                                    <div></div>
                             }
 
                             <div className="countdown">
@@ -152,8 +153,8 @@ class GameInfo extends Component {
                             <div className="text-center no-winners">No Winners so pool prize has been added to next game.</div>
 
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </Fragment>
         )
     }
