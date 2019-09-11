@@ -190,8 +190,8 @@ class LoginModal extends Component {
                 <div>
                     <Modal isOpen={isOpen} toggle={this.closeModal} className={this.props.className}
                            backdrop={this.state.backdrop}>
-                        { activeScreen === "login" && <ModalHeader toggle={this.closeModal}>Login</ModalHeader> }
-                        { activeScreen === "loginAsGuest" && <ModalHeader toggle={this.closeModal}>Login As Guest</ModalHeader> }
+                        { activeScreen === "login" && <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader> }
+                        { activeScreen === "loginAsGuest" && <ModalHeader toggle={this.closeModal}>Sign In As Guest</ModalHeader> }
                         { activeScreen === "sendRecoveryEmail" && <ModalHeader toggle={this.closeModal}>Recover Password</ModalHeader> }
                         { activeScreen === "resetPassword" && <ModalHeader toggle={this.closeModal}>Reset Password</ModalHeader> }
 
@@ -244,12 +244,12 @@ class LoginModal extends Component {
                                                 </FormGroup>
                                             </Row>
 
-                                            <Button className="popup-btn">Login</Button>
+                                            <Button className="popup-btn">Sign In</Button>
 
                                             <div className="optional-links">
                                                 <a href="javascript:void(0);" onClick={() => this.activateScreen("sendRecoveryEmail")} className="btn-link">Recover
                                                         Password</a>{' '}{' '}
-                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("loginAsGuest")} className="btn-link">Login as Guest</a>{' '}{' '}
+                                                <a href="javascript:void(0);" onClick={() => this.activateScreen("loginAsGuest")} className="btn-link">Sign in as Guest</a>{' '}{' '}
                                             </div>
                                                    
                                         </AvForm>
@@ -262,7 +262,7 @@ class LoginModal extends Component {
                                 activeScreen === "loginAsGuest" &&
                                 <div className="login-as-guest popup-form-wrap">
                                     <h4 className="popup-title">
-                                        <span>Only email is required to login as guest.</span>
+                                        <span>Only email is required to sign in as guest.</span>
                                     </h4>
                                     <AvForm onSubmit={this.handleLoginAsGuest}>
                                         <Row form>
@@ -288,7 +288,7 @@ class LoginModal extends Component {
                                                 </AvGroup>
                                             </FormGroup>
                                         </Row>
-                                        <Button className="popup-btn">Login as Guest</Button>
+                                        <Button className="popup-btn">Sign in as Guest</Button>
 
                                         <div className="optional-links">
                                             <a href="javascript:void(0);" onClick={() => this.activateScreen("login")} className="btn-lg btn btn-link">Go Back</a>

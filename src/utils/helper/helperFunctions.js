@@ -1,6 +1,7 @@
 import {MESSAGES} from "../../constants/messages";
 import Cookies from 'universal-cookie';
 import * as _ from "lodash";
+import {isEmpty} from "lodash";
 
 /*
 ==========================================================================
@@ -269,4 +270,20 @@ export function toggleItemInArray(itemsArray, item) {
     }
 
     return arr;
+}
+
+export function getPlayerDisplayName(player) {
+    if (! isEmpty(player.nickname)) {
+        return player.nickname;
+    }
+
+    if (! isEmpty(player.username)) {
+        return player.username;
+    }
+
+    if (! isEmpty(player.full_name)) {
+        return player.full_name;
+    }
+
+    return "";
 }

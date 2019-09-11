@@ -1,7 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
 import * as classnames from "classnames";
-import {inCurrency} from "../../utils/helper/helperFunctions";
+import {getPlayerDisplayName, inCurrency} from "../../utils/helper/helperFunctions";
 
 const LotteryWinnerList = (props) => {
     const {ulClass, liClass, winners} = props;
@@ -14,7 +14,7 @@ const LotteryWinnerList = (props) => {
                             {
                                 winner ?
                                     <div>
-                                        <span className="player-name">{winner.full_name}</span>
+                                        <span className="player-name">{getPlayerDisplayName(winner)}</span>
                                             <span className="player-lottery-amount">
                                                 {/*<FontAwesomeIcon icon={faBtc}/>*/}
                                             { inCurrency(winner.won_amount * 1 + winner.service_charge * 1)}

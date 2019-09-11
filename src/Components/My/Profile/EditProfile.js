@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
@@ -7,10 +7,9 @@ import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
 import AnimatedSection from "../../AppCommon/AnimatedSection";
 import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
-import {AvField, AvForm, AvGroup, AvRadio, AvRadioGroup} from "availity-reactstrap-validation";
-import {Button, Col, FormGroup, Label, Row} from "reactstrap";
+import {AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
+import {Button, Col, FormGroup, Row} from "reactstrap";
 import {Cropper} from "react-image-cropper";
-import {Loader} from "react-loaders";
 import {setUser} from "../../../actions/authActions";
 
 class EditProfile extends Component {
@@ -19,6 +18,7 @@ class EditProfile extends Component {
 
         this.state = {
             username: "",
+            nickname: "",
             email: "",
             firstName: "",
             lastName: "",
@@ -51,6 +51,7 @@ class EditProfile extends Component {
                 if (res.data) {
                     this.setState({
                         username: res.data.username,
+                        nickname: res.data.nickname,
                         email: res.data.email,
                         firstName: res.data.first_name,
                         lastName: res.data.last_name,
@@ -75,6 +76,7 @@ class EditProfile extends Component {
     resetFields() {
         this.setState({
             username: "",
+            nickname: "",
             email: "",
             firstName: "",
             lastName: "",
@@ -100,12 +102,13 @@ class EditProfile extends Component {
         }
 
         const {
-            username, email, firstName, lastName, contactNumber, password, confirmPassword,
+            username, nickname, email, firstName, lastName, contactNumber, password, confirmPassword,
             profilePicture, profilePictureFile
         } = this.state;
 
         const data = {
             username: username ? username : undefined,
+            nickname: nickname ? nickname : undefined,
             email: email ? email : undefined,
             first_name: firstName ? firstName : undefined,
             last_name: lastName ? lastName : undefined,
@@ -169,7 +172,7 @@ class EditProfile extends Component {
 
     render() {
         const {
-            username, email, firstName, lastName, contactNumber,
+            username, nickname, email, firstName, lastName, contactNumber,
             profilePicture, isLoading, editMode, password, confirmPassword
         } = this.state;
         return (
@@ -240,6 +243,19 @@ class EditProfile extends Component {
                                                 </FormGroup>
                                             </Col>
                                             <Col md={6}>
+                                                <FormGroup>
+                                                    <AvGroup>
+                                                        <AvField name="nickname"
+                                                                 label="Nickname"
+                                                                 type="text"
+                                                                 placeholder="Nickname..."
+                                                                 onChange={this.handleChange}
+                                                                 value={nickname}
+                                                        />
+                                                    </AvGroup>
+                                                </FormGroup>
+                                            </Col>
+                                            <Col md={12}>
                                                 <FormGroup>
                                                     <AvGroup>
                                                         <AvField name="email"

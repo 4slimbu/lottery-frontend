@@ -1,8 +1,7 @@
 import React from "react";
 import * as _ from "lodash";
 import * as classnames from "classnames";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBtc} from "@fortawesome/free-brands-svg-icons";
+import {getPlayerDisplayName} from "../../utils/helper/helperFunctions";
 
 const PlayersList = (props) => {
     const {ulClass, liClass, players} = props;
@@ -15,7 +14,7 @@ const PlayersList = (props) => {
                             {
                                 player ?
                                     <div>
-                                        <span className="player-name">{player.full_name} <small>joined the Game.</small></span>
+                                        <span className="player-name">{getPlayerDisplayName(player)} <small>joined the Game.</small></span>
                                     </div>
                                     :
                                     <div className="placeholder-div-sm">

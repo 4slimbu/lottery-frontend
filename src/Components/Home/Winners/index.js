@@ -10,7 +10,7 @@ class Winners extends Component {
 
         this.state = {
             isLoading: true,
-            winners: ["", "", "", "", "", "", "", "", "", ""]
+            winners: []
         }
     }
 

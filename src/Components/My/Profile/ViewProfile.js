@@ -24,6 +24,7 @@ class ViewProfile extends Component {
                                     <img className="card-img-top img-profile" src={user.profile_pic} alt="Profile picture" />
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item"><strong>Username: </strong> { user.username }</li>
+                                        <li className="list-group-item"><strong>Nickname: </strong> { user.nickname }</li>
                                         <li className="list-group-item"><strong>Name: </strong> { user.full_name }</li>
                                         <li className="list-group-item"><strong>Email: </strong> { user.email }</li>
                                         <li className="list-group-item"><strong>Contact No: </strong> { user.contact_number }</li>

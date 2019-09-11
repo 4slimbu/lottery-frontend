@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import {connect} from 'react-redux';
 
 import PlayersList from "../../AppCommon/PlayersList";
 

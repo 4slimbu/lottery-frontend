@@ -11,7 +11,7 @@ export const DEFAULT_APP_STATUS = {
 
 export const DEFAULT_LOTTERY_STATE = {
     winners: {
-        data: ["", "", "", "", "", "", "", "", "", "" ],
+        data: [],
         meta: {},
         links: {}
     },
