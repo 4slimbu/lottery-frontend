@@ -78,7 +78,7 @@ ul.nav-items-link .nav-item:first-child a:after {
 main
 ----------------*/
 section.main {
-    background-image: url(../images/background.jpg);
+    background-image: url(../images/new-bg-img.jpg);
     background-size: cover;
     padding: 40px 0px;
     background-position: center;
@@ -102,7 +102,7 @@ first section
 }
 .btn.btn-secondary {
     background-color: #f2f2f2;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     color: #525252;
     padding: 11px 0;
@@ -110,13 +110,16 @@ first section
     font-weight: 600;
 }
 .btn.btn-primary {
-    background-color: #fd8400;
-    font-size: 14px;
+    background-color: #30b4d4;
+    font-size: 13px;
     text-transform: uppercase;
     color: #fff;
     padding: 11px 0;
     border: none;
     font-weight: 600;
+}
+.btn.btn-primary:hover{
+    background-color: #4d61ab;
 }
 .btn.btn-secondary:focus,
 .btn.btn-primary:focus,
@@ -163,7 +166,7 @@ last section
     font-weight: 600;
 }
 .winners-table .card-header {
-    background-color: #7ebf30;
+    background-color: #4d61ab;
     color: #fff;
 }
 .lottery-table .card-header{
@@ -190,14 +193,14 @@ li.list-group-item span {
     font-weight: 500;
 }
 .winners-table.card .card-body a.card-link {
-    color: #fd8400;
+    color: #5576d1;
     font-weight: 500;
     text-transform: uppercase;
     border-bottom: 1px solid;
     transition: all 400ms ease-in-out;
 }
-.winners-table.card .card-body a.card-link:hover{
-    color: #28a9e1;
+.winners-table.card .card-body a.card-link:hover {
+    color: #30b4d4;
 }
 .winners-table.card .card-body {
     text-align: center;
@@ -229,7 +232,7 @@ ul.lottery-table-numbers {
     margin: 0px;
     width: 48%;
     padding:0px 15px !important;
-    font-size: 14px;
+    font-size: 13px;
     height: 50px;
     text-transform: uppercase;
 }
@@ -273,7 +276,7 @@ li.lottery-table-number:hover a {
 }
 .lottery-table h4.card-header {
     display: flex;
-    background-color: #28a9e1;
+    background-color: #4d61ab;
     justify-content: space-between;
     padding: 17px 20px;
     align-items: center;
@@ -334,7 +337,7 @@ h3.countdown-text span {
 }
 h3.countdown-text {
     text-align: center;
-    color: #fe8400;
+    color:#4d61ab;
     font-size: 24px;
     margin-bottom: 0;
     line-height: 1;
@@ -364,8 +367,9 @@ h3.countdown-text {
 footer
 -------------*/
 footer{
-    background-color: #222222;
+    background-color: #1b2852;
     padding: 25px 0 25px;
+    font-size:12px;
 }
 ul.footer-items {
     padding: 0;
@@ -376,7 +380,7 @@ ul.footer-items {
 }
 ul.footer-items li.footer-item a {
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 20px;
     text-decoration: none;
 }
@@ -385,9 +389,9 @@ ul.footer-items li.footer-item a,
 .navbar-expand-md .navbar-nav .nav-link {
     transition: all 400ms ease-in-out;
 }
-ul.footer-items li.footer-item a:hover,
-.navbar-expand-md .navbar-nav .nav-link:hover{
-    color: #28a9e1;
+ul.footer-items li.footer-item a:hover, 
+.navbar-expand-md .navbar-nav .nav-link:hover {
+    color: #30b4d4;
 }
 .footer-left p {
     color: #fff;
@@ -576,8 +580,8 @@ ul.social-icons a:hover {
          -o-transition: all .4s ease-in-out;
             transition: all .4s ease-in-out;
 }
-.top-dropdown.dropdown .dropdown-item:hover{
-    background-color: #28a9e1!important;
+.top-dropdown.dropdown .dropdown-item:hover {
+    background-color: #30b4d4!important;
     color: #fff;
 }
 .top-dropdown.dropdown .dropdown-item:last-child{
@@ -591,16 +595,13 @@ ul.social-icons a:hover {
     line-height: 1;
     margin-top: 15px;
 }
-.TabsAnimation-appear .card .card-body button:hover,
 .lottery-table .card-body .buttons button:first-child{
-    background-color: #28a9e1!important;
-}
-.lottery-table .card-body .buttons button:first-child{
-    border-color: #28a9e1!important;
+    border-color: #676767!important;
+    background-color: #676767!important;
 }
 .lottery-table .card-body .buttons button:first-child:hover{
-    border-color:#7ebf30!important;
-    background-color: #7ebf30!important;
+    border-color:#30b4d4!important;
+    background-color: #30b4d4!important;
 }
 .count-down-table.card{
     margin-bottom: 15px;
@@ -692,23 +693,26 @@ input::placeholder{
 .optional-links .btn-link,
 .link-btn .btn-link{
     font-size: 14px;
-    color: #28a9e1;
+    color:#30b4d4;
     display: inline-block;
     text-decoration: none!important;
     padding: 0px;
     font-weight: 300!important;
 }
+.btn-link{
+    color:#30b4d4;
+}
 .optional-links .btn-link:last-child{
     color: #fd8400;
 }
 .btn-link:hover{
-    color:#7ebf30!important;
+    color:#4d61ab!important;
 }
 .popup-btn,
 .play-btn{
     width: 100%;
     display: inline-block;
-    background-color: #28a9e1!important;
+    background-color: #30b4d4!important;
     color: #fff!important;
     margin-bottom: 15px;
 }
@@ -849,8 +853,8 @@ input::placeholder{
     width: 25px;
     height: 25px;
     font-size: 12px;
-    border: 1px solid #28a9e1;
-    color: #28a9e1;
+    border: 1px solid #30b4d4;
+    color: #30b4d4;
     line-height: 1;
     border-radius: 50px;
     display: inline-flex;
@@ -885,7 +889,7 @@ input::placeholder{
 }
 
 .pagination-bottom .-pagination button {
-    background-color: #206e9e!important;
+    background-color: #30b4d4!important;
     color: #fff!important;
     margin-top: 0 !important;
     cursor: pointer!important;
@@ -940,12 +944,12 @@ input::placeholder{
     display: none;
 }
 .card.my-profile .card-footer a {
-    color: #007bff;
+    color: #30b4d4;
     font-size: 14px;
     font-weight: 500;
 }
 .card.my-profile .card-footer a:hover{
-    color: #656565;
+    color: #4d61ab;
 }
 form.withdraw-form .input-group {
     justify-content: center;
