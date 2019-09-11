@@ -99,9 +99,8 @@ class GameInfo extends Component {
                     {
                         gameStatus === "running" &&
                         <div className="card-body">
-                            <h4>Game in Progress</h4>
+                            <h4>Next Game On</h4>
                             <div className="countdown">
-                                <div className="text-center">Closing on</div>
                                 <h3 className="countdown-text">
                                     <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.deciSeconds }</span>
                                 </h3>
@@ -111,9 +110,8 @@ class GameInfo extends Component {
                     {
                         gameStatus === "processing" &&
                         <div className="card-body">
-                            <h4>Game Closed</h4>
+                            <h4>Result Processing ...</h4>
                             <div className="countdown">
-                                <div className="text-center">Waiting for Result ...</div>
                                 <h3 className="countdown-text">
                                     <span>&nbsp;</span>
                                 </h3>
@@ -123,9 +121,6 @@ class GameInfo extends Component {
                     {
                         lastSlot && lastSlot.id &&
                         <div className="card-body">
-                            <h4>Last Result</h4>
-                            <div className="text-center prize-pool-wrap"><strong>Prize Pool: { inCurrency(lastSlot.total_amount) }</strong></div>
-
                             {
                                 lastSlot.winners.length > 0 ?
                                     <div className="congratulation-note">
@@ -140,7 +135,7 @@ class GameInfo extends Component {
                             }
 
                             <div className="countdown">
-                                <h5 className="counter-title text-center">Winning Numbers</h5>
+                                <h5 className="counter-title text-center">Last Winning Numbers</h5>
                                 <LotteryNumberList
                                     ulClass="lottery-table-numbers result"
                                     liClass="lottery-table-number"
