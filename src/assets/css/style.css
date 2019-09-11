@@ -344,12 +344,12 @@ li.lottery-table-number:hover a {
 h3.countdown-text span {
     margin: 0 2px;
     line-height: 1;
-    display: inline-block;
     width: 50px;
-    background-color: #4d61ab;
-    color: #fff;
+    background-color: #e2e4eb;
+    color: #000;
     height: 35px;
     display: inline-flex;
+    border-radius: 4px;
     align-items: center;
     justify-content: center;
 }
