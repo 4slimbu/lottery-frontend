@@ -21,6 +21,12 @@ class AppFooter extends Component {
                             <div className="col-sm-12 col-md-6 col-lg-6 footer-left">
                                 <ul className="footer-items">
                                     <li className="footer-item">
+                                        <Link to={"/about"} className="footer-link">About</Link>
+                                    </li>
+                                    <li className="footer-item">
+                                        <Link to={"/winners"} className="footer-link">Winners</Link>
+                                    </li>
+                                    <li className="footer-item">
                                         <Link to={"/privacy-policy"} className="footer-link">Privacy Policy</Link>
                                     </li>
                                     <li className="footer-item">
