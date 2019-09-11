@@ -253,7 +253,7 @@ ul.lottery-table-numbers li.lottery-table-number {
     margin-right:10px; 
 }
 .modal-body ul.lottery-table-numbers li.lottery-table-number:last-child{
-    margin-right:0px; 
+    margin-right:0; 
 }
 ul.lottery-table-numbers li.lottery-table-number a {
     width: 43px;
