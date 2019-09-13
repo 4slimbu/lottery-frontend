@@ -168,8 +168,8 @@ last section
     text-align: center;
     background-color: #c7cad4;
     padding: 15px;
-    font-weight: 600;
-    color: #000;
+    font-weight: 500;
+    color: #3d3d3d;
 }
 .winners-table .card-header {
     background-color: #4d61ab;
@@ -185,11 +185,11 @@ last section
     min-height: 408px;
 }
 .list-group-item{
-    padding: 16px 20px;
+    padding: 14px 20px;
     line-height: 1;
 }
 li.list-group-item span.player-name {
-    font-weight: 500;
+    font-weight: 400;
     display: list-item;
     float: left;
     margin-left: 15px;
@@ -199,14 +199,14 @@ li.list-group-item span.player-lottery-amount {
     float: right;
 }
 li.list-group-item span {
-    font-weight: 500;
+    font-weight: 400;
 }
 .winners-table.card .card-body a.card-link {
     color: #5576d1;
     font-weight: 500;
-    text-transform: uppercase;
     border-bottom: 1px solid;
     transition: all 400ms ease-in-out;
+    font-size: 13px;
 }
 .winners-table.card .card-body a.card-link:hover {
     color: #30b4d4;
@@ -949,8 +949,8 @@ input::placeholder{
 }
 
 .ReactTable .rt-thead .rt-resizable-header-content{
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 13px;
 }
 .ReactTable .rt-tbody .rt-td {
     padding: 10px;
@@ -1217,7 +1217,7 @@ form.withdraw-form .input-group {
 }
 
 .jackpot {
-    background: #FFD700;
+    background: #ff9b00;
     color: white;
 }
 
@@ -1229,4 +1229,27 @@ form.withdraw-form .input-group {
 .four-digit {
     background: #CD7F32;
     color: white;
+}
+.winner-type {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+.player-lottery-amount{
+    display: inline-flex;
+    align-items: center;
+}
+li.list-group-item span.player-lottery-amount {
+    float: right;
+    font-size: 13px;
+}
+.list-group.list-group-flush div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
