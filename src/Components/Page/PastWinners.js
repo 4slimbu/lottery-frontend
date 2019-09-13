@@ -5,7 +5,7 @@ import 'react-table/react-table.css'
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import AnimatedSection from "../AppCommon/AnimatedSection";
-import {inCurrency} from "../../utils/helper/helperFunctions";
+import {getWinningTypeClass, getWinningTypeIcon, inCurrency} from "../../utils/helper/helperFunctions";
 import LotteryNumberList from "../AppCommon/LotteryNumberList";
 
 class PastWinners extends React.Component {
@@ -129,8 +129,13 @@ class PastWinners extends React.Component {
                                                                             Header: 'Won Amount',
                                                                             accessor: 'won_amount',
                                                                             Cell: props => (
-                                                                                <div className="d-block w-100 text-center">
-                                                                                    { inCurrency(props.original.won_amount * 1 + props.original.service_charge * 1)}
+                                                                                <div className="d-block w-100 text-right">
+                                                                                    <span>
+                                                                                        { inCurrency(props.original.won_amount * 1 + props.original.service_charge * 1)}
+                                                                                    </span>
+                                                                                    <span className={ "winner-type " + getWinningTypeClass(props.original) }>
+                                                                                        { getWinningTypeIcon(props.original) }
+                                                                                    </span>
                                                                                 </div>
                                                                             ),
                                                                         },
