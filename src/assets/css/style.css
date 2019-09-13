@@ -881,13 +881,18 @@ input::placeholder{
     width: 25px;
     height: 25px;
     font-size: 12px;
-    border: 1px solid #30b4d4;
-    color: #30b4d4;
+    border: 1px solid #656565;
+    color: #656565;
     line-height: 1;
     border-radius: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+}
+
+.ReactTable ul.number-in-column li.active span{
+    border: 1px solid #30b4d4;
+    color: #30b4d4;
 }
 .ReactTable .rt-tbody .rt-td .number-in-column span{
     width: 30px;

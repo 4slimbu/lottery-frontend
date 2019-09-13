@@ -5,7 +5,10 @@ import 'react-table/react-table.css'
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import AnimatedSection from "../AppCommon/AnimatedSection";
-import {getWinningTypeClass, getWinningTypeIcon, inCurrency} from "../../utils/helper/helperFunctions";
+import {
+    getPlayerDisplayName, getWinningTypeClass, getWinningTypeIcon,
+    inCurrency
+} from "../../utils/helper/helperFunctions";
 import LotteryNumberList from "../AppCommon/LotteryNumberList";
 
 class PastWinners extends React.Component {
@@ -96,7 +99,7 @@ class PastWinners extends React.Component {
                                 <div className="col-sm-12">
                                     <div className="inner-content-wrap  responsive-width">
                                         <h2>Past Winners</h2>
-                                        <div className="content">
+                                        <div className="content past-winners">
                                             {
                                                data ?
                                                     <div className="content">
@@ -111,16 +114,37 @@ class PastWinners extends React.Component {
                                                                         },
                                                                         {
                                                                             Header: 'Name',
-                                                                            accessor: 'full_name'
+                                                                            accessor: 'full_name',
+                                                                            Cell: props => (
+                                                                                <div className="d-block w-100 text-left">
+                                                                                    <span>
+                                                                                        {getPlayerDisplayName(props.original)}
+                                                                                    </span>
+                                                                                </div>
+                                                                            ),
                                                                         },
                                                                         {
-                                                                            Header: 'Lottery Number',
+                                                                            Header: 'Result',
+                                                                            accessor: 'lottery_number',
+                                                                            Cell: props => (
+                                                                                <div className="d-block w-100 text-center">
+                                                                                    <LotteryNumberList
+                                                                                        ulClass="number-in-column"
+                                                                                        numbers={props.original.lottery_slot.result}
+                                                                                        activeNumbers={props.original.lottery_slot.result}
+                                                                                    />
+                                                                                </div>
+                                                                            ),
+                                                                        },
+                                                                        {
+                                                                            Header: 'Winning Number',
                                                                             accessor: 'lottery_number',
                                                                             Cell: props => (
                                                                                 <div className="d-block w-100 text-center">
                                                                                     <LotteryNumberList
                                                                                         ulClass="number-in-column"
                                                                                         numbers={props.original.lottery_number}
+                                                                                        activeNumbers={props.original.lottery_slot.result}
                                                                                     />
                                                                                 </div>
                                                                             ),

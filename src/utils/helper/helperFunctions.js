@@ -302,14 +302,14 @@ export function getWinningTypeIcon(winner) {
         (winner && winner.lottery_winner_type_id === 2) ||
         (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 2)
     ) {
-        icon = '5';
+        icon = 'S';
     }
 
     if (
         (winner && winner.lottery_winner_type_id === 3) ||
         (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 3)
     ) {
-        icon = '4';
+        icon = 'B';
     }
 
     return icon;
