@@ -1,6 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import LotteryNumberList from "./LotteryNumberList";
-import {checkIfWinner, inCurrency, isItemLoaded} from "../../utils/helper/helperFunctions";
+import {
+    checkIfWinner, getPlayerDisplayName, getWinningTypeClass, getWinningTypeIcon, inCurrency,
+    isItemLoaded
+} from "../../utils/helper/helperFunctions";
 import * as _ from "lodash";
 
 class GameInfo extends Component {
@@ -99,7 +102,7 @@ class GameInfo extends Component {
                     {
                         gameStatus === "running" &&
                         <div className="card-body">
-                            <h4>Next Game On</h4>
+                            <h4>Game Closing On</h4>
                             <div className="countdown">
                                 <h3 className="countdown-text">
                                     <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.deciSeconds }</span>
@@ -122,12 +125,19 @@ class GameInfo extends Component {
                         lastSlot && lastSlot.id &&
                         <div className="card-body">
                             {
-                                lastSlot.winners.length > 0 ?
+                                lastSlot.winners.length > 0 && gameStatus !== 'processing' ?
                                     <div className="congratulation-note">
                                         <div className="text-center"><strong>Congratulation to Winners</strong></div>
                                         {
                                             _.map(lastSlot.winners, function (winner, key) {
-                                                return <div key={key} className="winner-sec text-center">{winner.full_name} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }</div>
+                                                return <div key={key} className="winner-sec text-center">
+                                                    <span>
+                                                        {getPlayerDisplayName(winner)} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }
+                                                    </span>
+                                                    <span className={ "winner-type " + getWinningTypeClass(winner) }>
+                                                        { getWinningTypeIcon(winner) }
+                                                    </span>
+                                                </div>
                                             })
                                         }
                                     </div> :
@@ -135,17 +145,19 @@ class GameInfo extends Component {
                             }
 
                             <div className="countdown">
-                                <h5 className="counter-title text-center">Last Winning Numbers</h5>
+                                <h5 className="counter-title text-center">
+                                    {
+                                        gameStatus === 'processing' ? 'Getting Result ...' : 'Last Game Result'
+                                    }
+                                </h5>
                                 <LotteryNumberList
                                     ulClass="lottery-table-numbers result"
                                     liClass="lottery-table-number"
-                                    numbers={lastSlot.result}
+                                    numbers={gameStatus === "processing" ? ["", "", "", "", "", ""] : lastSlot.result}
                                     activeNumbers={lastSlot.result}
                                     handleClick={this.handleNumberClick}
                                 />
                             </div>
-
-                            <div className="text-center no-winners">No Winners so pool prize has been added to next game.</div>
 
                         </div>
                     }

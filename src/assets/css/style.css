@@ -1208,3 +1208,25 @@ form.withdraw-form .input-group {
     margin-top: 10px;
     color: #222222;
 }
+
+.winner-type {
+    padding: 2px 5px;
+    border-radius: 5px;
+    margin-left: 5px;
+    font-size: 10px;
+}
+
+.jackpot {
+    background: #FFD700;
+    color: white;
+}
+
+.five-digit {
+    background: #C0C0C0;
+    color: white;
+}
+
+.four-digit {
+    background: #CD7F32;
+    color: white;
+}

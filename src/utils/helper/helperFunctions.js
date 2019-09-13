@@ -287,3 +287,57 @@ export function getPlayerDisplayName(player) {
 
     return "";
 }
+
+export function getWinningTypeIcon(winner) {
+    let icon = '';
+
+    if (
+        (winner && winner.lottery_winner_type_id === 1) ||
+        (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 1)
+    ) {
+        icon = 'J';
+    }
+
+    if (
+        (winner && winner.lottery_winner_type_id === 2) ||
+        (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 2)
+    ) {
+        icon = '5';
+    }
+
+    if (
+        (winner && winner.lottery_winner_type_id === 3) ||
+        (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 3)
+    ) {
+        icon = '4';
+    }
+
+    return icon;
+}
+
+export function getWinningTypeClass(winner) {
+    let icon = '';
+
+    if (
+        (winner && winner.lottery_winner_type_id === 1) ||
+        (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 1)
+    ) {
+        icon = 'jackpot';
+    }
+
+    if (
+        (winner && winner.lottery_winner_type_id === 2) ||
+        (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 2)
+    ) {
+        icon = 'five-digit';
+    }
+
+    if (
+        (winner && winner.lottery_winner_type_id === 3) ||
+        (winner && winner.pivot && winner.pivot.lottery_winner_type_id === 3)
+    ) {
+        icon = 'four-digit';
+    }
+
+    return icon;
+}
