@@ -1,8 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import LotteryNumberList from "./LotteryNumberList";
 import {
-    checkIfWinner, getPlayerDisplayName, getWinningTypeClass, getWinningTypeIcon, inCurrency,
-    isItemLoaded
+    getPlayerDisplayName,
+    getWinningTypeClass,
+    getWinningTypeIcon,
+    inCurrency
 } from "../../utils/helper/helperFunctions";
 import * as _ from "lodash";
 
@@ -93,9 +95,8 @@ class GameInfo extends Component {
 
 
     render() {
-        const {user} = this.props.auth;
         const {lastSlot} = this.props.lottery;
-        const {gameStatus, timer, result} = this.state;
+        const {gameStatus, timer} = this.state;
         return (
             <Fragment>
                 <div className="count-down-table card">
