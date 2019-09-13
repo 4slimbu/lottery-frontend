@@ -881,8 +881,8 @@ input::placeholder{
     width: 25px;
     height: 25px;
     font-size: 12px;
-    border: 1px solid #656565;
-    color: #656565;
+    border: 1px solid #c1c1c1;
+    color: #c1c1c1;
     line-height: 1;
     border-radius: 50px;
     display: inline-flex;
@@ -899,6 +899,10 @@ input::placeholder{
     height: 30px;
 }
 .card-body.played-games-data .number-in-column span{
+    width: 25px!important;
+    height: 25px!important;
+}
+.past-winners ul.number-in-column li span{
     width: 25px!important;
     height: 25px!important;
 }
@@ -1232,7 +1236,7 @@ form.withdraw-form .input-group {
 }
 
 .four-digit {
-    background: #CD7F32;
+    background:#caa683;
     color: white;
 }
 .winner-type {
@@ -1257,4 +1261,11 @@ li.list-group-item span.player-lottery-amount {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.past-winners .rt-thead .rt-resizable-header{
+    text-align: left!important;
+    padding-left: 10px!important;
+}
+.past-winners .rt-thead.-header .rt-tr .rt-resizable-header:last-child {
+    text-align: right!important;
 }
