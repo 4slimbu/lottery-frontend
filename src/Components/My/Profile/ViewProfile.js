@@ -29,8 +29,8 @@ class ViewProfile extends Component {
                                         <li className="list-group-item"><strong>Email: </strong> { user.email }</li>
                                         <li className="list-group-item"><strong>Contact No: </strong> { user.contact_number }</li>
                                         <li className="list-group-item">
-                                            <strong>Status: </strong> { user.isVerified ? <span className="text-success">Verified</span> : <span className="text-danger">Un-verified</span> }
-                                            <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a>
+                                            <strong>Status: </strong> { user.verified ? <span className="text-success">Verified</span> : <span className="text-danger">Un-verified</span> }
+                                            { !user.verified && <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a> }
                                         </li>
                                     </ul>
                                 </div>

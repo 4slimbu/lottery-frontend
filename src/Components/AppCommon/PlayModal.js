@@ -141,9 +141,17 @@ class PlayModal extends Component {
                                             }
                                             {
                                                 canPlay ?
-                                                    <div>
-                                                        <button className="play-btn" onClick={this.play}>Play</button>
-                                                    </div>
+                                                    (
+                                                        canPlayFreeIfVerified ?
+                                                            <div className="text-center">
+                                                                <span>Please verify your account to use your remaining free games.</span> <br />
+                                                                <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a>
+                                                            </div>
+                                                            :
+                                                            <div>
+                                                                <button className="play-btn" onClick={this.play}>Play</button>
+                                                            </div>
+                                                    )
                                                     :
                                                     (
                                                         canPlayFreeIfVerified ?

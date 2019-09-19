@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup, Row, Col} from 'reactstrap';
+import {Button, FormGroup, Modal, ModalBody, ModalHeader, Row} from 'reactstrap';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
@@ -7,7 +7,9 @@ import {setModal, updateBrowseHistory} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validation";
-import {Loader} from 'react-loaders';
+import {setAuth} from "../../actions/authActions";
+import jwt_decode from "jwt-decode";
+import setAuthorizationToken from "../../utils/axios/setAuthorizationToken";
 
 class LoginModal extends Component {
     constructor(props) {
@@ -98,7 +100,15 @@ class LoginModal extends Component {
                 } else {
                     this.props.setModal('verify')
                 }
-                // window.location.reload();
+                // join private channel
+                window.Echo.private('App.User.' + this.props.auth.user.id)
+                    .listen('UserUpdateEvent', (e) => {
+                        if (e.token) {
+                            localStorage.setItem("jwtToken", e.token);
+                            setAuthorizationToken(e.token);
+                            this.props.setAuth(jwt_decode(e.token));
+                        }
+                    });
                 this.props.history.push("/");
             },
             (errorData) => {
@@ -121,7 +131,15 @@ class LoginModal extends Component {
         this.props.makeRequest(request.Auth.loginAsGuest, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 this.props.setModal();
-                // window.location.reload();
+                // join private channel
+                window.Echo.private('App.User.' + this.props.auth.user.id)
+                    .listen('UserUpdateEvent', (e) => {
+                        if (e.token) {
+                            localStorage.setItem("jwtToken", e.token);
+                            setAuthorizationToken(e.token);
+                            this.props.setAuth(jwt_decode(e.token));
+                        }
+                    });
                 this.props.history.push("/");
             },
             (errorData) => {
@@ -446,5 +464,6 @@ function mapStateToProps(state) {
 export default withRouter(connect(mapStateToProps, {
     setModal,
     makeRequest,
-    updateBrowseHistory
+    updateBrowseHistory,
+    setAuth
 })(LoginModal));

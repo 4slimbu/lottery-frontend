@@ -53,8 +53,9 @@ const withLayout = (PassedComponent) => {
         }
 
         logoutHandler() {
-            const {logout, history} = this.props;
+            const {logout, history, auth} = this.props;
 
+            window.Echo.leaveChannel('private-App.User.' + auth.user.id);
             logout();
         }
 

@@ -113,7 +113,9 @@ window.Echo.channel('lottery')
 
 window.Echo.private('App.User.' + userId)
     .listen('UserUpdateEvent', (e) => {
-        if (e.data && e.data.id) {
-            store.dispatch(setUser(e.data));
+        if (e.token) {
+            localStorage.setItem("jwtToken", e.token);
+            setAuthorizationToken(e.token);
+            this.props.setAuth(jwt_decode(e.token));
         }
     });

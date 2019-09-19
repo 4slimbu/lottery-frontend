@@ -161,7 +161,7 @@ export function isNumberPickedCorrectly(pickedNumbers) {
 }
 
 export function findSetting(settings, key) {
-    return _.find(settings, {key: key});
+    return _.find(settings, {key: key}) ? _.find(settings, {key: key}) : {};
 }
 
 export function checkIfWinner(lastWinners, id) {
