@@ -96,7 +96,7 @@ export function setCookie(name, value, options = {}) {
 
 export function generateRandomLotteryNumber() {
     let lotteryNumber = [];
-    let max = 56;
+    let max = 45;
 
     while (lotteryNumber.length < 6) {
         let randNumber = Math.floor(Math.random() * 100) + 1;
@@ -202,7 +202,7 @@ export function inCurrency(coins, withUnit = true) {
         const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
         const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
 
-        amountInCurrency =  parseFloat((coins / appCurrencyDetail.value_in_app_coin).toFixed(9));
+        amountInCurrency =  parseFloat((coins / appCurrencyDetail.value_in_app_coin).toFixed(6));
         if (withUnit) {
             amountInCurrency += " " + appCurrency.value;
         }

@@ -22,6 +22,7 @@ class GameInfo extends Component {
                 minutes: '00',
                 seconds: '00',
                 miliSeconds: '000',
+                centiSeconds: '00',
                 deciSeconds: '00'
             }
 
@@ -61,6 +62,7 @@ class GameInfo extends Component {
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             let miliSeconds = Math.floor(distance % (1000));
+            let centiSeconds = Math.floor(distance % (100));
             let deciSeconds = Math.floor(distance % (10));
 
             // set timer values
@@ -71,6 +73,7 @@ class GameInfo extends Component {
                     minutes: minutes < 10 ? '0' + minutes: minutes,
                     seconds: seconds < 10 ? '0' + seconds: seconds,
                     miliSeconds: miliSeconds < 10 ? '00' + miliSeconds : (miliSeconds < 100 ? '0' + miliSeconds : miliSeconds),
+                    centiSeconds: centiSeconds < 10 ? '0' + centiSeconds: centiSeconds,
                     deciSeconds: deciSeconds < 10 ? '0' + deciSeconds: deciSeconds,
                 }
             });
@@ -106,7 +109,7 @@ class GameInfo extends Component {
                             <h4>Game Closing On</h4>
                             <div className="countdown">
                                 <h3 className="countdown-text">
-                                    <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.deciSeconds }</span>
+                                    <span>{ timer.minutes }</span> : <span>{ timer.seconds }</span> : <span>{ timer.centiSeconds }</span>
                                 </h3>
                             </div>
                         </div>
