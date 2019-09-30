@@ -202,7 +202,7 @@ export function inCurrency(coins, withUnit = true) {
         const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
         const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
 
-        amountInCurrency =  parseFloat((coins / appCurrencyDetail.value_in_app_coin).toFixed(6));
+        amountInCurrency =  parseFloat((coins / appCurrencyDetail.value_in_bits).toFixed(6));
         if (withUnit) {
             amountInCurrency += " " + appCurrency.value;
         }
@@ -234,7 +234,7 @@ export function inCoin(currency, withUnit = true) {
         const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
         const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
 
-        amountInCoin = (currency * appCurrencyDetail.value_in_app_coin);
+        amountInCoin = (currency * appCurrencyDetail.value_in_bits);
 
         if (withUnit) {
             amountInCoin += " coins";
