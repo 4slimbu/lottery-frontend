@@ -10,6 +10,8 @@ import {AvFeedback, AvField, AvForm, AvGroup} from "availity-reactstrap-validati
 import {setAuth} from "../../actions/authActions";
 import jwt_decode from "jwt-decode";
 import setAuthorizationToken from "../../utils/axios/setAuthorizationToken";
+import Echo from 'laravel-echo';
+import {getEnv} from "../../utils/helper/helperFunctions";
 
 class LoginModal extends Component {
     constructor(props) {
@@ -101,19 +103,27 @@ class LoginModal extends Component {
                     this.props.setModal('verify')
                 }
 
-                setTimeout(function() {
-                    // join private channel
-                    window.Echo.private('App.User.' + this.props.auth.user.id)
-                        .listen('UserUpdateEvent', (e) => {
-                            console.log('UserUpdateEvent', e.token);
-                            if (e.token) {
-                                localStorage.setItem("jwtToken", e.token);
-                                setAuthorizationToken(e.token);
-                                this.props.setAuth(jwt_decode(e.token));
-                            }
-                        });
-                }, 200);
+                window.io = require('socket.io-client');
+                window.Echo = new Echo({
+                    broadcaster: 'socket.io',
+                    host: getEnv('APP_SOCKET_URL'),
+                    // host: window.location.hostname + ':6001',
+                    auth: {
+                        headers: {
+                            'Authorization' : 'Bearer ' + responseData.token
+                        }
+                    }
+                });
 
+                // join private channel
+                window.Echo.private('App.User.' + this.props.auth.user.id)
+                    .listen('UserUpdateEvent', (e) => {
+                        if (e.token) {
+                            localStorage.setItem("jwtToken", e.token);
+                            setAuthorizationToken(e.token);
+                            this.props.setAuth(jwt_decode(e.token));
+                        }
+                    });
                 this.props.history.push("/");
             },
             (errorData) => {
@@ -136,20 +146,27 @@ class LoginModal extends Component {
         this.props.makeRequest(request.Auth.loginAsGuest, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 this.props.setModal();
+                window.io = require('socket.io-client');
+                window.Echo = new Echo({
+                    broadcaster: 'socket.io',
+                    host: getEnv('APP_SOCKET_URL'),
+                    // host: window.location.hostname + ':6001',
+                    auth: {
+                        headers: {
+                            'Authorization' : 'Bearer ' + responseData.token
+                        }
+                    }
+                });
 
-                setTimeout(function () {
-                    // join private channel
-                    window.Echo.private('App.User.' + this.props.auth.user.id)
-                        .listen('UserUpdateEvent', (e) => {
-                            console.log('UserUpdateEvent', e.token);
-                            if (e.token) {
-                                localStorage.setItem("jwtToken", e.token);
-                                setAuthorizationToken(e.token);
-                                this.props.setAuth(jwt_decode(e.token));
-                            }
-                        });
-                }, 200);
-
+                // join private channel
+                window.Echo.private('App.User.' + this.props.auth.user.id)
+                    .listen('UserUpdateEvent', (e) => {
+                        if (e.token) {
+                            localStorage.setItem("jwtToken", e.token);
+                            setAuthorizationToken(e.token);
+                            this.props.setAuth(jwt_decode(e.token));
+                        }
+                    });
                 this.props.history.push("/");
             },
             (errorData) => {
