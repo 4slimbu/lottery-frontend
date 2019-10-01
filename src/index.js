@@ -113,6 +113,7 @@ window.Echo.channel('lottery')
 
 window.Echo.private('App.User.' + userId)
     .listen('UserUpdateEvent', (e) => {
+        console.log('UserUpdateEvent', e.token);
         if (e.token) {
             localStorage.setItem("jwtToken", e.token);
             setAuthorizationToken(e.token);

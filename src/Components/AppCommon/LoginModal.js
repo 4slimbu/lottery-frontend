@@ -103,6 +103,7 @@ class LoginModal extends Component {
                 // join private channel
                 window.Echo.private('App.User.' + this.props.auth.user.id)
                     .listen('UserUpdateEvent', (e) => {
+                        console.log('UserUpdateEvent', e.token);
                         if (e.token) {
                             localStorage.setItem("jwtToken", e.token);
                             setAuthorizationToken(e.token);
@@ -134,6 +135,7 @@ class LoginModal extends Component {
                 // join private channel
                 window.Echo.private('App.User.' + this.props.auth.user.id)
                     .listen('UserUpdateEvent', (e) => {
+                        console.log('UserUpdateEvent', e.token);
                         if (e.token) {
                             localStorage.setItem("jwtToken", e.token);
                             setAuthorizationToken(e.token);
