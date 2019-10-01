@@ -100,16 +100,20 @@ class LoginModal extends Component {
                 } else {
                     this.props.setModal('verify')
                 }
-                // join private channel
-                window.Echo.private('App.User.' + this.props.auth.user.id)
-                    .listen('UserUpdateEvent', (e) => {
-                        console.log('UserUpdateEvent', e.token);
-                        if (e.token) {
-                            localStorage.setItem("jwtToken", e.token);
-                            setAuthorizationToken(e.token);
-                            this.props.setAuth(jwt_decode(e.token));
-                        }
-                    });
+
+                setTimeout(function() {
+                    // join private channel
+                    window.Echo.private('App.User.' + this.props.auth.user.id)
+                        .listen('UserUpdateEvent', (e) => {
+                            console.log('UserUpdateEvent', e.token);
+                            if (e.token) {
+                                localStorage.setItem("jwtToken", e.token);
+                                setAuthorizationToken(e.token);
+                                this.props.setAuth(jwt_decode(e.token));
+                            }
+                        });
+                }, 200);
+
                 this.props.history.push("/");
             },
             (errorData) => {
@@ -132,16 +136,20 @@ class LoginModal extends Component {
         this.props.makeRequest(request.Auth.loginAsGuest, data, {message: MESSAGES.LOGGING}).then(
             (responseData) => {
                 this.props.setModal();
-                // join private channel
-                window.Echo.private('App.User.' + this.props.auth.user.id)
-                    .listen('UserUpdateEvent', (e) => {
-                        console.log('UserUpdateEvent', e.token);
-                        if (e.token) {
-                            localStorage.setItem("jwtToken", e.token);
-                            setAuthorizationToken(e.token);
-                            this.props.setAuth(jwt_decode(e.token));
-                        }
-                    });
+
+                setTimeout(function () {
+                    // join private channel
+                    window.Echo.private('App.User.' + this.props.auth.user.id)
+                        .listen('UserUpdateEvent', (e) => {
+                            console.log('UserUpdateEvent', e.token);
+                            if (e.token) {
+                                localStorage.setItem("jwtToken", e.token);
+                                setAuthorizationToken(e.token);
+                                this.props.setAuth(jwt_decode(e.token));
+                            }
+                        });
+                }, 200);
+
                 this.props.history.push("/");
             },
             (errorData) => {
