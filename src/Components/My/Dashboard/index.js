@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {Link, withRouter} from "react-router-dom";
-import {inAppCoin, inCurrency} from "../../../utils/helper/helperFunctions";
+import {bitsToCoin, bitsToBtc} from "../../../utils/helper/helperFunctions";
 import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
 import ReactTable from "react-table";
@@ -55,13 +54,13 @@ class Dashboard extends React.Component {
                         <div className="col-md-4 mb-md-4">
                             <div className="card">
                                 <div className="card-header">Deposit</div>
-                                <div className="card-body">{ wallet && inAppCoin(wallet.deposit) }</div>
+                                <div className="card-body">{ wallet && bitsToCoin(wallet.deposit) }</div>
                             </div>
                         </div>
                         <div className="col-md-4 mb-md-4">
                             <div className="card">
                                 <div className="card-header">Won</div>
-                                <div className="card-body">{ wallet && inCurrency(wallet.won) }</div>
+                                <div className="card-body">{ wallet && bitsToBtc(wallet.won) }</div>
                             </div>
                         </div>
                     </div>
@@ -115,7 +114,7 @@ class Dashboard extends React.Component {
                                                                     accessor: 'won_amount',
                                                                     Cell: props => (
                                                                         <div>
-                                                                            { inCurrency(props.original.won_amount) }
+                                                                            { bitsToBtc(props.original.won_amount) }
                                                                         </div>
                                                                     )
                                                                 }
@@ -165,7 +164,7 @@ class Dashboard extends React.Component {
                                                                     accessor: 'amount',
                                                                     Cell: props => (
                                                                         <div>
-                                                                            { inCurrency(props.original.amount) }
+                                                                            { bitsToBtc(props.original.amount) }
                                                                         </div>
                                                                     )
                                                                 },

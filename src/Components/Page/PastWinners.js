@@ -7,7 +7,7 @@ import {MESSAGES} from "../../constants/messages";
 import AnimatedSection from "../AppCommon/AnimatedSection";
 import {
     getPlayerDisplayName, getWinningTypeClass, getWinningTypeIcon,
-    inCurrency
+    bitsToBtc
 } from "../../utils/helper/helperFunctions";
 import LotteryNumberList from "../AppCommon/LotteryNumberList";
 
@@ -155,7 +155,7 @@ class PastWinners extends React.Component {
                                                                             Cell: props => (
                                                                                 <div className="d-block w-100 text-right">
                                                                                     <span>
-                                                                                        { inCurrency(props.original.won_amount * 1 + props.original.service_charge * 1)}
+                                                                                        { bitsToBtc(props.original.won_amount * 1 + props.original.service_charge * 1)}
                                                                                     </span>
                                                                                     <span className={ "winner-type " + getWinningTypeClass(props.original) }>
                                                                                         { getWinningTypeIcon(props.original) }

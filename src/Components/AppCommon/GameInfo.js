@@ -4,7 +4,7 @@ import {
     getPlayerDisplayName,
     getWinningTypeClass,
     getWinningTypeIcon,
-    inCurrency
+    bitsToBtc
 } from "../../utils/helper/helperFunctions";
 import * as _ from "lodash";
 
@@ -136,7 +136,7 @@ class GameInfo extends Component {
                                             _.map(lastSlot.winners, function (winner, key) {
                                                 return <div key={key} className="winner-sec text-center">
                                                     <span>
-                                                        {getPlayerDisplayName(winner)} : { inCurrency(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }
+                                                        {getPlayerDisplayName(winner)} : { bitsToBtc(winner.pivot.won_amount * 1 + winner.pivot.service_charge * 1) }
                                                     </span>
                                                     <span className={ "winner-type " + getWinningTypeClass(winner) }>
                                                         { getWinningTypeIcon(winner) }

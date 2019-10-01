@@ -7,7 +7,7 @@ import {setModal} from "../../actions/appStatusAction";
 import request from "../../services/request";
 import {MESSAGES} from "../../constants/messages";
 import PickedNumbers from "./PickedNumbers";
-import {findSetting, inAppCoin, isNumberPickedCorrectly} from "../../utils/helper/helperFunctions";
+import {findSetting, isNumberPickedCorrectly} from "../../utils/helper/helperFunctions";
 import {setUser} from "../../actions/authActions";
 import DepositButton from "./DepositButton";
 
@@ -110,6 +110,7 @@ class PlayModal extends Component {
 
         // check if can play
         let entryFee = findSetting(settings, 'lottery_slot_entry_fee');
+        let entryAmount = entryFee.value > 1 ? entryFee.value + ' Coins' : entryFee.value + ' Coin';
         const canPlayUsingBalance = (wallet && entryFee &&  (wallet.deposit > entryFee.value));
         const canPlayFreeUnVerified = !isVerified && user.free_games > 3; // only 2 games out of 5 can be played unverified
         const canPlayFreeVerified = isVerified && user.free_games > 0; // five games are allowed
@@ -137,34 +138,34 @@ class PlayModal extends Component {
                                                 canPlayFreeVerified || canPlayFreeUnVerified || canPlayFreeIfVerified ?
                                                     <h3 className="play-title">Free Games Left: {user.free_games}</h3>
                                                     :
-                                                    <h3 className="play-title">Entry Fee: {inAppCoin(entryFee && entryFee.value)}</h3>
+                                                    <h3 className="play-title">Entry Fee: {entryAmount}</h3>
                                             }
                                             {
-                                                canPlay ?
-                                                    (
-                                                        canPlayFreeIfVerified ?
-                                                            <div className="text-center">
-                                                                <span>Please verify your account to use your remaining free games.</span> <br />
-                                                                <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a>
-                                                            </div>
-                                                            :
+                                                canPlay &&
+                                                    (canPlayFreeUnVerified || canPlayFreeVerified) ?
                                                             <div>
                                                                 <button className="play-btn" onClick={this.play}>Play</button>
                                                             </div>
-                                                    )
-                                                    :
-                                                    (
-                                                        canPlayFreeIfVerified ?
-                                                            <div className="text-center">
-                                                                <span>Please verify your account to use your remaining free games.</span> <br />
-                                                                <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a>
-                                                            </div>
                                                             :
-                                                            <div>
-                                                                <span>You don't have enough balance.</span>
-                                                                <DepositButton/>
-                                                            </div>
-                                                    )
+                                                            (
+                                                                canPlayFreeIfVerified ?
+                                                                    <div className="text-center">
+                                                                        <span>Please verify your account to use your remaining free games.</span> <br />
+                                                                        <a href="javascript:void(0);" onClick={() => this.showVerificationModal()} className="btn-link">Verify Now</a>
+                                                                    </div>
+                                                                    :
+                                                                    (
+                                                                        canPlayUsingBalance ?
+                                                                            <div>
+                                                                                <button className="play-btn" onClick={this.play}>Play</button>
+                                                                            </div>
+                                                                            :
+                                                                            <div>
+                                                                                <span>You don't have enough balance.</span>
+                                                                                <DepositButton/>
+                                                                            </div>
+                                                                    )
+                                                            )
                                             }
                                         </div>
                                         :

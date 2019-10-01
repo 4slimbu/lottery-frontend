@@ -9,7 +9,7 @@ import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
 import {setWithdrawRequests} from "../../../actions/myActions";
 import ReactTable from "react-table";
-import {inCoin, inCurrency} from "../../../utils/helper/helperFunctions";
+import {bitsToCoin, bitsToBtc, btcToBits} from "../../../utils/helper/helperFunctions";
 import {setUser} from "../../../actions/authActions";
 import AnimatedSection from "../../AppCommon/AnimatedSection";
 
@@ -83,7 +83,7 @@ class Withdraw extends Component {
             return;
         }
 
-        if (inCoin(this.state.amount, false) > wallet.won) {
+        if (btcToBits(this.state.amount, false) > wallet.won) {
             this.setState({
                 error: "Amount cannot be greater than available balance"
             });
@@ -91,7 +91,7 @@ class Withdraw extends Component {
         }
 
         const data = {
-            amount: inCoin(this.state.amount, false)
+            amount: btcToBits(this.state.amount, false)
         };
 
         this.setState({isLoading: true});
@@ -128,7 +128,7 @@ class Withdraw extends Component {
                             <div className="card">
                                 <div className="card-header">Withdraw</div>
                                 <div className="card-body">
-                                    <p>Available Balance: <strong>{wallet && inCurrency(wallet.won)}</strong></p>
+                                    <p>Available Balance: <strong>{wallet && bitsToBtc(wallet.won)}</strong></p>
                                     <form className="withdraw-form" onSubmit={this.handleWithdraw}>
                                         <div className="input-group">
                                             <input name="amount" type="text" className="form-control" placeholder="0.00"
@@ -169,7 +169,7 @@ class Withdraw extends Component {
                                                         accessor: 'amount',
                                                         Cell: props => (
                                                             <div>
-                                                                { inCurrency(props.original.amount) }
+                                                                { bitsToBtc(props.original.amount) }
                                                             </div>
                                                         )
                                                     },

@@ -6,7 +6,7 @@ import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
 import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
 import ReactTable from "react-table";
-import {inCurrency} from "../../../utils/helper/helperFunctions";
+import {bitsToBtc} from "../../../utils/helper/helperFunctions";
 import AnimatedSection from "../../AppCommon/AnimatedSection";
 
 class Transactions extends Component {
@@ -48,7 +48,7 @@ class Transactions extends Component {
                                                                         accessor: 'amount',
                                                                         Cell: props => (
                                                                             <div>
-                                                                                { inCurrency(props.original.amount) }
+                                                                                { bitsToBtc(props.original.amount) }
                                                                             </div>
                                                                         )
                                                                     }

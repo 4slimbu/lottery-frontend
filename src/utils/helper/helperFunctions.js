@@ -188,64 +188,94 @@ export function inAppCoin(coins, withUnit = true) {
 
 }
 
-export function inCurrency(coins, withUnit = true) {
-    let amountInCurrency = 0;
-
-    // If coin not set or undefined or empty. Skip for 0
-    if (! coins && coins !== 0) {
-        return "";
-    }
-
-    try {
-        const currencies = JSON.parse(localStorage.getItem("currencies"));
-        const settings = JSON.parse(localStorage.getItem("settings"));
-        const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
-        const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
-
-        amountInCurrency =  parseFloat((coins / appCurrencyDetail.value_in_bits).toFixed(6));
-        if (withUnit) {
-            amountInCurrency += " " + appCurrency.value;
-        }
-    } catch (err) {
-        // console.log('currency conversion error', err);
-    }
-
-
-    return amountInCurrency;
-
-}
-
-export function inCoin(currency, withUnit = true) {
+export function bitsToBtc(amount, withUnit = true) {
     let amountInCoin = 0;
 
-    // If currency not set or undefined or empty. Skip for 0
-    if (! currency && currency !== 0) {
+    // If amount not set or undefined or empty. Skip for 0
+    if (! amount && amount !== 0) {
         return "";
     }
 
 
-    if (! currency) {
+    if (! amount) {
         return "";
     }
 
     try {
         const currencies = JSON.parse(localStorage.getItem("currencies"));
-        const settings = JSON.parse(localStorage.getItem("settings"));
-        const appCurrency = _.find(settings, function(o) { return o.key === "app_currency"; });
-        const appCurrencyDetail = _.find(currencies, {currency: appCurrency.value});
+        const coinData = _.find(currencies, {currency: "BTC"});
 
-        amountInCoin = (currency * appCurrencyDetail.value_in_bits);
+        amountInCoin = parseFloat((amount / coinData.value_in_bits).toFixed(6));
 
         if (withUnit) {
-            amountInCoin += " coins";
+            let suffix = " BTC";
+            amountInCoin += suffix;
         }
     } catch (err) {
-        // console.log('currency conversion error', err);
+        // console.log('amount conversion error', err);
+    }
+
+    return amountInCoin;
+}
+
+export function btcToBits(amount, withUnit = true) {
+    let amountInBits = 0;
+
+    // If amount not set or undefined or empty. Skip for 0
+    if (! amount && amount !== 0) {
+        return "";
     }
 
 
-    return amountInCoin;
+    if (! amount) {
+        return "";
+    }
 
+    try {
+        const currencies = JSON.parse(localStorage.getItem("currencies"));
+        const coinData = _.find(currencies, {currency: "BTC"});
+
+        amountInBits = parseFloat((amount * coinData.value_in_bits).toFixed(6));
+
+        if (withUnit) {
+            let suffix = " Bits";
+            amountInBits += suffix;
+        }
+    } catch (err) {
+        // console.log('amount conversion error', err);
+    }
+
+    return amountInBits;
+}
+
+export function bitsToCoin(amount, withUnit = true) {
+    let amountInCoin = 0;
+
+    // If amount not set or undefined or empty. Skip for 0
+    if (! amount && amount !== 0) {
+        return "";
+    }
+
+
+    if (! amount) {
+        return "";
+    }
+
+    try {
+        const currencies = JSON.parse(localStorage.getItem("currencies"));
+        const coinData = _.find(currencies, {currency: "Coin"});
+
+        amountInCoin = parseFloat((amount / coinData.value_in_bits).toFixed(6));
+
+        if (withUnit) {
+            let suffix = amountInCoin > 1 ? " coins" : " coin";
+            amountInCoin += suffix;
+        }
+    } catch (err) {
+        // console.log('amount conversion error', err);
+    }
+
+    return amountInCoin;
 }
 
 // stripslashes

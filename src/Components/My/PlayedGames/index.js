@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import ReactTable from "react-table";
-import {inCurrency} from "../../../utils/helper/helperFunctions";
+import {bitsToBtc} from "../../../utils/helper/helperFunctions";
 import LotteryNumberList from "../../AppCommon/LotteryNumberList";
 import AnimatedSection from "../../AppCommon/AnimatedSection";
 
@@ -64,7 +64,7 @@ class PlayedGames extends Component {
                                                                         accessor: 'won_amount',
                                                                         Cell: props => (
                                                                             <div>
-                                                                                { inCurrency(props.original.won_amount) }
+                                                                                { bitsToBtc(props.original.won_amount) }
                                                                             </div>
                                                                         )
                                                                     }

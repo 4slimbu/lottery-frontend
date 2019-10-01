@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import * as classnames from "classnames";
 import {
     getPlayerDisplayName, getWinningTypeClass, getWinningTypeIcon,
-    inCurrency
+    bitsToBtc
 } from "../../utils/helper/helperFunctions";
 
 const LotteryWinnerList = (props) => {
@@ -19,7 +19,7 @@ const LotteryWinnerList = (props) => {
                                     <div>
                                         <span className="player-name">{getPlayerDisplayName(winner)}</span>
                                         <span className="player-lottery-amount">
-                                            { inCurrency(winner.won_amount * 1 + winner.service_charge * 1)}
+                                            { bitsToBtc(winner.won_amount * 1 + winner.service_charge * 1)}
                                             <span className={ "winner-type " + getWinningTypeClass(winner) }>
                                                 { getWinningTypeIcon(winner) }
                                             </span>
