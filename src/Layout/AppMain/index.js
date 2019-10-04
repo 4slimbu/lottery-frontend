@@ -9,6 +9,7 @@ import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from 
 import {setCurrencies, setSettings, updateBrowseHistory} from "../../actions/appStatusAction";
 import LoadingMessage from "../../Components/AppCommon/loading/LoadingMessage";
 import FlashMessageList from "../../Components/AppCommon/flash/FlashMessageList";
+import MetaTags from "../../Components/AppCommon/MetaTags";
 
 
 const Home = lazy(() => import('../../Components/Home'));
@@ -116,6 +117,7 @@ class AppMain extends Component {
         const {rootCssClassList} = this.props.appStatus;
         return (
             <Fragment>
+                <MetaTags seo={{title: "Home"}} title="HOme" />
                 <div className={rootCssClassList.join(' ')}>
                 <Suspense fallback={
                     <div className="loader-container">

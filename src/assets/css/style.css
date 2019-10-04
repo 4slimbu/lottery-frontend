@@ -1269,3 +1269,11 @@ li.list-group-item span.player-lottery-amount {
 .past-winners .rt-thead.-header .rt-tr .rt-resizable-header:last-child {
     text-align: right!important;
 }
+
+input[type="text"]:placeholder{
+    font-weight:300!important;
+}
+input{
+    color:#888 ;
+    font-weight: 300!important;
+}

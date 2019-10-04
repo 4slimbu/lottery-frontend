@@ -180,6 +180,15 @@ const Pages = {
 };
 
 /**
+ * Handles all SEO related requests
+ */
+const Seo = {
+    get: (id) =>
+        requests('GET', API_BASE_URL + "/seo/" + id),
+};
+
+
+/**
  * Handles all Contact form related requests
  */
 const ContactFormEntry = {
@@ -197,5 +206,6 @@ export default {
     Currencies,
     Lottery,
     Pages,
-    ContactFormEntry
+    ContactFormEntry,
+    Seo
 };
