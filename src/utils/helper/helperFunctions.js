@@ -278,6 +278,40 @@ export function bitsToCoin(amount, withUnit = true) {
     return amountInCoin;
 }
 
+export function coinToBits(amount, withUnit = true) {
+    let amountInBits = 0;
+
+    // If amount not set or undefined or empty. Skip for 0
+    if (! amount && amount !== 0) {
+        return "";
+    }
+
+
+    if (! amount) {
+        return "";
+    }
+
+    try {
+        const currencies = JSON.parse(localStorage.getItem("currencies"));
+        const coinData = _.find(currencies, {currency: "Coin"});
+
+        amountInBits = parseFloat((amount * coinData.value_in_bits));
+
+        if (withUnit) {
+            amountInBits += amountInBits > 1 ? " coins" : " coin";
+        }
+    } catch (err) {
+        // console.log('amount conversion error', err);
+    }
+
+    return amountInBits;
+}
+
+export function coinToBtc(amount, withUnit = true) {
+    return bitsToBtc(coinToBits(amount, false));
+}
+
+
 // stripslashes
 export function stripslashes(str) {
     return str.replace(/\\'/g,'\'').replace(/\"/g,'"').replace(/\\\\/g,'\\').replace(/\\0/g,'\0');

@@ -4,8 +4,6 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {makeRequest} from "../../actions/requestAction";
 import {setModal, updateBrowseHistory} from "../../actions/appStatusAction";
-import request from "../../services/request";
-import {MESSAGES} from "../../constants/messages";
 import {setUser} from "../../actions/authActions";
 
 class DepositButton extends Component {
@@ -16,8 +14,7 @@ class DepositButton extends Component {
             charge: {}
         };
 
-        this.createCharge = this.createCharge.bind(this);
-        this.openPopUp = this.openPopUp.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -35,7 +32,7 @@ class DepositButton extends Component {
 
                 this.props.updateBrowseHistory(newBrowserHistory);
 
-                this.createCharge();
+                this.handleClick();
             }
         });
     }
@@ -44,7 +41,7 @@ class DepositButton extends Component {
         this.unlisten();
     }
 
-    createCharge() {
+    handleClick() {
 
         const {isAuthenticated} = this.props.auth;
 
@@ -58,33 +55,18 @@ class DepositButton extends Component {
             return;
         }
 
-        this.props.makeRequest(request.Coinbase.createCharge, {}, {message: MESSAGES.LOGGING}).then(
-            (res) => {
-                this.setState({charge: res.data, isLoading: false });
-                this.openPopUp();
-            },
-            (errorData) => {
-                this.setState({isLoading: false});
-            }
-        );
-    }
-
-    openPopUp() {
-        const {charge} = this.state;
-        const url = charge && charge.hosted_url;
-        const newWindow=window.open(url,'name','height=600,width=800');
-        if (window.focus) {newWindow.focus()}
-        return false;
+        // Open deposit modal
+        this.props.setModal('deposit');
     }
 
     render() {
         return (
             <Fragment>
-                <Button onClick={this.createCharge}>Deposit</Button>
+                <Button onClick={this.handleClick}>Deposit</Button>
             </Fragment>
         )
     }
-};
+}
 
 function mapStateToProps(state) {
     return {

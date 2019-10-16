@@ -9,6 +9,7 @@ import RegisterModal from "../../Components/AppCommon/RegisterModal";
 import PlayModal from "../../Components/AppCommon/PlayModal";
 import {findSetting} from "../../utils/helper/helperFunctions";
 import VerifyModal from "../../Components/AppCommon/VerifyModal";
+import DepositModal from "../../Components/AppCommon/DepositModal";
 
 class AppFooter extends Component {
     render() {
@@ -54,6 +55,7 @@ class AppFooter extends Component {
                 <RegisterModal/>
                 <VerifyModal/>
                 <PlayModal/>
+                <DepositModal/>
             </Fragment>
         )}
 }

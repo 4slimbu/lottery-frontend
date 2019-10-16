@@ -1277,3 +1277,53 @@ input{
     color:#888 ;
     font-weight: 300!important;
 }
+
+.coin-box {
+    text-align: center;
+    cursor: pointer;
+    /*border: 1px solid #f3f3f3;*/
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.coin-buy-amount {
+    width: 100%;
+}
+
+.coin-wrapper {
+    display: inline-block;
+}
+
+.coin {
+    border: 3px solid #ffcc30;
+    border-radius: 100%;
+    background-color: #ff9300;
+    color: #ffffff;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.coin:hover {
+    border: 3px solid #ffcc30;
+    background-color: #ffa500;
+}
+
+.coin-amount {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
+}
+
+.coin-buy-amount {
+    margin-top: 5px;
+    padding: 5px 0 !important;
+}
