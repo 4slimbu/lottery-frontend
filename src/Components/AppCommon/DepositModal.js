@@ -16,13 +16,13 @@ const Coins = (props) => {
     return (
         _.map(coins, (coin, key) => {
             return (
-                <Col key={key} md={4} className="coin-box" onClick={() => handleClick(coin)}>
+                <Col key={key} md={4} className="coin-box">
                     <div className="coin-wrapper">
-                        <div className="coin">
+                        <div className="coin" onClick={() => handleClick(coin)}>
                             <span className="coin-amount">{coin} <br /> {coin === 1 ? "coin" : "coins"}</span>
                         </div>
                     </div>
-                    <button className="btn btn-primary coin-buy-amount">
+                    <button className="btn btn-primary coin-buy-amount" onClick={() => handleClick(coin)}>
                         { coinToBtc(coin) }
                     </button>
                 </Col>
