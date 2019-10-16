@@ -8,8 +8,7 @@ import {MESSAGES} from "../../constants/messages";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../actions/lotteryActions";
 import {setCurrencies, setSettings, updateBrowseHistory} from "../../actions/appStatusAction";
 import LoadingMessage from "../../Components/AppCommon/loading/LoadingMessage";
-import FlashMessageList from "../../Components/AppCommon/flash/FlashMessageList";
-import MetaTags from "../../Components/AppCommon/MetaTags";
+import {setPage} from "../../actions/pageActions";
 
 
 const Home = lazy(() => import('../../Components/Home'));
@@ -107,6 +106,12 @@ class AppMain extends Component {
                 this.setState({isLoading: false});
             }
         );
+
+        // Get Home page info
+        this.props.makeRequest(request.Pages.show, {slug: "home" }, {message: MESSAGES.LOGGING}).then(
+            (res) => { if (res.data) { this.props.setPage(res); this.setState({isLoading: false}); } },
+            (errorData) => {}
+        );
     }
 
     componentWillUnmount() {
@@ -117,7 +122,6 @@ class AppMain extends Component {
         const {rootCssClassList} = this.props.appStatus;
         return (
             <Fragment>
-                <MetaTags seo={{title: "Home"}} title="HOme" />
                 <div className={rootCssClassList.join(' ')}>
                 <Suspense fallback={
                     <div className="loader-container">
@@ -150,5 +154,5 @@ function mapStateToProps(state) {
 
 export default withRouter(connect(mapStateToProps, {
     makeRequest, setLastSlot, setCurrencies, setSettings, setLotteryWinners, setLotterySlot, setLotteryPlayers,
-    updateBrowseHistory
+    updateBrowseHistory, setPage
 })(AppMain));

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import 'react-table/react-table.css'
@@ -9,7 +9,7 @@ import ContactUs from "./ContactUs";
 import withLayout from "../HOC/withLayout";
 import PastWinners from "./PastWinners";
 
-class Page extends React.Component {
+class Page extends Component {
     constructor(props) {
         super(props);
 

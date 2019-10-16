@@ -17,6 +17,7 @@ import {setPage} from "../../actions/pageActions";
 import {setPlayedGames, setTransactions} from "../../actions/myActions";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav} from "reactstrap";
 import {logout} from "../../actions/authActions";
+import MetaTags from "../AppCommon/MetaTags";
 
 const withLayout = (PassedComponent) => {
     class WithLayout extends Component {
@@ -79,7 +80,7 @@ const withLayout = (PassedComponent) => {
                         transitionEnter={false}
                         transitionLeave={false}>
                         {/*<AppHeader/>*/}
-
+                        <MetaTags/>
                         <section className="main focus-in">
                             <div className="section-top">
                                 <div className="container">
