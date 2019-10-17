@@ -1332,10 +1332,14 @@ input{
     padding: 5px 0 !important;
 }
 
+.modal-title {
+    color: #f8bd00 !important;
+}
+
 .modal-title span {
     margin-right: 10px;
     margin-left: 10px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     cursor: pointer;
 }
 
@@ -1344,5 +1348,5 @@ input{
 }
 
 .modal-title span.active {
-    border-bottom: 2px solid #30b4d4;
+    border-bottom: 3px solid #f8bd00;
 }
