@@ -265,7 +265,7 @@ export function bitsToCoin(amount, withUnit = true) {
         const currencies = JSON.parse(localStorage.getItem("currencies"));
         const coinData = _.find(currencies, {currency: "Coin"});
 
-        amountInCoin = parseFloat((amount / coinData.value_in_bits).toFixed(6));
+        amountInCoin = parseFloat((amount / coinData.value_in_bits).toFixed(0));
 
         if (withUnit) {
             let suffix = amountInCoin > 1 ? " coins" : " coin";
