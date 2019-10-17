@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {Link, withRouter} from "react-router-dom";
-import {bitsToCoin, bitsToBtc} from "../../../utils/helper/helperFunctions";
+import {bitsToCoin, bitsToBtc, getTitleFromSlug} from "../../../utils/helper/helperFunctions";
 import request from "../../../services/request";
 import {MESSAGES} from "../../../constants/messages";
 import ReactTable from "react-table";
@@ -157,14 +157,23 @@ class Dashboard extends React.Component {
                                                                 },
                                                                 {
                                                                     Header: 'Type',
-                                                                    accessor: 'type'
+                                                                    accessor: 'type',
+                                                                    Cell: props => (
+                                                                        <div>{ getTitleFromSlug(props.original.type) }</div>
+                                                                    )
                                                                 },
                                                                 {
                                                                     Header: 'Amount',
                                                                     accessor: 'amount',
                                                                     Cell: props => (
                                                                         <div>
-                                                                            { bitsToBtc(props.original.amount) }
+                                                                            {
+                                                                                props.original.deposit && props.original.deposit.amount && props.original.deposit.currency ?
+                                                                                    parseFloat((props.original.deposit.amount * 1).toFixed(6)) + ' ' + props.original.deposit.currency
+                                                                                    :
+                                                                                    bitsToBtc(props.original.amount)
+
+                                                                            }
                                                                         </div>
                                                                     )
                                                                 },

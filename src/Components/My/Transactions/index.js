@@ -6,7 +6,7 @@ import {makeRequest} from "../../../actions/requestAction";
 import {setLastSlot, setLotteryPlayers, setLotterySlot, setLotteryWinners} from "../../../actions/lotteryActions";
 import {setCurrencies, setSettings} from "../../../actions/appStatusAction";
 import ReactTable from "react-table";
-import {bitsToBtc} from "../../../utils/helper/helperFunctions";
+import {bitsToBtc, getTitleFromSlug} from "../../../utils/helper/helperFunctions";
 import AnimatedSection from "../../AppCommon/AnimatedSection";
 
 class Transactions extends Component {
@@ -41,14 +41,23 @@ class Transactions extends Component {
                                                                     },
                                                                     {
                                                                         Header: 'Type',
-                                                                        accessor: 'type'
+                                                                        accessor: 'type',
+                                                                        Cell: props => (
+                                                                            <div>{ getTitleFromSlug(props.original.type) }</div>
+                                                                        )
                                                                     },
                                                                     {
                                                                         Header: 'Amount',
                                                                         accessor: 'amount',
                                                                         Cell: props => (
                                                                             <div>
-                                                                                { bitsToBtc(props.original.amount) }
+                                                                                {
+                                                                                    props.original.deposit && props.original.deposit.amount && props.original.deposit.currency ?
+                                                                                        parseFloat((props.original.deposit.amount * 1).toFixed(6)) + ' ' + props.original.deposit.currency
+                                                                                        :
+                                                                                        bitsToBtc(props.original.amount)
+
+                                                                                }
                                                                             </div>
                                                                         )
                                                                     }
