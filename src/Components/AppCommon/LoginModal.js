@@ -12,6 +12,7 @@ import jwt_decode from "jwt-decode";
 import setAuthorizationToken from "../../utils/axios/setAuthorizationToken";
 import Echo from 'laravel-echo';
 import {getEnv} from "../../utils/helper/helperFunctions";
+import RegisterModal from "./RegisterModal";
 
 class LoginModal extends Component {
     constructor(props) {
@@ -235,7 +236,8 @@ class LoginModal extends Component {
                 <div>
                     <Modal isOpen={isOpen} toggle={this.closeModal} className={this.props.className}
                            backdrop={this.state.backdrop}>
-                        { activeScreen === "login" && <ModalHeader toggle={this.closeModal}>Sign In</ModalHeader> }
+                        { activeScreen === "login" && <ModalHeader toggle={this.closeModal}><span className="active" onClick={() => this.activateScreen('login')}>Sign In</span>|<span onClick={() => this.activateScreen('register')}>Register</span></ModalHeader> }
+                        { activeScreen === "register" && <ModalHeader toggle={this.closeModal}><span onClick={() => this.activateScreen('login')}>Sign In</span>|<span className="active" onClick={() => this.activateScreen('register')}>Register</span></ModalHeader> }
                         { activeScreen === "loginAsGuest" && <ModalHeader toggle={this.closeModal}>Sign In As Guest</ModalHeader> }
                         { activeScreen === "sendRecoveryEmail" && <ModalHeader toggle={this.closeModal}>Recover Password</ModalHeader> }
                         { activeScreen === "resetPassword" && <ModalHeader toggle={this.closeModal}>Reset Password</ModalHeader> }
@@ -300,6 +302,11 @@ class LoginModal extends Component {
                                         </AvForm>
                                     </div>
                                 </div>
+                            }
+
+                            {/*============== Register Screen ==================*/}
+                            {
+                                activeScreen === "register" && <RegisterModal activateScreen={this.activateScreen}/>
                             }
 
                             {/*============== Login As Guest Screen ==================*/}

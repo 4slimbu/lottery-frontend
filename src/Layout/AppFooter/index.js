@@ -52,7 +52,6 @@ class AppFooter extends Component {
                     </div>
                 </footer>
                 <LoginModal/>
-                <RegisterModal/>
                 <VerifyModal/>
                 <PlayModal/>
                 <DepositModal/>

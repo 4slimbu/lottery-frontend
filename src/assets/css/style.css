@@ -182,7 +182,7 @@ last section
     color: #fff;
 }
 .winners-table .list-group {
-    min-height: 408px;
+    min-height: 353px;
 }
 .list-group-item{
     padding: 14px 20px;
@@ -468,7 +468,7 @@ strong{
 }
 
 .players-list {
-    height: 275px;
+    height: 219px;
     overflow-y: scroll;
     list-style: none;
     padding: 0px;
@@ -816,7 +816,7 @@ input::placeholder{
     font-size: 35px;
     font-weight: 300;
     color: #fff;
-    background-color:#28a9e1!important;
+    background-color:#30b4d4!important;
     padding: 0!important;
     text-shadow: none;
     opacity: 1!important;
@@ -1330,4 +1330,19 @@ input{
 .coin-buy-amount {
     margin-top: 5px;
     padding: 5px 0 !important;
+}
+
+.modal-title span {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.modal-title span:first-child {
+    margin-left: 0;
+}
+
+.modal-title span.active {
+    border-bottom: 2px solid #30b4d4;
 }
