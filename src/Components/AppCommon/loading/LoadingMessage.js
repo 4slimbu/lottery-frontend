@@ -9,7 +9,7 @@ const LoadingMessage = (props) => {
     return (
         isLoading &&
         <div className="loading-spinner-wrapper">
-            <ReactLoading type='spin' color='lightgrey' height='40px' width='40px' delay={200}
+            <ReactLoading type='spin' color="rgb(77, 97, 171, 0.7)" height='40px' width='40px' delay={200}
                           className="loading-spinner"/>
             {/*<div className="content">{content}</div>*/}
         </div>

@@ -699,7 +699,7 @@ input::placeholder{
 /*--------------------- Popup Styling -------------------------*/
 
 .popup-title{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
     margin-bottom: 15px;
     color: #888;
@@ -1276,6 +1276,10 @@ input[type="text"]:placeholder{
 input{
     color:#888 ;
     font-weight: 300!important;
+}
+
+.form-control {
+    font-size: 14px;
 }
 
 .coin-box {
