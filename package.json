@@ -5,6 +5,10 @@
   "description": "Kryptto",
   "author": "responsive-pixel.com",
   "homepage": "https://kryptto.io",
+  "engines": {
+	"node": "12.7.0",
+	"npm": "6.10.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://bitbucket.org/responsivesudip/lottery-frontend"
