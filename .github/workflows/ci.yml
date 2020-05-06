@@ -4,6 +4,9 @@ on:
   push:
     branch:
       - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
   build:
@@ -11,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 8.x]
+        node-version: [12.x, 10.x, 8.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -30,9 +33,3 @@ jobs:
       - name: npm build
         run: |
           npm run-script build --if-present
-      - name: Add remote origin
-        run: |
-          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-      - name: Deploy to Heroku
-        run: |
-          git push heroku HEAD:master -f
