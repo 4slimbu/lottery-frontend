@@ -57,7 +57,7 @@ class MetaTags extends Component {
 
         return (
             <Helmet>
-                <title>{title ? title + ' - ' : ''} Kryptto</title>
+                <title>{title ? title + ' - ' : ''} Lotterycamp</title>
                 {
                     currentPage.seo && currentPage.seo.meta_title &&
                     <meta name="title" content={currentPage.seo.meta_title} />

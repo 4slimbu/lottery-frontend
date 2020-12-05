@@ -89,8 +89,8 @@ renderApp(AppMain);
 window.io = require('socket.io-client');
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: getEnv('APP_SOCKET_URL'),
-    // host: window.location.hostname + ':6001',
+    // host: getEnv('APP_SOCKET_URL'),
+    host: window.location.hostname + ':6001',
     auth: {
         headers: {
             'Authorization' : 'Bearer ' + jwtToken
