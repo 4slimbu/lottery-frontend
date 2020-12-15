@@ -1350,3 +1350,8 @@ input{
 .modal-title span.active {
     border-bottom: 3px solid #f8bd00;
 }
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+}
