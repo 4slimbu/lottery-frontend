@@ -55,10 +55,8 @@
   },
   "scripts": {
     "start": "react-app-env start",
-    "build": "react-app-env build",
-    "build:local": "react-app-env build --env-file=local.env",
-    "build:client": "react-app-env build --env-file=client.env",
-    "build:staging": "react-app-env build --env-file=staging.env",
+    "build": "react-app-env build --env-file=production.env",
+    "build:dev": "react-app-env build --env-file=development.env",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
