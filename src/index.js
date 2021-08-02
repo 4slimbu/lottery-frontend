@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./assets/css/bootstrap.css";
 import "./assets/css/style.css";
 import AppMain from "./Layout/AppMain";
@@ -73,9 +73,9 @@ if (localStorage.getItem("settings")) {
 const renderApp = (Component) => {
   ReactDOM.render(
     <Provider store={store}>
-      <HashRouter>
+      <Router>
         <Component />
-      </HashRouter>
+      </Router>
     </Provider>,
     rootElement
   );
